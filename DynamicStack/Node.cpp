@@ -6,6 +6,8 @@ public:
 	int val;
 	Node* next;
 
+	int GetValue() { return val; };
+
 	Node(int int_val,Node* next) :
 		val{int_val}, next{nullptr} {}
 	Node(int val) : Node(val, nullptr) {}
@@ -24,3 +26,4 @@ public:
 		return *this;
 	}
 };
+

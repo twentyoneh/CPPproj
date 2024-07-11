@@ -3,14 +3,30 @@
 Stack::Stack() : 
 	first{ nullptr }, last{nullptr} {}
 
-Stack::Stack(int val) :
-	first{&Node(val,nullptr)}
+Stack::Stack(int val)
 {
-
+	Node tmpNode(val);
+	first = new Node;
+	first = &tmpNode;
+	last = &tmpNode;
 }
 
 Stack::~Stack()
 {
+	while (!isEmpty())
+	{
+		Node* tmp = last->next;
+		
+		if(tmp == first)
+		{
+			delete[] first;
+			break;
+		} 
+		else if (tmp != nullptr) {
+			delete[] last;
+			last = tmp;
+		}
+	}
 }
 
 void Stack::Push(int val)
@@ -20,17 +36,24 @@ void Stack::Push(int val)
 		first = p;
 		last = p;
 		return;
+
 	}
-	last->next = p;
+	p->next = last;
 	last = p;
 }
 
 void Stack::Pop()
 {
+	Node* tmp = new Node();
+	tmp = last->next;
+	delete[] last;
+	last = tmp;
+	
 }
 
-void Stack::Peek()
+Node Stack::Peek()
 {
+	return last;
 }
 
 bool Stack::isEmpty()

@@ -1,6 +1,5 @@
 #pragma once
 #include"Node.cpp"
-
 class Stack
 {
 public:
@@ -10,7 +9,7 @@ public:
 
 	void Push(int);
 	void Pop();
-	void Peek();
+	Node Peek();
 	bool isEmpty();
 
 private:
