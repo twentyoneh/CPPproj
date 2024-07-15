@@ -66,14 +66,15 @@ void MainWindow::updateTime()
 /// - функция-обработчик сообщений, пришедших от МК;
 void MainWindow::readUdpMK()
 {
-    while (udpFirmSocket->hasPendingDatagrams())
+
+    while (updHandler->hasPendingDatagrams())
     {
         QByteArray datagram;
         QHostAddress sender;
         quint16 senderPort;
         QString str;
-        datagram.resize(udpFirmSocket->pendingDatagramSize());
-        udpFirmSocket->readDatagram(datagram.data(), datagram.size(), &sender, &senderPort);
+        datagram.resize(updHandler->pendingDatagramSize());
+        updHandler->readDatagram(datagram.data(), datagram.size(), sender, senderPort);
 
         str = datagram.toHex();
         for (int i=2; i<str.size(); i+=3) str.insert(i,' ');
@@ -418,7 +419,7 @@ void MainWindow::on_write_to_flash_button_clicked()
                 sendPACK2.prepend(sizeOFpack[0]);
                 sendPACK2.prepend(IDENTIFICATOR_DATA);
 
-                udpFirmSocket->writeDatagram(sendPACK2, IpAddress, UDP_FIRMWARE_PORT);
+                updHandler->writeDatagram(sendPACK2, IpAddress, UDP_FIRMWARE_PORT);
 
                 file_size = file_size - SIZE_DEF_PACK;
                 x_pos = x_pos + SIZE_DEF_PACK;
@@ -437,7 +438,7 @@ void MainWindow::on_write_to_flash_button_clicked()
                 sendPACK2.prepend(sizeOFpack[0]);
                 sendPACK2.prepend(IDENTIFICATOR_DATA);
 
-                udpFirmSocket->writeDatagram(sendPACK2, IpAddress, UDP_FIRMWARE_PORT);
+                updHandler->writeDatagram(sendPACK2, IpAddress, UDP_FIRMWARE_PORT);
 
                 file_size = 0; /// - обнуление размера данных, чтобы обработчик ответа от МК понимал, что к нему пришел ответ на отправку последнего фрагмента;
                 data.clear();
@@ -446,7 +447,7 @@ void MainWindow::on_write_to_flash_button_clicked()
                 QByteArray sendPACK3;
                 sendPACK3.prepend(size_last_pack);
                 sendPACK3.prepend(SIZE_LAST_PACKET);
-                udpFirmSocket->writeDatagram(sendPACK3, IpAddress, UDP_FIRMWARE_PORT);
+                updHandler->writeDatagram(sendPACK3, IpAddress, UDP_FIRMWARE_PORT);
                 qDebug() << sendPACK3.toHex();
             }
         }
@@ -486,7 +487,7 @@ void MainWindow::slot_write_to_flash()
         sendPACK2.prepend(sizeOFpack[0]);
         sendPACK2.prepend(IDENTIFICATOR_DATA);
 
-        udpFirmSocket->writeDatagram(sendPACK2, IpAddress, UDP_FIRMWARE_PORT);
+        updHandler->writeDatagram(sendPACK2, IpAddress, UDP_FIRMWARE_PORT);
 
         file_size = file_size - SIZE_DEF_PACK;
         x_pos = x_pos + SIZE_DEF_PACK;
@@ -504,7 +505,7 @@ void MainWindow::slot_write_to_flash()
         sendPACK2.prepend(sizeOFpack[0]);
         sendPACK2.prepend(IDENTIFICATOR_DATA);
 
-        udpFirmSocket->writeDatagram(sendPACK2, IpAddress, UDP_FIRMWARE_PORT);
+        updHandler->writeDatagram(sendPACK2, IpAddress, UDP_FIRMWARE_PORT);
 
         file_size = 0; /// - обнуление размера данных, чтобы обработчик ответа от МК понимал, что к нему пришел ответ на отправку последнего фрагмента;
         data.clear();
@@ -513,7 +514,7 @@ void MainWindow::slot_write_to_flash()
         QByteArray sendPACK3;
         sendPACK3.prepend(size_last_pack);
         sendPACK3.prepend(SIZE_LAST_PACKET);
-        udpFirmSocket->writeDatagram(sendPACK3, IpAddress, UDP_FIRMWARE_PORT);
+        updHandler->writeDatagram(sendPACK3, IpAddress, UDP_FIRMWARE_PORT);
         qDebug() << sendPACK3.toHex();
     }
 }
@@ -526,7 +527,7 @@ void MainWindow::slot_ask_finish_addr()
     sendPACK[0] = COMMAND_ASK_ADDR;
     sendPACK.append(val_addr_flash);
 
-    udpFirmSocket->writeDatagram(sendPACK, IpAddress, UDP_FIRMWARE_PORT);
+    updHandler->writeDatagram(sendPACK, IpAddress, UDP_FIRMWARE_PORT);
     commandTimer->start(1000);
 }
 
@@ -542,7 +543,7 @@ void MainWindow::on_erase_flash_button_clicked()
     sendPACK[0] = COMMAND_ERASE_FLASH;
     sendPACK.append(val_addr_flash);
 
-    udpFirmSocket->writeDatagram(sendPACK, IpAddress, UDP_FIRMWARE_PORT);
+    updHandler->writeDatagram(sendPACK, IpAddress, UDP_FIRMWARE_PORT);
     commandTimer->start(45000);
 }
 
@@ -588,7 +589,7 @@ void MainWindow::on_set_addr_button_clicked()
 
         //qDebug() << summ_val_addr_flash.toHex();
 
-        udpFirmSocket->writeDatagram(sendPACK, IpAddress, UDP_FIRMWARE_PORT);
+        updHandler->writeDatagram(sendPACK, IpAddress, UDP_FIRMWARE_PORT);
         qDebug() << sendPACK.toHex();
 
         commandTimer->start(1000);
@@ -653,7 +654,7 @@ void MainWindow::on_write_FPGA_button_clicked()
     QByteArray sendPACK;
     sendPACK[0] = COMMAND_WRITE_FPGA ;
 
-    udpFirmSocket->writeDatagram(sendPACK, IpAddress, UDP_FIRMWARE_PORT);
+    updHandler->writeDatagram(sendPACK, IpAddress, UDP_FIRMWARE_PORT);
     Elaps_timer_writeFPGA.start();
 }
 
@@ -664,7 +665,7 @@ void MainWindow::on_firmware_1_button_clicked()
     sendPACK[0] = COMMAND_SET_NUMBER_FIRMWARE;
     sendPACK.append(0x01);
 
-    udpFirmSocket->writeDatagram(sendPACK, IpAddress, UDP_FIRMWARE_PORT);
+    updHandler->writeDatagram(sendPACK, IpAddress, UDP_FIRMWARE_PORT);
     commandTimer->start(1000);
 }
 
@@ -675,6 +676,6 @@ void MainWindow::on_firmware_2_button_clicked()
     sendPACK[0] = COMMAND_SET_NUMBER_FIRMWARE;
     sendPACK.append(0x02);
 
-    udpFirmSocket->writeDatagram(sendPACK, IpAddress, UDP_FIRMWARE_PORT);
+    updHandler->writeDatagram(sendPACK, IpAddress, UDP_FIRMWARE_PORT);
     commandTimer->start(1000);
 }
