@@ -23,6 +23,9 @@
 #include <QElapsedTimer>
 #include <QRegExp>
 
+#include"timerprototipe.h"
+#include"udphandler.h"
+
 #define SIZE_DEF_PACK   1280 /// - размер стандартного пакета (5 страниц по 256 байт);
 #define MAX_ADDR_FLASH  0x01FFFFFF /// - размер стандартного пакета (5 страниц по 256 байт);
 
@@ -93,7 +96,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    QUdpSocket  *udpFirmSocket; /// - порт, на который отправляем прочитанный файл;
+    UdpHandler *updHandler; /// - порт, на который отправляем прочитанный файл;
     QHostAddress IpAddress; /// - адрес МК;
     uint64_t file_size = 0;
     uint64_t save_file_size;

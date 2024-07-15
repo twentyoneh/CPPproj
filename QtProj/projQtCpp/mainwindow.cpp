@@ -10,31 +10,37 @@ MainWindow::MainWindow(QWidget *parent) :
 
     IpAddress.setAddress("192.168.1.65");
 
-    udpFirmSocket = new QUdpSocket(this);
-    udpFirmSocket->bind(UDP_FIRMWARE_PORT);
-    connect(udpFirmSocket, SIGNAL(readyRead()), SLOT(readUdpMK()));
+    updHandler = new UdpHandler(this);
+    updHandler->bindSocket(UDP_FIRMWARE_PORT);
+    connect(updHandler,&UdpHandler::datagramReceived, this, &MainWindow::readUdpMK);
 
     connect(ui->addr_flash_lineEdit, SIGNAL(textChanged(QString)),this,SLOT(slot_check_addr_flash(QString)));
 
     ui->addr_flash_lineEdit->setToolTip ("Введите 8 символов в формате hex. Последние 2 символа должны быть нулями (кратность странице флеш-памяти).");
 
     /// - таймер для таймаутов обмена командными сообщениями ПК-МК;
-    commandTimer = new QTimer(this);
-    connect(commandTimer, SIGNAL(timeout()), SLOT(commandTimeout()));
-    commandTimer->setTimerType(Qt::PreciseTimer);
-    commandTimer->setInterval(1000);
+    // commandTimer = new QTimer(this);
+    // connect(commandTimer, SIGNAL(timeout()), SLOT(commandTimeout()));
+    // commandTimer->setTimerType(Qt::PreciseTimer);
+    // commandTimer->setInterval(1000);
+    TimerPrototipe commandTimer(1000);
+    connect(&commandTimer, &TimerPrototipe::timeout, this, &MainWindow::commandTimeout);
 
     /// - таймер для оценки времени записи файла;
-    TimerWriteToFlash = new QTimer(this);
-    connect(TimerWriteToFlash, SIGNAL(timeout()), SLOT(updateTime()));
-    TimerWriteToFlash->setTimerType(Qt::PreciseTimer);
-    TimerWriteToFlash->setInterval(1);
+    // TimerWriteToFlash = new QTimer(this);
+    // connect(TimerWriteToFlash, SIGNAL(timeout()), SLOT(updateTime()));
+    // TimerWriteToFlash->setTimerType(Qt::PreciseTimer);
+    // TimerWriteToFlash->setInterval(1);
+    TimerPrototipe TimerWriteToFlash(1);
+    connect(&TimerWriteToFlash, &TimerPrototipe::timeout, this, &MainWindow::updateTime);
 
     /// - таймер, по которому выводится время записи;
-    TimerViewTime = new QTimer(this);
-    connect(TimerViewTime, SIGNAL(timeout()), SLOT(updateTimeView()));
-    TimerViewTime->setTimerType(Qt::PreciseTimer);
-    TimerViewTime->setInterval(500);
+    // TimerViewTime = new QTimer(this);
+    // connect(TimerViewTime, SIGNAL(timeout()), SLOT(updateTimeView()));
+    // TimerViewTime->setTimerType(Qt::PreciseTimer);
+    // TimerViewTime->setInterval(500);
+    TimerPrototipe TimerViewTime(500);
+    connect(&TimerViewTime, &TimerPrototipe::timeout, this, &MainWindow::updateTimeView);
 
     connect(this, SIGNAL(signal_tx_pack_done()), SLOT(slot_write_to_flash())); /// - при принятии от МК сообщения, что пакет успешно записан испускается сигнал, который вызывает выполнение слота, который отправляет следующий пакет;
     connect(this, SIGNAL(signal_ask_finish_addr()), SLOT(slot_ask_finish_addr())); /// - как только размер который осталось отправить становится нулевым (он обнуляется с отправкой последнего пакета) и приходит сообщение что последний пакет записан испускается сигнал о запросе адреса, который вызывает выполнение соответствующего слота;

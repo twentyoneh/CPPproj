@@ -25,6 +25,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(projQtCpp
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        timerprototipe.h timerprototipe.cpp
+        udphandler.h udphandler.cpp
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET projQtCpp APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
