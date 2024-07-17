@@ -18,3 +18,5 @@ void TimerPrototipe::stop(){
     timer->stop();
 }
 
+
+

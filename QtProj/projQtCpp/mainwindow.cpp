@@ -19,26 +19,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->addr_flash_lineEdit->setToolTip ("Введите 8 символов в формате hex. Последние 2 символа должны быть нулями (кратность странице флеш-памяти).");
 
     /// - таймер для таймаутов обмена командными сообщениями ПК-МК;
-    // commandTimer = new QTimer(this);
-    // connect(commandTimer, SIGNAL(timeout()), SLOT(commandTimeout()));
-    // commandTimer->setTimerType(Qt::PreciseTimer);
-    // commandTimer->setInterval(1000);
     TimerPrototipe commandTimer(1000);
     connect(&commandTimer, &TimerPrototipe::timeout, this, &MainWindow::commandTimeout);
 
     /// - таймер для оценки времени записи файла;
-    // TimerWriteToFlash = new QTimer(this);
-    // connect(TimerWriteToFlash, SIGNAL(timeout()), SLOT(updateTime()));
-    // TimerWriteToFlash->setTimerType(Qt::PreciseTimer);
-    // TimerWriteToFlash->setInterval(1);
     TimerPrototipe TimerWriteToFlash(1);
     connect(&TimerWriteToFlash, &TimerPrototipe::timeout, this, &MainWindow::updateTime);
 
     /// - таймер, по которому выводится время записи;
-    // TimerViewTime = new QTimer(this);
-    // connect(TimerViewTime, SIGNAL(timeout()), SLOT(updateTimeView()));
-    // TimerViewTime->setTimerType(Qt::PreciseTimer);
-    // TimerViewTime->setInterval(500);
     TimerPrototipe TimerViewTime(500);
     connect(&TimerViewTime, &TimerPrototipe::timeout, this, &MainWindow::updateTimeView);
 

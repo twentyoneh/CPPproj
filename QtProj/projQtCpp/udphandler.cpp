@@ -35,3 +35,8 @@ qint64 UdpHandler::pendingDatagramSize(){
 qint64 UdpHandler::readDatagram(char *data, qint64 maxSize, QHostAddress &address, quint16 &port){
     return (udpSocket->readDatagram(data,maxSize,&address,&port));
 }
+
+qint64 UdpHandler::writeDatagram(const QByteArray &datagram, const QHostAddress &host, quint16 port){
+    return (udpSocket->writeDatagram(datagram,host,port));
+}
+
