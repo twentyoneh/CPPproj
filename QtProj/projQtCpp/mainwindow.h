@@ -67,6 +67,7 @@ public:
     ~MainWindow();
 
 private slots:
+
     void on_open_file_button_clicked();
     void slot_check_addr_flash(QString);
     void on_write_to_flash_button_clicked();
@@ -95,6 +96,25 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    QString formatDatagram(const QByteArray& datagram);
+    void handleDatagram(const QByteArray& datagram);
+
+    void handleCommandAskAddr(const QByteArray& datagram);
+    void handleCommandFinishFPGA();
+    void handleTimeLoadMCU(const QByteArray& datagram);
+    void handleSuccessfulErase();
+    void handleSuccessfulProgramPack();
+    void handleSuccessfulSetAddr();
+    void handleSetNumberFirmware(int firmwareSlot);
+    void handleErrorEntryQPI();
+    void handleErrorSetDummyCycles();
+    void handleErrorSendData();
+    void handleErrorMemReady();
+    void handleErrorErase();
+    void handleErrorSetNumberFirmware();
+    void handleErrorResetFPGA();
+    void handleErrorSendFirmware();
 
     UdpHandler *updHandler; /// - порт, на который отправляем прочитанный файл;
     QHostAddress IpAddress; /// - адрес МК;

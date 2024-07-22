@@ -64,177 +64,244 @@ void MainWindow::readUdpMK()
         datagram.resize(updHandler->pendingDatagramSize());
         updHandler->readDatagram(datagram.data(), datagram.size(), sender, senderPort);
 
-        str = datagram.toHex();
-        for (int i=2; i<str.size(); i+=3) str.insert(i,' ');
-        //qDebug()<<"Принято "<<datagram.size()<<" байт: "<<str;
+        str = formatDatagram(datagram);
 
         commandTimer->stop();
-
-        /// - в зависимости от того, что записано нулевым байтом в сообщении выполняем действия:
-        switch (datagram.at(0))
-        {
-            /*----------------------------COMMAND------------------------------------------------*/
-            /// - ответ на запрос от ПК адреса, на котором остановилась запись файла;
-        case COMMAND_ASK_ADDR:
-        {
-            /// - запись пришедшего адреса в массив, хранящий адрес и установка этого значения в поле ввода адреса;
-            val_addr_flash.clear();
-            val_addr_flash.append(datagram[1]);
-            val_addr_flash.append(datagram[2]);
-            val_addr_flash.append(datagram[3]);
-            val_addr_flash.append(datagram[4]);
-            ui->addr_flash_lineEdit->setText(val_addr_flash.toHex());
-
-            /// - перевод стартового адреса и конечного из массива в переменные uint32_t для вычисления финишного (-1) и вывода в журнал;
-            uint32_t local_val_addr_flash_start = ((summ_val_addr_flash[0])<<24)  |
-                                                  ((summ_val_addr_flash[1])<<16)  |
-                                                  ((summ_val_addr_flash[2])<<8)   |
-                                                  (summ_val_addr_flash[3]);
-
-            uint32_t local_val_addr_flash_finish = ((val_addr_flash[0]&0xFF)<<24)  |
-                                                   ((val_addr_flash[1]&0xFF)<<16)  |
-                                                   ((val_addr_flash[2]&0xFF)<<8)   |
-                                                   (val_addr_flash[3]&0xFF);
-            local_val_addr_flash_finish = local_val_addr_flash_finish - 0x01;
-
-            AddJournalInfo(QString("Файл записан в флеш-память по адресу: 0x%1 - 0x%2").arg(local_val_addr_flash_start,8,16, QLatin1Char('0')).arg(local_val_addr_flash_finish,8,16, QLatin1Char('0')));
-        } break;
-
-        case COMMAND_FINISH_FPGA:
-        {
-            AddJournalInfo("Время прошивки ПЛИС: " +QString::number(Elaps_timer_writeFPGA.elapsed())+ " мс");
-        } break;
-
-        case TIME_LOAD_MCU:
-        {
-            QByteArray val_time_ms;
-            val_time_ms.append(datagram[1]);
-            val_time_ms.append(datagram[2]);
-            val_time_ms.append(datagram[3]);
-            val_time_ms.append(datagram[4]);
-
-            QString str = val_time_ms.toHex();
-            bool ok;
-            uint appId = str.toUInt(&ok,16);
-
-            //quint32 value = qFromBigEndian<quint32>(val_time_ms);
-            AddJournalInfo("Время старта МК: " +QString::number(appId)+ " мс");
-            qDebug() << val_time_ms.toUInt();
-            qDebug() << val_time_ms.toHex();
-        } break;
-            /*----------------------------SUCCESSFUL------------------------------------------------*/
-        case SUCCESSFUL_COMAND_ERASE:
-        {
-            flag_set_addr = 0;
-            enableButtonForFlash();
-
-            AddJournalInfo("Успешная очистка памяти. Время очистки: " +QString::number(double(Elaps_timer.elapsed())/1000.0)+ " с");
-        } break;
-
-            /// - пришел ответ от МК, что пакет (5 страниц по 256 байт) записан успешно;
-        case SUCCESSFUL_PROGRAM_PACK:
-        {
-            /// - инкремент количества успешно записанных в флеш пакетов и вывод этого количества в successful_program_pack_label;
-            count_successful_program_pack++;
-            ui->successful_program_pack_label->setText(QString::number(count_successful_program_pack));
-
-            /// - проверка размера, который осталось передать. Размер обнуляется при передаче последнего фращмента;
-            if (file_size != 0)
-            {
-                emit signal_tx_pack_done();
-            }
-            else
-            {
-                /// - извлекаем значение Elaps_timer - более точное время выполнения;
-                time_write_1ms = Elaps_timer.elapsed();
-                time_write_1ms = time_write_1ms/1000;
-                ui->timer_write_flash_label->setText(QString::number(time_write_1ms));
-                ///- остановка таймеров промежуточного подсчета времени записи;
-                TimerWriteToFlash->stop();
-                TimerViewTime->stop();
-
-                flag_set_addr = 0;
-
-                enableButtonForFlash();
-
-                /// - показываем размер файла. Должен быть равен нулю, т.к. файл был записан;
-                ui->file_size_label->setText(QString::number(file_size));
-                summ_pack = 0;
-                ui->summ_pack_label->setText(QString::number(summ_pack));
-
-                emit signal_ask_finish_addr();
-                AddJournalInfo("В микросхему флеш-памяти передано пакетов: " +QString::number(count_tx_pack)+ ".\rИз них записано успешно: " +QString::number(count_successful_program_pack)+ ".\rЗаписано с ошибкой: " +QString::number(count_err_tx_pack));
-                ui->flash_process_progressBar->setValue(round(((double(count_successful_program_pack))/(double(save_file_size)))*100));
-            }
-        } break;
-
-        case SUCCESSFUL_SET_ADDR:
-        {
-            flag_set_addr = 1;
-            enableButtonForFlash();
-
-            AddJournalInfo("Адрес начала записи успешно установлен.");
-        } break;
-
-        case SET_1_NUMBER_FIRMWARE:
-        {
-            AddJournalInfo("Выбран слот прошивки №1.");
-        } break;
-
-        case SET_2_NUMBER_FIRMWARE:
-        {
-            AddJournalInfo("Выбран слот прошивки №2.");
-        } break;
-            /*----------------------------ERROR------------------------------------------------*/
-            /// - ошибка входа в режим QPI в микросхеме памяти;
-        case ERROR_ENTRY_QPI_MODE:
-        {
-            AddJournalInfo("Ошибка входа в режиме QPI микросхемой памяти.");
-        } break;
-        /// - ошибка установки дефолтных dummy циклов при старте контроллера;
-        case ERROR_SET_DEF_DUMMYCYCLES_QPI:
-        {
-            AddJournalInfo("Ошибка установки dummy циклов.");
-        } break;
-        /// - ошибка может возникнуть во время передачи страницы в память или во время autopolling;
-        case ERROR_SEND_DATA_TO_FLASH:
-        {
-            AddJournalInfo("Ошибка передачи страницы в микросхему флеш-памяти. Запись прервана.");
-            count_err_tx_pack++;
-            ui->err_tx_pack_label->setText(QString::number(count_err_tx_pack));
-        } break;
-
-            /// - ошибка воникающая в результате autopolling флеш-памяти;
-        case ERROR_MEM_READY:
-        {
-            AddJournalInfo("Ошибка готовности памяти.");
-
-            enableButtonForFlash();
-
-            ui->err_tx_pack_label->setText(QString::number(count_err_tx_pack));
-        } break;
-
-        case ERROR_COMAND_ERASE:
-        {
-            AddJournalInfo("Ошибка отправки команды очистки памяти.");
-        } break;
-
-        case ERROR_SET_NUMBER_FIRMWARE:
-        {
-            AddJournalInfo("Ошибка установки слота прошивки.");
-        } break;
-
-        case ERROR_RESET_FPGA:
-        {
-            AddJournalInfo("Ошибка сброса ПЛИС.");
-        } break;
-
-        case ERROR_SEND_FIRMWARE_FPGA:
-        {
-            AddJournalInfo("Ошибка отправки прошивки в ПЛИС.");
-        } break;
-        }
+        handleDatagram(datagram);
     }
+}
+
+
+void MainWindow::handleDatagram(const QByteArray& datagram){
+    /// - в зависимости от того, что записано нулевым байтом в сообщении выполняем действия:
+    switch (datagram.at(0))
+    {
+        /*----------------------------COMMAND------------------------------------------------*/
+        /// - ответ на запрос от ПК адреса, на котором остановилась запись файла;
+    case COMMAND_ASK_ADDR:
+    {
+        handleCommandAskAddr(datagram);
+    } break;
+
+    case COMMAND_FINISH_FPGA:
+    {
+        handleCommandFinishFPGA();
+    } break;
+
+    case TIME_LOAD_MCU:
+    {
+        handleTimeLoadMCU(datagram);
+    } break;
+        /*----------------------------SUCCESSFUL------------------------------------------------*/
+    case SUCCESSFUL_COMAND_ERASE:
+    {
+        handleSuccessfulErase();
+    } break;
+
+        /// - пришел ответ от МК, что пакет (5 страниц по 256 байт) записан успешно;
+    case SUCCESSFUL_PROGRAM_PACK:
+    {
+        handleSuccessfulProgramPack();
+    } break;
+
+    case SUCCESSFUL_SET_ADDR:
+    {
+        handleSuccessfulSetAddr();
+    } break;
+
+    case SET_1_NUMBER_FIRMWARE:
+    {
+        handleSetNumberFirmware(1);
+    } break;
+
+    case SET_2_NUMBER_FIRMWARE:
+    {
+        handleSetNumberFirmware(2);
+    } break;
+        /*----------------------------ERROR------------------------------------------------*/
+        /// - ошибка входа в режим QPI в микросхеме памяти;
+    case ERROR_ENTRY_QPI_MODE:
+    {
+        handleErrorEntryQPI();
+    } break;
+    /// - ошибка установки дефолтных dummy циклов при старте контроллера;
+    case ERROR_SET_DEF_DUMMYCYCLES_QPI:
+    {
+        handleErrorSetDummyCycles();
+    } break;
+    /// - ошибка может возникнуть во время передачи страницы в память или во время autopolling;
+    case ERROR_SEND_DATA_TO_FLASH:
+    {
+        handleErrorSendData();
+    } break;
+
+    /// - ошибка воникающая в результате autopolling флеш-памяти;
+    case ERROR_MEM_READY:
+    {
+        handleErrorMemReady();
+    } break;
+
+    case ERROR_COMAND_ERASE:
+    {
+        handleErrorErase();
+    } break;
+
+    case ERROR_SET_NUMBER_FIRMWARE:
+    {
+        handleErrorSetNumberFirmware();
+    } break;
+
+    case ERROR_RESET_FPGA:
+    {
+        handleErrorResetFPGA();
+    } break;
+
+    case ERROR_SEND_FIRMWARE_FPGA:
+    {
+        handleErrorSendFirmware();
+    } break;
+    }
+
+}
+
+void MainWindow::handleCommandAskAddr(const QByteArray& datagram){
+     /// - запись пришедшего адреса в массив, хранящий адрес и установка этого значения в поле ввода адреса;
+    val_addr_flash.clear();
+    for (int i = 1; i <= 4; ++i)
+        val_addr_flash.append(datagram[i]);
+
+    ui->addr_flash_lineEdit->setText(val_addr_flash.toHex());
+    /// - перевод стартового адреса и конечного из массива в переменные uint32_t для вычисления финишного (-1) и вывода в журнал;
+    uint32_t local_val_addr_flash_start = ((summ_val_addr_flash[0])<<24)  |
+                                          ((summ_val_addr_flash[1])<<16)  |
+                                          ((summ_val_addr_flash[2])<<8)   |
+                                          (summ_val_addr_flash[3]);
+
+    uint32_t local_val_addr_flash_finish = ((val_addr_flash[0]&0xFF)<<24)  |
+                                           ((val_addr_flash[1]&0xFF)<<16)  |
+                                           ((val_addr_flash[2]&0xFF)<<8)   |
+                                           (val_addr_flash[3]&0xFF);
+    local_val_addr_flash_finish = local_val_addr_flash_finish - 0x01;
+    AddJournalInfo(QString("Файл записан в флеш-память по адресу: 0x%1 - 0x%2").arg(local_val_addr_flash_start,8,16, QLatin1Char('0')).arg(local_val_addr_flash_finish,8,16, QLatin1Char('0')));
+}
+
+
+void MainWindow::handleCommandFinishFPGA(){
+    AddJournalInfo("Время прошивки ПЛИС: " +QString::number(Elaps_timer_writeFPGA.elapsed())+ " мс");
+}
+
+void MainWindow::handleTimeLoadMCU(const QByteArray& datagram){
+    QByteArray val_time_ms;
+    for(int i = 1; i <= 4; ++i)
+        val_time_ms.append(datagram[i]);
+
+    QString str = val_time_ms.toHex();
+    bool ok;
+    uint appId = str.toUInt(&ok,16);
+    //quint32 value = qFromBigEndian<quint32>(val_time_ms);
+    AddJournalInfo("Время старта МК: " +QString::number(appId)+ " мс");
+    qDebug() << val_time_ms.toUInt();
+    qDebug() << val_time_ms.toHex();
+}
+
+void MainWindow::handleSuccessfulErase(){
+    flag_set_addr = 0;
+    enableButtonForFlash();
+
+    AddJournalInfo("Успешная очистка памяти. Время очистки: " +QString::number(double(Elaps_timer.elapsed())/1000.0)+ " с");
+}
+
+
+void MainWindow::handleSuccessfulProgramPack(){
+    /// - инкремент количества успешно записанных в флеш пакетов и вывод этого количества в successful_program_pack_label;
+    count_successful_program_pack++;
+    ui->successful_program_pack_label->setText(QString::number(count_successful_program_pack));
+
+    /// - проверка размера, который осталось передать. Размер обнуляется при передаче последнего фращмента;
+    if (file_size != 0)
+    {
+        emit signal_tx_pack_done();
+    }
+    else
+    {
+        /// - извлекаем значение Elaps_timer - более точное время выполнения;
+        time_write_1ms = Elaps_timer.elapsed();
+        time_write_1ms = time_write_1ms/1000;
+        ui->timer_write_flash_label->setText(QString::number(time_write_1ms));
+        ///- остановка таймеров промежуточного подсчета времени записи;
+        TimerWriteToFlash->stop();
+        TimerViewTime->stop();
+
+        flag_set_addr = 0;
+
+        enableButtonForFlash();
+
+        /// - показываем размер файла. Должен быть равен нулю, т.к. файл был записан;
+        ui->file_size_label->setText(QString::number(file_size));
+        summ_pack = 0;
+        ui->summ_pack_label->setText(QString::number(summ_pack));
+
+        emit signal_ask_finish_addr();
+        AddJournalInfo("В микросхему флеш-памяти передано пакетов: " +QString::number(count_tx_pack)+ ".\rИз них записано успешно: " +QString::number(count_successful_program_pack)+ ".\rЗаписано с ошибкой: " +QString::number(count_err_tx_pack));
+        ui->flash_process_progressBar->setValue(round(((double(count_successful_program_pack))/(double(save_file_size)))*100));
+    }
+}
+
+void MainWindow::handleSuccessfulSetAddr(){
+    flag_set_addr = 1;
+    enableButtonForFlash();
+
+    AddJournalInfo("Адрес начала записи успешно установлен.");
+}
+
+void MainWindow::handleSetNumberFirmware(int firmwareSlot){
+    AddJournalInfo(QString("Выбран слот прошивки №%1.").arg(firmwareSlot));
+}
+
+void MainWindow::handleErrorEntryQPI(){
+    AddJournalInfo("Ошибка входа в режиме QPI микросхемой памяти.");
+}
+
+void MainWindow::handleErrorSetDummyCycles(){
+    AddJournalInfo("Ошибка установки dummy циклов.");
+}
+
+void MainWindow::handleErrorSendData(){
+    AddJournalInfo("Ошибка передачи страницы в микросхему флеш-памяти. Запись прервана.");
+    count_err_tx_pack++;
+    ui->err_tx_pack_label->setText(QString::number(count_err_tx_pack));
+}
+
+void MainWindow::handleErrorMemReady(){
+    AddJournalInfo("Ошибка готовности памяти.");
+    enableButtonForFlash();
+    ui->err_tx_pack_label->setText(QString::number(count_err_tx_pack));
+}
+
+void MainWindow::handleErrorErase(){
+    AddJournalInfo("Ошибка отправки команды очистки памяти.");
+}
+
+void MainWindow::handleErrorSetNumberFirmware(){
+    AddJournalInfo("Ошибка установки слота прошивки.");
+}
+
+void MainWindow::handleErrorResetFPGA(){
+    AddJournalInfo("Ошибка сброса ПЛИС.");
+}
+
+void MainWindow::handleErrorSendFirmware(){
+    AddJournalInfo("Ошибка отправки прошивки в ПЛИС.");
+}
+
+
+QString MainWindow::formatDatagram(const QByteArray& datagram)
+{
+    QString str = datagram.toHex();
+    for (int i = 2; i < str.size(); i += 3)
+        str.insert(i, ' ');
+    //qDebug()<<"Принято "<<datagram.size()<<" байт: "<<str;
+    return str;
 }
 
 MainWindow::~MainWindow()
@@ -305,8 +372,8 @@ void MainWindow::slot_check_addr_flash(QString flash_addr)
 
     QLineEdit *lineEdit = qobject_cast<QLineEdit*>(sender());
 
-    int count;
-    count = lineEdit->text().length();
+    //int count;
+    //count = lineEdit->text().length();
 
     /// - если адрес не пустой и есть отправитель;
     if (lineEdit != nullptr && !flash_addr.isEmpty())
