@@ -182,6 +182,7 @@ void MainWindow::handleCommandAskAddr(const QByteArray& datagram){
                                            ((val_addr_flash[2]&0xFF)<<8)   |
                                            (val_addr_flash[3]&0xFF);
     local_val_addr_flash_finish = local_val_addr_flash_finish - 0x01;
+
     AddJournalInfo(QString("Файл записан в флеш-память по адресу: 0x%1 - 0x%2").arg(local_val_addr_flash_start,8,16, QLatin1Char('0')).arg(local_val_addr_flash_finish,8,16, QLatin1Char('0')));
 }
 
