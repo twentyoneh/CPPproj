@@ -1,9 +1,12 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Entity.h"
+#include "ResourceManager.h"
 
-class Player : public sf::Drawable, public sf::Transformable {
+class Player : public sf::Drawable, public sf::Transformable, public Entity {
 public:
+    Player(ResourceManager& resourceManager);
     Player();
     ~Player();
 
@@ -15,7 +18,6 @@ public:
 
 private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    void loadTexture();
 
     sf::Sprite mSprite;
     sf::Texture mTexture;

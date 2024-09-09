@@ -6,14 +6,19 @@
 
 class ResourceManager {
 public:
+    
+    ResourceManager(std::unordered_map<std::string, std::string> fileNameList);
     // Загружает текстуру из файла, если она еще не загружена
-    sf::Texture& loadTexture(const std::string& name, const std::string& filename);
+    static void loadTexture(const std::string& name, const std::string& filename);
 
-    sf::Texture& loadFont(const std::string& name, const std::string& filename);
+    static void loadFont(const std::string& name, const std::string& filename);
     // Возвращает ссылку на загруженную текстуру
     sf::Texture& getTexture(const std::string& name);
 
+    sf::Font& getFont(const std::string& name);
+
 private:
     // Контейнер для хранения текстур
-    std::unordered_map<std::string, sf::Texture> textures;
+    static std::unordered_map<std::string, sf::Texture> textures;
+    static std::unordered_map<std::string, sf::Font> fonts;
 };

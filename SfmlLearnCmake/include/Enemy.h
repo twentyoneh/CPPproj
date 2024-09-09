@@ -1,11 +1,13 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Entity.h"
 
-class Enemy : public sf::Drawable, public sf::Transformable {
+class Enemy : public sf::Drawable, public sf::Transformable, public Entity {
 public:
     Enemy();
     ~Enemy();
+
 
     void update(sf::Time deltaTime);
     void setPosition(float x, float y);
@@ -17,6 +19,5 @@ private:
 
     sf::Sprite mSprite;
     sf::Texture mTexture;
-    float mSpeed;
     sf::Vector2f mDirection; // Направление движения врага
 };

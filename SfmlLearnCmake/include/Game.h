@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <unordered_map>
 #include "ResourceManager.h"
 #include "Player.h"
 #include "Enemy.h"
@@ -21,6 +22,11 @@ private:
 
     void loadResources();
     void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
+    
+    
+    // Заполнение mfileNameList
+    std::unordered_map<std::string, std::string> mfileNameList;
+
 
     sf::RenderWindow mWindow;
     ResourceManager mResourceManager;
@@ -28,6 +34,7 @@ private:
     std::vector<Enemy> mEnemies;
     Level mLevel;
     const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
+    unsigned int mWidth = 800, mHeight = 600; 
 
     // Другие необходимые переменные и объекты
 };

@@ -1,27 +1,24 @@
 #include "Player.h"
 
-Player::Player()
+Player::Player(ResourceManager& resourceManager)
     : mSpeed(200.f) // Устанавливаем скорость игрока
     , mIsMovingUp(false)
     , mIsMovingDown(false)
     , mIsMovingLeft(false)
     , mIsMovingRight(false)
 {
-    loadTexture();
-    mSprite.setTexture(mTexture);
+    mSprite.setTexture(resourceManager.getTexture("player"));
     mSprite.setPosition(400.f, 300.f); // Начальная позиция игрока
+}
+
+Player::Player()
+{
 }
 
 Player::~Player() {
     // Освобождение ресурсов, если необходимо
 }
 
-void Player::loadTexture() {
-    if (!mTexture.loadFromFile("assets/images/player.png")) {
-        // Обработка ошибки загрузки текстуры
-        throw std::runtime_error("Failed to load player texture");
-    }
-}
 
 void Player::update(sf::Time deltaTime) {
     sf::Vector2f movement(0.f, 0.f);

@@ -1,12 +1,16 @@
 #include "Game.h"
 
 Game::Game()
-    : mWindow(sf::VideoMode(800, 600), "SFML Game")
-    , mPlayer()
+    : mWindow(sf::VideoMode(mWidth, mHeight), "SFML Game")
+    , mfileNameList{ mfileNameList.insert({"player", "../../../assets/images/player.png",
+        "player", "../../../assets/images/player.png",
+        "player", "../../../assets/images/player.png"}) } //надо как-то это зафиксить
+    , mResourceManager(mfileNameList)
+    , mPlayer(mResourceManager)
     , mLevel()
 {
     loadResources();
-    mPlayer.setPosition(100.f, 100.f);
+    mPlayer.setPosition(mWidth / 2.0f, mHeight / 2.0f);
 }
 
 Game::~Game() {
@@ -70,9 +74,9 @@ void Game::render() {
 
 void Game::loadResources() {
     // Загрузка текстур, звуков и шрифтов через ResourceManager
-    mResourceManager.loadTexture("player", "assets/images/player.png");
-    mResourceManager.loadTexture("enemy", "assets/images/enemy.png");
-    mResourceManager.loadFont("main_font", "assets/fonts/arial.ttf");
+    mResourceManager.loadTexture("player", "../../../assets/images/player.png");
+    mResourceManager.loadTexture("enemy", "../../../assets/images/enemy.png");
+    mResourceManager.loadFont("main_font", "../../../assets/fonts/arial.ttf");
     // Загрузка других ресурсов
 }
 
