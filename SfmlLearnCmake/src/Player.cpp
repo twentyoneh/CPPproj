@@ -1,7 +1,11 @@
 #include "Player.h"
 
+Player::Player()
+{
+}
+
 Player::Player(ResourceManager& resourceManager)
-    : mSpeed(200.f) // Устанавливаем скорость игрока
+    : mSpeed(PLAYER_SPEED) // Устанавливаем скорость игрока
     , mIsMovingUp(false)
     , mIsMovingDown(false)
     , mIsMovingLeft(false)
@@ -11,13 +15,11 @@ Player::Player(ResourceManager& resourceManager)
     mSprite.setPosition(400.f, 300.f); // Начальная позиция игрока
 }
 
-Player::Player()
-{
-}
 
 Player::~Player() {
     // Освобождение ресурсов, если необходимо
 }
+
 
 
 void Player::update(sf::Time deltaTime) {

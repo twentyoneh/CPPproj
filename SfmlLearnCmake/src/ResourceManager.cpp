@@ -1,8 +1,18 @@
 #include "ResourceManager.h"
 
-ResourceManager::ResourceManager(std::unordered_map<std::string, std::string> fileNameList)
+ResourceManager::ResourceManager(std::map<std::string, std::string> fileNameList)
 {
+	for (const auto& pair : fileNameList) {
+		if (pair.first == "main_font") 
+		{
+			loadFont(pair.first, pair.second);
+		}
+		else
+		{
+			loadTexture(pair.first, pair.second);
+		}
 
+	}
 }
 
 void ResourceManager::loadTexture(const std::string& name, const std::string& filename)

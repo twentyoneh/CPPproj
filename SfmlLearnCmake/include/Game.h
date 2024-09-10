@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <unordered_map>
 #include "ResourceManager.h"
 #include "Player.h"
 #include "Enemy.h"
@@ -20,13 +19,19 @@ private:
     void update(sf::Time deltaTime);
     void render();
 
-    void loadResources();
     void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
+    void handlePlayerMouse(sf::Mouse& mouse, bool isPressed);
+    void handlePlayerMouse(sf::Vector2i pos);
     
     
     // Заполнение mfileNameList
-    std::unordered_map<std::string, std::string> mfileNameList;
-
+    std::map<std::string, std::string> mfileNameList{
+        {"player", "../../../assets/images/player.png" },
+        {"enemy","../../../assets/images/enemy.png"},
+        {"main_font","../../../assets/fonts/ArialRegular.ttf"},
+        {"background","../../../assets/images/background.jpg"}
+    };
+    
 
     sf::RenderWindow mWindow;
     ResourceManager mResourceManager;
@@ -34,7 +39,10 @@ private:
     std::vector<Enemy> mEnemies;
     Level mLevel;
     const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
-    unsigned int mWidth = 800, mHeight = 600; 
+    static const unsigned int mWidth = 800, mHeight = 600;
+    sf::Vector2i mMousePosition{};
+    //sf::Vector2i mDeltaMousePosition{};
+    //sf::Vector2i mLastMousePosition{};
 
     // Другие необходимые переменные и объекты
 };

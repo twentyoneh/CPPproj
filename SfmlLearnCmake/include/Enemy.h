@@ -1,9 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Entity.h"
 
-class Enemy : public sf::Drawable, public sf::Transformable, public Entity {
+class Enemy : public sf::Drawable, public sf::Transformable {
 public:
     Enemy();
     ~Enemy();
@@ -17,6 +16,7 @@ private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     void loadTexture();
 
+    float mSpeed;
     sf::Sprite mSprite;
     sf::Texture mTexture;
     sf::Vector2f mDirection; // Направление движения врага

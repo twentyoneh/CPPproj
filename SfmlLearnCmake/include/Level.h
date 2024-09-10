@@ -8,6 +8,7 @@
 class Level : public sf::Drawable {
 public:
     Level();
+    Level(ResourceManager& resourceManager);
     ~Level();
 
     void loadFromFile(const std::string& filename); // Загрузка уровня из файла
@@ -23,6 +24,6 @@ private:
 
     Player mPlayer;
     std::vector<Enemy> mEnemies; // Список врагов на уровне
-    sf::Texture mBackgroundTexture; // Текстура фона уровня
+    //sf::Texture mBackgroundTexture; // Текстура фона уровня
     sf::Sprite mBackgroundSprite; // Спрайт фона уровня
 };

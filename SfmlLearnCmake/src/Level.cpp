@@ -5,11 +5,12 @@
 #include <iostream>
 
 Level::Level() {
-    // Загрузка текстуры фона по умолчанию
-    if (!mBackgroundTexture.loadFromFile("assets/images/background.png")) {
-        throw std::runtime_error("Failed to load background texture");
-    }
-    mBackgroundSprite.setTexture(mBackgroundTexture);
+
+}
+
+Level::Level(ResourceManager& resourceManager)
+{
+    mBackgroundSprite.setTexture(resourceManager.getTexture("background"));
 }
 
 Level::~Level() {
@@ -33,13 +34,7 @@ void Level::loadFromFile(const std::string& filename) {
 }
 
 void Level::update(sf::Time deltaTime) {
-    // Обновляем состояние всех врагов
-    for (auto& enemy : mEnemies) {
-        enemy.update(deltaTime);
-    }
-
-    // Обновляем состояние игрока
-    mPlayer.update(deltaTime);
+    
 }
 
 void Level::handleInput() {

@@ -2,14 +2,10 @@
 
 Game::Game()
     : mWindow(sf::VideoMode(mWidth, mHeight), "SFML Game")
-    , mfileNameList{ mfileNameList.insert({"player", "../../../assets/images/player.png",
-        "player", "../../../assets/images/player.png",
-        "player", "../../../assets/images/player.png"}) } //надо как-то это зафиксить
     , mResourceManager(mfileNameList)
     , mPlayer(mResourceManager)
-    , mLevel()
+    , mLevel(mResourceManager)
 {
-    loadResources();
     mPlayer.setPosition(mWidth / 2.0f, mHeight / 2.0f);
 }
 
@@ -44,6 +40,15 @@ void Game::processEvents() {
         case sf::Event::KeyReleased:
             handlePlayerInput(event.key.code, false);
             break;
+        case sf::Event::MouseButtonPressed:
+
+            break;
+        case sf::Event::MouseButtonReleased:
+
+            break;
+        case sf::Event::MouseMoved:
+            handlePlayerMouse(sf::Mouse::getPosition(mWindow));
+            break;
         case sf::Event::Closed:
             mWindow.close();
             break;
@@ -65,19 +70,11 @@ void Game::render() {
     mWindow.clear();
     mWindow.draw(mLevel);
     mWindow.draw(mPlayer);
-    for (const auto& enemy : mEnemies) {
+    /*for (const auto& enemy : mEnemies) {
         mWindow.draw(enemy);
-    }
+    }*/
     // Отрисовка других игровых объектов
     mWindow.display();
-}
-
-void Game::loadResources() {
-    // Загрузка текстур, звуков и шрифтов через ResourceManager
-    mResourceManager.loadTexture("player", "../../../assets/images/player.png");
-    mResourceManager.loadTexture("enemy", "../../../assets/images/enemy.png");
-    mResourceManager.loadFont("main_font", "../../../assets/fonts/arial.ttf");
-    // Загрузка других ресурсов
 }
 
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
@@ -90,4 +87,16 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
     else if (key == sf::Keyboard::D)
         mPlayer.moveRight(isPressed);
     // Обработка других клавиш и действий
+}
+
+void Game::handlePlayerMouse(sf::Mouse& mouse, bool isPressed)
+{
+
+}
+
+void Game::handlePlayerMouse(sf::Vector2i pos)
+{
+    mMousePosition = pos;
+    //mDeltaMousePosition = mLastMousePosition – mMousePosition;
+    //mLastMousePosition = mMousePosition;
 }

@@ -1,13 +1,14 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Entity.h"
 #include "ResourceManager.h"
 
-class Player : public sf::Drawable, public sf::Transformable, public Entity {
+#define PLAYER_SPEED 200.0f
+
+class Player : public sf::Drawable, public sf::Transformable {
 public:
-    Player(ResourceManager& resourceManager);
     Player();
+    Player(ResourceManager& resourceManager);
     ~Player();
 
     void update(sf::Time deltaTime);
