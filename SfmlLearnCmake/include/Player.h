@@ -16,13 +16,18 @@ public:
     void moveDown(bool isMoving);
     void moveLeft(bool isMoving);
     void moveRight(bool isMoving);
+    void setMousePos(sf::Vector2i pos);
 
 private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
+    void CharacterMove(sf::Vector2f movement, sf::Time deltaTime);
+    void CharacterRotate();
+
     sf::Sprite mSprite;
     sf::Texture mTexture;
     float mSpeed;
+    sf::Vector2i mMousePosition{};
     bool mIsMovingUp;
     bool mIsMovingDown;
     bool mIsMovingLeft;

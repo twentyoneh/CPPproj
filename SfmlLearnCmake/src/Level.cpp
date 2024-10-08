@@ -37,38 +37,6 @@ void Level::update(sf::Time deltaTime) {
     
 }
 
-void Level::handleInput() {
-    // Обработка ввода пользователя
-    // Например, обновление направления движения игрока
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-        mPlayer.moveUp(true);
-    }
-    else {
-        mPlayer.moveUp(false);
-    }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-        mPlayer.moveDown(true);
-    }
-    else {
-        mPlayer.moveDown(false);
-    }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-        mPlayer.moveLeft(true);
-    }
-    else {
-        mPlayer.moveLeft(false);
-    }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-        mPlayer.moveRight(true);
-    }
-    else {
-        mPlayer.moveRight(false);
-    }
-}
-
 void Level::addEnemy(const Enemy& enemy) {
     mEnemies.push_back(enemy);
 }

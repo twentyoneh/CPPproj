@@ -13,7 +13,6 @@ public:
 
     void loadFromFile(const std::string& filename); // Загрузка уровня из файла
     void update(sf::Time deltaTime); // Обновление состояния уровня
-    void handleInput(); // Обработка ввода
 
     void addEnemy(const Enemy& enemy); // Добавление врага на уровень
     void setPlayer(const Player& player); // Установка игрока на уровень

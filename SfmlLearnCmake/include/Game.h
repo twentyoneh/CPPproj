@@ -20,7 +20,7 @@ private:
     void render();
 
     void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
-    void handlePlayerMouse(sf::Mouse& mouse, bool isPressed);
+    void handlePlayerMouse(sf::Mouse::Button key, bool isPressed);
     void handlePlayerMouse(sf::Vector2i pos);
     
     
@@ -40,7 +40,7 @@ private:
     Level mLevel;
     const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
     static const unsigned int mWidth = 800, mHeight = 600;
-    sf::Vector2i mMousePosition{};
+    sf::Vector2i mMousePosition;
     //sf::Vector2i mDeltaMousePosition{};
     //sf::Vector2i mLastMousePosition{};
 

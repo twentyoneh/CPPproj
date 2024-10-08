@@ -35,23 +35,45 @@ void Game::processEvents() {
     while (mWindow.pollEvent(event)) {
         switch (event.type) {
         case sf::Event::KeyPressed:
+        {
             handlePlayerInput(event.key.code, true);
             break;
+        }
         case sf::Event::KeyReleased:
+        {
             handlePlayerInput(event.key.code, false);
             break;
+        }
         case sf::Event::MouseButtonPressed:
-
+        {
+            if (sf::Event::MouseButtonPressed == sf::Mouse::Button::Left) {
+                handlePlayerMouse(sf::Mouse::Button::Left, true);
+            }
+            else if (sf::Event::MouseButtonPressed == sf::Mouse::Button::Right) {
+                handlePlayerMouse(sf::Mouse::Button::Right, true);
+            }
             break;
+        }
         case sf::Event::MouseButtonReleased:
-
+        {
+            if (sf::Event::MouseButtonReleased == sf::Mouse::Button::Left) {
+                handlePlayerMouse(sf::Mouse::Button::Left, false);
+            }
+            else if (sf::Event::MouseButtonReleased == sf::Mouse::Button::Right) {
+                handlePlayerMouse(sf::Mouse::Button::Right, false);
+            }
             break;
+        }
         case sf::Event::MouseMoved:
-            handlePlayerMouse(sf::Mouse::getPosition(mWindow));
+        {
+            handlePlayerMouse(sf::Mouse::getPosition(mWindow)); //получаем позицию мышки
             break;
+        }
         case sf::Event::Closed:
+        {
             mWindow.close();
             break;
+        }
         }
     }
 }
@@ -89,7 +111,7 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
     // ќбработка других клавиш и действий
 }
 
-void Game::handlePlayerMouse(sf::Mouse& mouse, bool isPressed)
+void Game::handlePlayerMouse(sf::Mouse::Button key, bool isPressed)
 {
 
 }
@@ -97,6 +119,7 @@ void Game::handlePlayerMouse(sf::Mouse& mouse, bool isPressed)
 void Game::handlePlayerMouse(sf::Vector2i pos)
 {
     mMousePosition = pos;
+    mPlayer.setMousePos(mMousePosition);
     //mDeltaMousePosition = mLastMousePosition Ц mMousePosition;
     //mLastMousePosition = mMousePosition;
 }

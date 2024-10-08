@@ -1,13 +1,13 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8">
   <diagram name="Страница — 1" id="Ya3FGMCgFJk5peCOeQJr">
-    <mxGraphModel dx="3137" dy="1473" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2213" dy="884" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="n_UI0lglWCXp96dE_bRu-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="8VaP-X3mGruWFbC8dwb2-1" target="n_UI0lglWCXp96dE_bRu-1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="8VaP-X3mGruWFbC8dwb2-1" target="n_UI0lglWCXp96dE_bRu-1" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="8VaP-X3mGruWFbC8dwb2-1" target="n_UI0lglWCXp96dE_bRu-4">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="8VaP-X3mGruWFbC8dwb2-1" target="n_UI0lglWCXp96dE_bRu-4" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="8VaP-X3mGruWFbC8dwb2-1" value="&lt;div&gt;#include &quot;Game.h&quot;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;int main(int argc, char** argv[]) {&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;&lt;span style=&quot;white-space:pre&quot;&gt;&#x9;&lt;/span&gt;Game game;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;&lt;span style=&quot;white-space:pre&quot;&gt;&#x9;&lt;/span&gt;game.run();&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
@@ -19,202 +19,212 @@
         <mxCell id="8VaP-X3mGruWFbC8dwb2-3" value="main.cpp" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="404" y="70" width="70" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-1" value="Game" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-1" value="Game" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-180" y="180" width="381" height="550" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-2" value="&lt;div&gt;public:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; Game();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; ~Game();&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void run();&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;private:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void processEvents();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void update(sf::Time deltaTime);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void render();&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void handlePlayerMouse(sf::Mouse&amp;amp; mouse, bool isPressed);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void handlePlayerMouse(sf::Vector2i pos);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Заполнение mfileNameList&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; std::map&amp;lt;std::string, std::string&amp;gt; mfileNameList{&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; {&quot;player&quot;, &quot;../../../assets/images/player.png&quot; },&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; {&quot;enemy&quot;,&quot;../../../assets/images/enemy.png&quot;},&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; {&quot;main_font&quot;,&quot;../../../assets/fonts/ArialRegular.ttf&quot;},&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; {&quot;background&quot;,&quot;../../../assets/images/background.jpg&quot;}&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; };&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sf::RenderWindow mWindow;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; ResourceManager mResourceManager;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; Player mPlayer;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; std::vector&amp;lt;Enemy&amp;gt; mEnemies;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; Level mLevel;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; static const unsigned int mWidth = 800, mHeight = 600;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sf::Vector2i mMousePosition{};&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="n_UI0lglWCXp96dE_bRu-1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-2" value="&lt;div&gt;public:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; Game();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; ~Game();&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void run();&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;private:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void processEvents();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void update(sf::Time deltaTime);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void render();&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void handlePlayerMouse(sf::Mouse&amp;amp; mouse, bool isPressed);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void handlePlayerMouse(sf::Vector2i pos);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Заполнение mfileNameList&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; std::map&amp;lt;std::string, std::string&amp;gt; mfileNameList{&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; {&quot;player&quot;, &quot;../../../assets/images/player.png&quot; },&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; {&quot;enemy&quot;,&quot;../../../assets/images/enemy.png&quot;},&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; {&quot;main_font&quot;,&quot;../../../assets/fonts/ArialRegular.ttf&quot;},&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; {&quot;background&quot;,&quot;../../../assets/images/background.jpg&quot;}&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; };&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sf::RenderWindow mWindow;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; ResourceManager mResourceManager;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; Player mPlayer;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; std::vector&amp;lt;Enemy&amp;gt; mEnemies;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; Level mLevel;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; static const unsigned int mWidth = 800, mHeight = 600;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sf::Vector2i mMousePosition{};&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" parent="n_UI0lglWCXp96dE_bRu-1" vertex="1">
           <mxGeometry y="50" width="381" height="500" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-4" target="n_UI0lglWCXp96dE_bRu-6">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="n_UI0lglWCXp96dE_bRu-4" target="n_UI0lglWCXp96dE_bRu-6" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-111" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.31;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-4" target="n_UI0lglWCXp96dE_bRu-109">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-111" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.31;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="n_UI0lglWCXp96dE_bRu-4" target="n_UI0lglWCXp96dE_bRu-109" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-4" value="&lt;div&gt;Game::Game()&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; : mWindow(sf::VideoMode(mWidth, mHeight), &quot;SFML Game&quot;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; , mResourceManager(mfileNameList)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; , mPlayer(mResourceManager)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; , mLevel(mResourceManager)&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; mPlayer.setPosition(mWidth / 2.0f, mHeight / 2.0f);&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;points=[[0,0,0,0,0],[0,0.25,0,0,0],[0,0.5,0,0,0],[0,0.75,0,0,0],[0,1,0,0,0],[0.25,0,0,0,0],[0.25,1,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[0.75,0,0,0,0],[0.75,1,0,0,0],[1,0,0,0,0],[1,0.21,0,0,0],[1,0.31,0,0,0],[1,0.4,0,0,0],[1,0.52,0,0,0],[1,1,0,0,0]];" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-4" value="&lt;div&gt;Game::Game()&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; : mWindow(sf::VideoMode(mWidth, mHeight), &quot;SFML Game&quot;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; , mResourceManager(mfileNameList)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; , mPlayer(mResourceManager)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; , mLevel(mResourceManager)&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; mPlayer.setPosition(mWidth / 2.0f, mHeight / 2.0f);&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;points=[[0,0,0,0,0],[0,0.25,0,0,0],[0,0.5,0,0,0],[0,0.75,0,0,0],[0,1,0,0,0],[0.25,0,0,0,0],[0.25,1,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[0.75,0,0,0,0],[0.75,1,0,0,0],[1,0,0,0,0],[1,0.21,0,0,0],[1,0.31,0,0,0],[1,0.4,0,0,0],[1,0.52,0,0,0],[1,1,0,0,0]];" parent="1" vertex="1">
           <mxGeometry x="270" y="260" width="351" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-2" target="n_UI0lglWCXp96dE_bRu-4">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="n_UI0lglWCXp96dE_bRu-2" target="n_UI0lglWCXp96dE_bRu-4" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-6" target="n_UI0lglWCXp96dE_bRu-15">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="n_UI0lglWCXp96dE_bRu-6" target="n_UI0lglWCXp96dE_bRu-15" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-6" value="&lt;div&gt;void Game::run() {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sf::Clock clock;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sf::Time timeSinceLastUpdate = sf::Time::Zero;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; while (mWindow.isOpen())&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; processEvents();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; timeSinceLastUpdate += clock.restart();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; while (timeSinceLastUpdate &amp;gt; TimePerFrame)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; timeSinceLastUpdate -= TimePerFrame;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; processEvents();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; update(TimePerFrame);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; render();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-6" value="&lt;div&gt;void Game::run() {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sf::Clock clock;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sf::Time timeSinceLastUpdate = sf::Time::Zero;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; while (mWindow.isOpen())&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; processEvents();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; timeSinceLastUpdate += clock.restart();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; while (timeSinceLastUpdate &amp;gt; TimePerFrame)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; timeSinceLastUpdate -= TimePerFrame;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; processEvents();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; update(TimePerFrame);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; render();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
           <mxGeometry x="290.5" y="430" width="310" height="240" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-9" value="&lt;code&gt;TimePerFrame&lt;/code&gt; — это фиксированный интервал времени,&amp;nbsp;&lt;div&gt;определяющий продолжительность одного игрового кадра.&lt;div&gt;&amp;nbsp;Он используется для обеспечения того, чтобы игра обновлялась&lt;/div&gt;&lt;div&gt;&amp;nbsp;с постоянной скоростью (например, 60 кадров в секунду), независимо&lt;/div&gt;&lt;div&gt;&amp;nbsp;от производительности компьютера. &lt;code&gt;timeSinceLastUpdate&lt;/code&gt; накапливает&lt;/div&gt;&lt;div&gt;&amp;nbsp;прошедшее время и позволяет циклу обновлений &quot;догонять&quot; кадры,&lt;/div&gt;&lt;div&gt;&amp;nbsp;если игра на какое-то время отстала от целевой частоты.&lt;/div&gt;&lt;/div&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_2;align=left;labelPosition=right;pointerEvents=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-9" value="&lt;code&gt;TimePerFrame&lt;/code&gt; — это фиксированный интервал времени,&amp;nbsp;&lt;div&gt;определяющий продолжительность одного игрового кадра.&lt;div&gt;&amp;nbsp;Он используется для обеспечения того, чтобы игра обновлялась&lt;/div&gt;&lt;div&gt;&amp;nbsp;с постоянной скоростью (например, 60 кадров в секунду), независимо&lt;/div&gt;&lt;div&gt;&amp;nbsp;от производительности компьютера. &lt;code&gt;timeSinceLastUpdate&lt;/code&gt; накапливает&lt;/div&gt;&lt;div&gt;&amp;nbsp;прошедшее время и позволяет циклу обновлений &quot;догонять&quot; кадры,&lt;/div&gt;&lt;div&gt;&amp;nbsp;если игра на какое-то время отстала от целевой частоты.&lt;/div&gt;&lt;/div&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_2;align=left;labelPosition=right;pointerEvents=1;" parent="1" vertex="1">
           <mxGeometry x="650" y="485" width="50" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.998;entryY=0.36;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-9" target="n_UI0lglWCXp96dE_bRu-6">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.998;entryY=0.36;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="n_UI0lglWCXp96dE_bRu-9" target="n_UI0lglWCXp96dE_bRu-6" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-13" target="n_UI0lglWCXp96dE_bRu-18">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="n_UI0lglWCXp96dE_bRu-13" target="n_UI0lglWCXp96dE_bRu-18" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="660" y="1065" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-19" value="switch" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="n_UI0lglWCXp96dE_bRu-17">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-19" value="switch" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="n_UI0lglWCXp96dE_bRu-17" vertex="1" connectable="0">
           <mxGeometry x="-0.2344" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-94" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-13" target="n_UI0lglWCXp96dE_bRu-93">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-94" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="n_UI0lglWCXp96dE_bRu-13" target="n_UI0lglWCXp96dE_bRu-93" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-13" value="&lt;div&gt;void Game::processEvents() {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sf::Event event;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; while (mWindow.pollEvent(event)) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; switch (event.type) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; case sf::Event::KeyPressed:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; handlePlayerInput(event.key.code, true);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; break;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; case sf::Event::KeyReleased:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; handlePlayerInput(event.key.code, false);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; break;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; case sf::Event::MouseButtonPressed:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; break;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; case sf::Event::MouseButtonReleased:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; break;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; case sf::Event::MouseMoved:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; handlePlayerMouse(sf::Mouse::getPosition(mWindow));&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; break;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; case sf::Event::Closed:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; mWindow.close();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; break;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-13" value="&lt;div&gt;void Game::processEvents() {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sf::Event event;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; while (mWindow.pollEvent(event)) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; switch (event.type) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; case sf::Event::KeyPressed:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; handlePlayerInput(event.key.code, true);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; break;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; case sf::Event::KeyReleased:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; handlePlayerInput(event.key.code, false);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; break;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; case sf::Event::MouseButtonPressed:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; break;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; case sf::Event::MouseButtonReleased:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; break;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; case sf::Event::MouseMoved:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; handlePlayerMouse(sf::Mouse::getPosition(mWindow));&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; break;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; case sf::Event::Closed:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; mWindow.close();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; break;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
           <mxGeometry x="288.25" y="870" width="314.5" height="390" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-15" target="n_UI0lglWCXp96dE_bRu-13">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="n_UI0lglWCXp96dE_bRu-15" target="n_UI0lglWCXp96dE_bRu-13" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-98" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="n_UI0lglWCXp96dE_bRu-16">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-98" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="n_UI0lglWCXp96dE_bRu-16" vertex="1" connectable="0">
           <mxGeometry x="-0.1176" relative="1" as="geometry">
             <mxPoint y="-1" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-15" value="Пока окно открыто" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="jiCW_u5rqDX-xGtmV1Md-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-15" target="jiCW_u5rqDX-xGtmV1Md-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="960" y="760" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jiCW_u5rqDX-xGtmV1Md-3" value="0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="jiCW_u5rqDX-xGtmV1Md-1">
+          <mxGeometry x="-0.9031" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n_UI0lglWCXp96dE_bRu-15" value="Пока окно открыто" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="395.5" y="710" width="100" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-18" target="n_UI0lglWCXp96dE_bRu-23">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="n_UI0lglWCXp96dE_bRu-18" target="n_UI0lglWCXp96dE_bRu-23" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-18" value="event.type" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-18" value="event.type" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="670" y="1035" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-23" target="n_UI0lglWCXp96dE_bRu-26">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="n_UI0lglWCXp96dE_bRu-23" target="n_UI0lglWCXp96dE_bRu-26" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-30" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="n_UI0lglWCXp96dE_bRu-27">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-30" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="n_UI0lglWCXp96dE_bRu-27" vertex="1" connectable="0">
           <mxGeometry x="-0.0692" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-23" target="n_UI0lglWCXp96dE_bRu-52">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="n_UI0lglWCXp96dE_bRu-23" target="n_UI0lglWCXp96dE_bRu-52" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="922" y="1120" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-31" value="0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="n_UI0lglWCXp96dE_bRu-29">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-31" value="0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="n_UI0lglWCXp96dE_bRu-29" vertex="1" connectable="0">
           <mxGeometry x="-0.6766" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-23" value="case sf::Event::KeyPressed" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-23" value="case sf::Event::KeyPressed" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="827" y="1037.5" width="190" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-100" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-26" target="n_UI0lglWCXp96dE_bRu-99">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-100" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="n_UI0lglWCXp96dE_bRu-26" target="n_UI0lglWCXp96dE_bRu-99" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-26" value="handlePlayerInput(event.key.code, true)" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-26" value="handlePlayerInput(event.key.code, true)" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1070" y="1035" width="240" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-48" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-52" target="n_UI0lglWCXp96dE_bRu-53">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-48" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="n_UI0lglWCXp96dE_bRu-52" target="n_UI0lglWCXp96dE_bRu-53" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-49" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="n_UI0lglWCXp96dE_bRu-48">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-49" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="n_UI0lglWCXp96dE_bRu-48" vertex="1" connectable="0">
           <mxGeometry x="-0.0692" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-52" target="n_UI0lglWCXp96dE_bRu-58">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="n_UI0lglWCXp96dE_bRu-52" target="n_UI0lglWCXp96dE_bRu-58" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="922" y="1215" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-51" value="0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="n_UI0lglWCXp96dE_bRu-50">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-51" value="0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="n_UI0lglWCXp96dE_bRu-50" vertex="1" connectable="0">
           <mxGeometry x="-0.6766" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-52" value="case sf::Event::KeyReleased" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-52" value="case sf::Event::KeyReleased" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="827" y="1132.5" width="190" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-53" value="handlePlayerInput(event.key.code, false);" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-53" value="handlePlayerInput(event.key.code, false);" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1070" y="1130" width="240" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-54" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-58" target="n_UI0lglWCXp96dE_bRu-59">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-54" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="n_UI0lglWCXp96dE_bRu-58" target="n_UI0lglWCXp96dE_bRu-59" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-55" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="n_UI0lglWCXp96dE_bRu-54">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-55" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="n_UI0lglWCXp96dE_bRu-54" vertex="1" connectable="0">
           <mxGeometry x="-0.0692" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-56" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-58" target="n_UI0lglWCXp96dE_bRu-64">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-56" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="n_UI0lglWCXp96dE_bRu-58" target="n_UI0lglWCXp96dE_bRu-64" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="922" y="1305" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-57" value="0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="n_UI0lglWCXp96dE_bRu-56">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-57" value="0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="n_UI0lglWCXp96dE_bRu-56" vertex="1" connectable="0">
           <mxGeometry x="-0.6766" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-58" value="case sf::Event::MouseButtonPressed" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-58" value="case sf::Event::MouseButtonPressed" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="827" y="1222.5" width="190" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-59" value="" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-59" value="" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1070" y="1220" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-60" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-64" target="n_UI0lglWCXp96dE_bRu-65">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-60" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="n_UI0lglWCXp96dE_bRu-64" target="n_UI0lglWCXp96dE_bRu-65" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-61" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="n_UI0lglWCXp96dE_bRu-60">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-61" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="n_UI0lglWCXp96dE_bRu-60" vertex="1" connectable="0">
           <mxGeometry x="-0.0692" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-90" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-64" target="n_UI0lglWCXp96dE_bRu-70">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-90" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="n_UI0lglWCXp96dE_bRu-64" target="n_UI0lglWCXp96dE_bRu-70" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-91" value="0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="n_UI0lglWCXp96dE_bRu-90">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-91" value="0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="n_UI0lglWCXp96dE_bRu-90" vertex="1" connectable="0">
           <mxGeometry x="-0.7563" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-64" value="case sf::Event::MouseButtonReleased" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-64" value="case sf::Event::MouseButtonReleased" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="827" y="1317.5" width="190" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-65" value="" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-65" value="" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1070" y="1315" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-66" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-70" target="n_UI0lglWCXp96dE_bRu-71">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-66" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="n_UI0lglWCXp96dE_bRu-70" target="n_UI0lglWCXp96dE_bRu-71" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-67" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="n_UI0lglWCXp96dE_bRu-66">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-67" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="n_UI0lglWCXp96dE_bRu-66" vertex="1" connectable="0">
           <mxGeometry x="-0.0692" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-68" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-70" target="n_UI0lglWCXp96dE_bRu-76">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-68" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="n_UI0lglWCXp96dE_bRu-70" target="n_UI0lglWCXp96dE_bRu-76" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="922" y="1485" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-69" value="0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="n_UI0lglWCXp96dE_bRu-68">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-69" value="0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="n_UI0lglWCXp96dE_bRu-68" vertex="1" connectable="0">
           <mxGeometry x="-0.6766" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-70" value="sf::Event::MouseMoved" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-70" value="sf::Event::MouseMoved" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="827" y="1402.5" width="190" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-102" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-71" target="n_UI0lglWCXp96dE_bRu-101">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-102" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="n_UI0lglWCXp96dE_bRu-71" target="n_UI0lglWCXp96dE_bRu-101" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-71" value="handlePlayerMouse(sf::Mouse::getPosition(mWindow));" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-71" value="handlePlayerMouse(sf::Mouse::getPosition(mWindow));" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1070" y="1400" width="310" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-72" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-76" target="n_UI0lglWCXp96dE_bRu-77">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-72" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="n_UI0lglWCXp96dE_bRu-76" target="n_UI0lglWCXp96dE_bRu-77" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-73" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="n_UI0lglWCXp96dE_bRu-72">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-73" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="n_UI0lglWCXp96dE_bRu-72" vertex="1" connectable="0">
           <mxGeometry x="-0.0692" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-104" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-76">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-104" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="n_UI0lglWCXp96dE_bRu-76" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="445" y="1290" as="targetPoint" />
             <Array as="points">
@@ -224,22 +234,22 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-76" value="sf::Event::Closed" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-76" value="sf::Event::Closed" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="827" y="1497.5" width="190" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-77" value="mWindow.close();" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-77" value="mWindow.close();" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1070" y="1495" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-96" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-93" target="n_UI0lglWCXp96dE_bRu-95">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-96" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="n_UI0lglWCXp96dE_bRu-93" target="n_UI0lglWCXp96dE_bRu-95" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-93" value="&lt;div&gt;void Game::update(sf::Time deltaTime) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; mPlayer.update(deltaTime);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Обновление логики врагов, пуль, уровней и т.д.&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; for (auto&amp;amp; enemy : mEnemies) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; enemy.update(deltaTime);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; mLevel.update(deltaTime);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Логика столкновений, обновление состояния игры и т.д.&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-93" value="&lt;div&gt;void Game::update(sf::Time deltaTime) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; mPlayer.update(deltaTime);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Обновление логики врагов, пуль, уровней и т.д.&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; for (auto&amp;amp; enemy : mEnemies) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; enemy.update(deltaTime);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; mLevel.update(deltaTime);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Логика столкновений, обновление состояния игры и т.д.&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
           <mxGeometry x="258.25" y="1330" width="374.5" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-95" value="&lt;div&gt;void Game::render() {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; mWindow.clear();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; mWindow.draw(mLevel);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; mWindow.draw(mPlayer);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; /*for (const auto&amp;amp; enemy : mEnemies) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; mWindow.draw(enemy);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; }*/&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Отрисовка других игровых объектов&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; mWindow.display();&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-95" value="&lt;div&gt;void Game::render() {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; mWindow.clear();&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; mWindow.draw(mLevel);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; mWindow.draw(mPlayer);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; /*for (const auto&amp;amp; enemy : mEnemies) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; mWindow.draw(enemy);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; }*/&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Отрисовка других игровых объектов&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; mWindow.display();&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
           <mxGeometry x="328.25" y="1570" width="234.5" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-95" target="n_UI0lglWCXp96dE_bRu-15">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="n_UI0lglWCXp96dE_bRu-95" target="n_UI0lglWCXp96dE_bRu-15" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="446" y="1860" />
@@ -248,7 +258,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-105" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-99">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-105" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" parent="1" source="n_UI0lglWCXp96dE_bRu-99" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="919.9999999999995" y="1670" as="targetPoint" />
             <Array as="points">
@@ -257,22 +267,25 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-99" value="&lt;div&gt;void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; if (key == sf::Keyboard::W)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; mPlayer.moveUp(isPressed);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; else if (key == sf::Keyboard::S)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; mPlayer.moveDown(isPressed);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; else if (key == sf::Keyboard::A)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; mPlayer.moveLeft(isPressed);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; else if (key == sf::Keyboard::D)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; mPlayer.moveRight(isPressed);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Обработка других клавиш и действий&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-99" value="&lt;div&gt;void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; if (key == sf::Keyboard::W)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; mPlayer.moveUp(isPressed);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; else if (key == sf::Keyboard::S)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; mPlayer.moveDown(isPressed);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; else if (key == sf::Keyboard::A)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; mPlayer.moveLeft(isPressed);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; else if (key == sf::Keyboard::D)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; mPlayer.moveRight(isPressed);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Обработка других клавиш и действий&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
           <mxGeometry x="1425" y="972.5" width="430" height="185" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-108" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" edge="1" parent="1" source="n_UI0lglWCXp96dE_bRu-101">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-108" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" parent="1" source="n_UI0lglWCXp96dE_bRu-101" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="2000" y="1430" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-101" value="void Game::handlePlayerMouse(sf::Vector2i pos)&lt;br&gt;{&lt;br&gt;&amp;nbsp; &amp;nbsp; mMousePosition = pos;&lt;br&gt;&amp;nbsp; &amp;nbsp; //mDeltaMousePosition = mLastMousePosition – mMousePosition;&lt;br&gt;&amp;nbsp; &amp;nbsp; //mLastMousePosition = mMousePosition;&lt;br&gt;}" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-101" value="void Game::handlePlayerMouse(sf::Vector2i pos)&lt;br&gt;{&lt;br&gt;&amp;nbsp; &amp;nbsp; mMousePosition = pos;&lt;br&gt;&amp;nbsp; &amp;nbsp; //mDeltaMousePosition = mLastMousePosition – mMousePosition;&lt;br&gt;&amp;nbsp; &amp;nbsp; //mLastMousePosition = mMousePosition;&lt;br&gt;}" style="whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
           <mxGeometry x="1420" y="1350" width="265" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-109" value="ResourceManager" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-109" value="ResourceManager" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="840" y="70" width="490" height="320" as="geometry" />
         </mxCell>
-        <mxCell id="n_UI0lglWCXp96dE_bRu-110" value="&lt;div&gt;public:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; ResourceManager(std::map&amp;lt;std::string, std::string&amp;gt; fileNameList);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Загружает текстуру из файла, если она еще не загружена&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void loadTexture(const std::string&amp;amp; name, const std::string&amp;amp; filename);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void loadFont(const std::string&amp;amp; name, const std::string&amp;amp; filename);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Возвращает ссылку на загруженную текстуру&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sf::Texture&amp;amp; getTexture(const std::string&amp;amp; name);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sf::Font&amp;amp; getFont(const std::string&amp;amp; name);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;private:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Контейнер для хранения текстур&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; std::unordered_map&amp;lt;std::string, sf::Texture&amp;gt; textures;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; std::unordered_map&amp;lt;std::string, sf::Font&amp;gt; fonts;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="n_UI0lglWCXp96dE_bRu-109">
+        <mxCell id="n_UI0lglWCXp96dE_bRu-110" value="&lt;div&gt;public:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; ResourceManager(std::map&amp;lt;std::string, std::string&amp;gt; fileNameList);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Загружает текстуру из файла, если она еще не загружена&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void loadTexture(const std::string&amp;amp; name, const std::string&amp;amp; filename);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void loadFont(const std::string&amp;amp; name, const std::string&amp;amp; filename);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Возвращает ссылку на загруженную текстуру&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sf::Texture&amp;amp; getTexture(const std::string&amp;amp; name);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sf::Font&amp;amp; getFont(const std::string&amp;amp; name);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;private:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; // Контейнер для хранения текстур&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; std::unordered_map&amp;lt;std::string, sf::Texture&amp;gt; textures;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; std::unordered_map&amp;lt;std::string, sf::Font&amp;gt; fonts;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" parent="n_UI0lglWCXp96dE_bRu-109" vertex="1">
           <mxGeometry y="50" width="490" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="jiCW_u5rqDX-xGtmV1Md-2" value="END" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="730" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
