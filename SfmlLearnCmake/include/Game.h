@@ -29,7 +29,8 @@ private:
         {"player", "../../../assets/images/player.png" },
         {"enemy","../../../assets/images/enemy.png"},
         {"main_font","../../../assets/fonts/ArialRegular.ttf"},
-        {"background","../../../assets/images/background.jpg"}
+        {"background","../../../assets/images/background.jpg"},
+        {"backgroundMenu","../../../assets/images/backgroundMenu.jpg"}
     };
     
 

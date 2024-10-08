@@ -5,24 +5,35 @@
 #include "Player.h"
 #include "Enemy.h"
 
+enum class GameState {
+    Menu,
+    Playing,
+    Paused,
+    GameOver
+};
+
 class Level : public sf::Drawable {
 public:
-    Level();
     Level(ResourceManager& resourceManager);
     ~Level();
 
-    void loadFromFile(const std::string& filename); // Загрузка уровня из файла
-    void update(sf::Time deltaTime); // Обновление состояния уровня
+    // Основные функции уровня
+    void loadFromFile(const std::string& filename);  // Загрузка уровня из файла
+    void update(sf::Time deltaTime);  // Обновление логики уровня
 
-    void addEnemy(const Enemy& enemy); // Добавление врага на уровень
-    void setPlayer(const Player& player); // Установка игрока на уровень
-    Player& getPlayer(); // Получение ссылки на игрока
+    void addEnemy(const Enemy& enemy);  // Добавление врага на уровень
+    void setPlayer(const Player& player);  // Установка игрока на уровень
+    Player& getPlayer();  // Получение игрока
+
+    void setGameState(GameState state);  // Установка состояния уровня
+    GameState getGameState() const;  // Получение текущего состояния уровня
 
 private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-    Player mPlayer;
-    std::vector<Enemy> mEnemies; // Список врагов на уровне
-    //sf::Texture mBackgroundTexture; // Текстура фона уровня
-    sf::Sprite mBackgroundSprite; // Спрайт фона уровня
+    // Внутренние переменные уровня
+    Player mPlayer;  // Игрок
+    std::vector<Enemy> mEnemies;  // Враги
+    sf::Sprite mBackgroundSprite;  // Фон уровня
+    GameState mGameState;  // Состояние уровня
 };

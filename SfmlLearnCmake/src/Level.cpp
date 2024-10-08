@@ -1,40 +1,38 @@
 #include "Level.h"
 
-#include <fstream>
-#include <stdexcept>
-#include <iostream>
-
-Level::Level() {
-
-}
-
 Level::Level(ResourceManager& resourceManager)
+    : mGameState(GameState::Menu)  // Начальное состояние — меню
 {
     mBackgroundSprite.setTexture(resourceManager.getTexture("background"));
 }
 
 Level::~Level() {
-    // Освобождение ресурсов, если необходимо
+    // Освобождение ресурсов (если нужно)
 }
 
 void Level::loadFromFile(const std::string& filename) {
-    std::ifstream file(filename);
-    if (!file.is_open()) {
-        throw std::runtime_error("Failed to open level file: " + filename);
-    }
-
-    // Пример загрузки уровня
-    std::string line;
-    while (std::getline(file, line)) {
-        // Здесь могла бы быть логика загрузки врагов, объектов и т.д.
-        std::cout << "Reading line from file: " << line << std::endl;
-    }
-
-    file.close();
+    // Логика загрузки уровня из файла
 }
 
 void Level::update(sf::Time deltaTime) {
-    
+    if (mGameState == GameState::Playing) {
+        // Обновление игрока
+        mPlayer.update(deltaTime);
+
+        // Обновление всех врагов
+        for (auto& enemy : mEnemies) {
+            enemy.update(deltaTime);
+        }
+    }
+}
+
+void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    target.draw(mBackgroundSprite, states);
+    target.draw(mPlayer, states);
+
+    for (const auto& enemy : mEnemies) {
+        target.draw(enemy, states);
+    }
 }
 
 void Level::addEnemy(const Enemy& enemy) {
@@ -49,15 +47,10 @@ Player& Level::getPlayer() {
     return mPlayer;
 }
 
-void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    // Сначала рисуем фон
-    target.draw(mBackgroundSprite, states);
+void Level::setGameState(GameState state) {
+    mGameState = state;
+}
 
-    // Затем всех врагов
-    for (const auto& enemy : mEnemies) {
-        target.draw(enemy, states);
-    }
-
-    // И наконец игрока
-    target.draw(mPlayer, states);
+GameState Level::getGameState() const {
+    return mGameState;
 }

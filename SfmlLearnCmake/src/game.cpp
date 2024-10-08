@@ -18,7 +18,6 @@ void Game::run() {
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     while (mWindow.isOpen())
     {
-        processEvents();
         timeSinceLastUpdate += clock.restart();
         while (timeSinceLastUpdate > TimePerFrame)
         {
@@ -108,6 +107,8 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
         mPlayer.moveLeft(isPressed);
     else if (key == sf::Keyboard::D)
         mPlayer.moveRight(isPressed);
+    else if(key == sf::Keyboard::Enter)
+        mLevel.setGameState(GameState::Playing);
     // Обработка других клавиш и действий
 }
 

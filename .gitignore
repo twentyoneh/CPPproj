@@ -5,6 +5,7 @@ out/
 .vs/
 build/
 tmp/
+*.bkp
 
 # Compiled Object files
 *.slo
