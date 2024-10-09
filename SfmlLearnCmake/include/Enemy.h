@@ -1,23 +1,28 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
 
-class Enemy : public sf::Drawable, public sf::Transformable {
+class Enemy : public sf::Drawable {
 public:
     Enemy();
-    ~Enemy();
+    virtual ~Enemy();
 
+    // Обновление логики врага, можно переопределить в производных классах
+    virtual void update(sf::Time deltaTime);
 
-    void update(sf::Time deltaTime);
-    void setPosition(float x, float y);
-    sf::Vector2f getPosition() const;
+    // Установка позиции врага
+    void setPosition(const sf::Vector2f& position);
+
+    // Нанесение урона врагу
+    void takeDamage(int damage);
+
+    // Проверка, мертв ли враг
+    bool isDead() const;
+
+protected:
+    int mHealth;  // Здоровье врага
+    sf::Sprite mSprite;  // Спрайт врага
 
 private:
+    // Отрисовка врага
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    void loadTexture();
-
-    float mSpeed;
-    sf::Sprite mSprite;
-    sf::Texture mTexture;
-    sf::Vector2f mDirection; // Направление движения врага
 };
