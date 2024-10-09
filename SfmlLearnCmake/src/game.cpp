@@ -81,9 +81,9 @@ void Game::processEvents() {
 void Game::update(sf::Time deltaTime) {
     mPlayer.update(deltaTime);
     // Обновление логики врагов, пуль, уровней и т.д.
-    /*for (auto& enemy : mEnemies) {
+    for (auto& enemy : mEnemies) {
         enemy.update(deltaTime);
-    }*/
+    }
     mLevel.update(deltaTime);
     // Логика столкновений, обновление состояния игры и т.д.
 }

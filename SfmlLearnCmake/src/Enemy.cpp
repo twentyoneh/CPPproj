@@ -1,45 +1,48 @@
 #include "Enemy.h"
 
 Enemy::Enemy()
-    : mSpeed(100.f), mDirection(1.f, 0.f) // ”станавливаем скорость врага и начальное направление
+    : mHealth(100)  // Ќачальное здоровье врага (можно помен€ть на любое значение)
 {
-    loadTexture();
-    mSprite.setTexture(mTexture);
-    mSprite.setPosition(600.f, 300.f); // Ќачальна€ позици€ врага
+    // ћожно загрузить текстуру и установить еЄ на спрайт
+    // ƒл€ этого вам нужно передать путь к текстуре или использовать ресурсный менеджер
+    // Ќапример, так:
+    // sf::Texture texture;
+    // if (texture.loadFromFile("enemy_texture.png")) {
+    //     mSprite.setTexture(texture);
+    // }
+
+    // ”станавливаем спрайту какую-нибудь начальную позицию
+    mSprite.setPosition(100.f, 100.f); // Ёто можно изменить под нужные координаты
 }
 
 Enemy::~Enemy() {
-    // ќсвобождение ресурсов, если необходимо
-}
-
-void Enemy::loadTexture() {
-    if (!mTexture.loadFromFile("assets/images/enemy.png")) {
-        throw std::runtime_error("Failed to load enemy texture");
-    }
+    // ћожно добавить код дл€ очистки, если нужно
 }
 
 void Enemy::update(sf::Time deltaTime) {
-    // ѕростое движение врага в одном направлении
-    sf::Vector2f movement = mDirection * mSpeed * deltaTime.asSeconds();
+    // «десь может быть логика обновлени€ врага
+    // Ќапример, движение, анимаци€, атака и т.д.
+
+    // ¬ простейшем случае пусть враг медленно движетс€ вниз
+    sf::Vector2f movement(0.f, 50.f * deltaTime.asSeconds());
     mSprite.move(movement);
+}
 
-    // Ћогика дл€ изменени€ направлени€, если враг достигает границы экрана
-    if (mSprite.getPosition().x < 0.f || mSprite.getPosition().x > 800.f) {
-        mDirection.x = -mDirection.x; // ћен€ем направление по оси X
-    }
-    if (mSprite.getPosition().y < 0.f || mSprite.getPosition().y > 600.f) {
-        mDirection.y = -mDirection.y; // ћен€ем направление по оси Y
+void Enemy::setPosition(const sf::Vector2f& position) {
+    mSprite.setPosition(position);
+}
+
+void Enemy::takeDamage(int damage) {
+    mHealth -= damage;
+    if (mHealth < 0) {
+        mHealth = 0;  // ”бедимс€, что здоровье не уходит в минус
     }
 }
 
-void Enemy::setPosition(float x, float y) {
-    mSprite.setPosition(x, y);
-}
-
-sf::Vector2f Enemy::getPosition() const {
-    return mSprite.getPosition();
+bool Enemy::isDead() const {
+    return mHealth <= 0;
 }
 
 void Enemy::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    target.draw(mSprite, states);
+    target.draw(mSprite, states); // ќтрисовка спрайта врага
 }

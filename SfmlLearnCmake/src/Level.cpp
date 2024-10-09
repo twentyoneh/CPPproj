@@ -23,6 +23,10 @@ void Level::update(sf::Time deltaTime) {
         for (auto& enemy : mEnemies) {
             enemy.update(deltaTime);
         }
+        //Удаление мертвых врагов (опционеально)
+        mEnemies.erase(std::remove_if(mEnemies.begin(), mEnemies.end(),
+            [](const std::unique_ptr<Enemy>& enemy) { return enemy->isDead(); }),
+            mEnemies.end());
     }
 }
 
