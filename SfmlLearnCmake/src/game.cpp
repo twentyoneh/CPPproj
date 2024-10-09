@@ -125,7 +125,16 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
         else if (key == sf::Keyboard::S)
             mMenuState.moveDown();
         else if (key == sf::Keyboard::Enter)
-            mLevel.setGameState(GameState::Playing);
+        {
+            if (mMenuState.getSelectedItem() == 0)
+            {
+                mLevel.setGameState(GameState::Playing);
+            }
+            else
+            {
+                mWindow.close();
+            }
+        }
     }
     // Обработка других клавиш и действий
 }
