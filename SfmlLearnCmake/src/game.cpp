@@ -99,16 +99,22 @@ void Game::render() {
 }
 
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
-    if (key == sf::Keyboard::W)
-        mPlayer.moveUp(isPressed);
-    else if (key == sf::Keyboard::S)
-        mPlayer.moveDown(isPressed);
-    else if (key == sf::Keyboard::A)
-        mPlayer.moveLeft(isPressed);
-    else if (key == sf::Keyboard::D)
-        mPlayer.moveRight(isPressed);
-    else if(key == sf::Keyboard::Enter)
-        mLevel.setGameState(GameState::Playing);
+    if(mLevel.getGameState() == GameState::Playing)
+    {
+        if (key == sf::Keyboard::W)
+            mPlayer.moveUp(isPressed);
+        else if (key == sf::Keyboard::S)
+            mPlayer.moveDown(isPressed);
+        else if (key == sf::Keyboard::A)
+            mPlayer.moveLeft(isPressed);
+        else if (key == sf::Keyboard::D)
+            mPlayer.moveRight(isPressed);
+    } 
+    else if(mLevel.getGameState() == GameState::Menu)
+    {
+        if (key == sf::Keyboard::Enter)
+            mLevel.setGameState(GameState::Playing);
+    }
     // Обработка других клавиш и действий
 }
 
