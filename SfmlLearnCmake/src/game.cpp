@@ -5,6 +5,7 @@ Game::Game()
     , mResourceManager(mfileNameList)
     , mPlayer(mResourceManager)
     , mLevel(mResourceManager)
+    , mMenuState(mResourceManager, mWindow)
 {
     mPlayer.setPosition(mWidth / 2.0f, mHeight / 2.0f);
 }
@@ -80,22 +81,29 @@ void Game::processEvents() {
 void Game::update(sf::Time deltaTime) {
     mPlayer.update(deltaTime);
     // Обновление логики врагов, пуль, уровней и т.д.
-    for (auto& enemy : mEnemies) {
+    /*for (auto& enemy : mEnemies) {
         enemy.update(deltaTime);
-    }
+    }*/
     mLevel.update(deltaTime);
     // Логика столкновений, обновление состояния игры и т.д.
 }
 
 void Game::render() {
     mWindow.clear();
-    mWindow.draw(mLevel);
-    mWindow.draw(mPlayer);
-    /*for (const auto& enemy : mEnemies) {
-        mWindow.draw(enemy);
-    }*/
-    // Отрисовка других игровых объектов
-    mWindow.display();
+    if (mLevel.getGameState() == GameState::Menu) 
+    {
+        mMenuState.draw();
+    } 
+    else if(mLevel.getGameState() == GameState::Playing)
+    {
+        mWindow.draw(mLevel);
+        mWindow.draw(mPlayer);
+        /*for (const auto& enemy : mEnemies) {
+            mWindow.draw(enemy);
+        }*/
+    }
+        // Отрисовка других игровых объектов
+        mWindow.display();
 }
 
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
@@ -112,7 +120,11 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
     } 
     else if(mLevel.getGameState() == GameState::Menu)
     {
-        if (key == sf::Keyboard::Enter)
+        if (key == sf::Keyboard::W)
+            mMenuState.moveUp();
+        else if (key == sf::Keyboard::S)
+            mMenuState.moveDown();
+        else if (key == sf::Keyboard::Enter)
             mLevel.setGameState(GameState::Playing);
     }
     // Обработка других клавиш и действий

@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Level.h"
+#include "MenuState.h"
 // Другие необходимые заголовочные файлы
 
 class Game {
@@ -39,6 +40,7 @@ private:
     Player mPlayer;
     std::vector<Enemy> mEnemies;
     Level mLevel;
+    MenuState mMenuState;
     const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
     static const unsigned int mWidth = 800, mHeight = 600;
     sf::Vector2i mMousePosition;

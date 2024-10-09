@@ -12,7 +12,7 @@ find_package(SFML 2.6.1 COMPONENTS network audio graphics window system)
 
 #set(PROJ_SRC src/SfmlLearnCmake.cpp src/SfmlLearnCmake.h)
 # Add source to this project's executable.
-add_executable (${PROJECT_NAME} "src/main.cpp" "src/Game.cpp" "src/Player.cpp" "src/Enemy.cpp" "src/Bullet.cpp" "src/Level.cpp" "src/ResourceManager.cpp" "src/Utils.cpp" )
+add_executable (${PROJECT_NAME} "src/main.cpp" "src/Game.cpp" "src/Player.cpp" "src/Enemy.cpp" "src/Bullet.cpp" "src/Level.cpp" "src/ResourceManager.cpp" "src/Utils.cpp"  "src/MenuState.cpp" "include/MenuState.h")
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
 target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio sfml-network sfml-window sfml-system)
