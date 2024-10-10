@@ -18,15 +18,10 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="lab1\lab1.cpp" />
-    <ClCompile Include="lab2\lab2.cpp" />
-    <ClCompile Include="lab3.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{cbac7c6d-77b7-4a3c-8d17-5dd5b4cc1771}</ProjectGuid>
+    <ProjectGuid>{d7f327a4-a136-453f-baf4-b0e14069847e}</ProjectGuid>
     <RootNamespace>LabsFor3Variant</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -131,6 +126,13 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="lab1.cpp" />
+    <ClCompile Include="lab2.cpp" />
+    <ClCompile Include="lab3.cpp" />
+    <ClCompile Include="lab4.cpp" />
+    <ClCompile Include="lab5.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
