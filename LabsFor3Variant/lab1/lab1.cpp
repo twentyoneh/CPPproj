@@ -207,7 +207,7 @@ void lab1_4() {
 }
 
 
-int main()
+int lab1()
 {
     setlocale(LC_ALL, "Russian");
     int choice;
