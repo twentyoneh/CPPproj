@@ -83,7 +83,7 @@ public:
     }
 };
 
-int main() {
+int lab5() {
     setlocale(LC_ALL, "rus");
     Rectangle rect(5, 10); // Создание прямоугольника со сторонами 5 и 10
 

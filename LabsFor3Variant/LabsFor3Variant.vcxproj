@@ -132,6 +132,15 @@
     <ClCompile Include="lab3.cpp" />
     <ClCompile Include="lab4.cpp" />
     <ClCompile Include="lab5.cpp" />
+    <ClCompile Include="lab6\lab6.cpp" />
+    <ClCompile Include="lab6\Parallelepiped.cpp" />
+    <ClCompile Include="lab6\Point.cpp" />
+    <ClCompile Include="lab6\Quadrilateral.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lab6\Parallelepiped.h" />
+    <ClInclude Include="lab6\Point.h" />
+    <ClInclude Include="lab6\Quadrilateral.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
