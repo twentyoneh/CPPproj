@@ -42,6 +42,12 @@
     <ClCompile Include="lab6\Quadrilateral.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lab8\lab8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lab9_1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lab6\Parallelepiped.h">
@@ -51,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lab6\Quadrilateral.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lab8\FileWriteException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

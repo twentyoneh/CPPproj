@@ -136,11 +136,14 @@
     <ClCompile Include="lab6\Parallelepiped.cpp" />
     <ClCompile Include="lab6\Point.cpp" />
     <ClCompile Include="lab6\Quadrilateral.cpp" />
+    <ClCompile Include="lab8\lab8.cpp" />
+    <ClCompile Include="lab9_1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lab6\Parallelepiped.h" />
     <ClInclude Include="lab6\Point.h" />
     <ClInclude Include="lab6\Quadrilateral.h" />
+    <ClInclude Include="lab8\FileWriteException.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
