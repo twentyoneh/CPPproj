@@ -11,7 +11,7 @@ set(CMAKE_PREFIX_PATH C:/cpplibs/SFML-2.6.1)
 set(SFML_STATIC_LIBRARIES TRUE)
 find_package(SFML 2.6.1 COMPONENTS network audio graphics window system)
 
-add_executable (${PROJECT_NAME} "main.cpp" "snake.h" "snake.cpp")
+add_executable (${PROJECT_NAME} "main.cpp" "snake.h" "snake.cpp" "word.h" "word.cpp")
 
 target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio sfml-network sfml-window sfml-system)
 

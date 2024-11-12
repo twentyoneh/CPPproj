@@ -2,16 +2,15 @@
 #ifdef SNAKE_H
 #include"SFML/Graphics.hpp"
 
-using SnakeContainer = std::vector<SnakeSegment>;
-
-
-struct SnakeSegment
+struct SnakeSegment // положение сегмента на сетку
 {
 	SnakeSegment(int x, int y) : position(x, y) {}
 	sf::Vector2i position;
 };
 
-enum class Direction { None, Up, Down, Left, Right };
+using SnakeContainer = std::vector<SnakeSegment>;	//положение сегментов на сетке
+
+enum class Direction { None, Up, Down, Left, Right };	//куда будет ползти вся эта тележка
 
 
 class Snake
