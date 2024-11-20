@@ -5,7 +5,7 @@
 
 class MenuState {
 public:
-    MenuState(ResourceManager& resourceManager, sf::RenderWindow& window);
+    MenuState(sf::RenderWindow& window);
 
     // Основные функции меню
     void draw();  // Отрисовка меню

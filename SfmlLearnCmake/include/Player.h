@@ -8,7 +8,6 @@
 class Player : public sf::Drawable, public sf::Transformable {
 public:
     Player();
-    Player(ResourceManager& resourceManager);
     ~Player();
 
     void update(sf::Time deltaTime);

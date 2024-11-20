@@ -1,10 +1,10 @@
 #include "MenuState.h"
 
-MenuState::MenuState(ResourceManager& resourceManager, sf::RenderWindow& window)
+MenuState::MenuState(sf::RenderWindow& window)
     : mWindow(window), mSelectedItemIndex(0)
 {
     // Загружаем шрифт из ресурс-менеджера
-    mFont = resourceManager.getFont("main_font");
+    mFont = ResourceManager::getFont("main_font");
 
     // Настройка пунктов меню
     sf::Text startGame;

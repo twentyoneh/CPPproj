@@ -14,7 +14,7 @@ enum class GameState {
 
 class Level : public sf::Drawable {
 public:
-    Level(ResourceManager& resourceManager);
+    Level();
     ~Level();
 
     void update(sf::Time deltaTime);  // Обновление логики уровня

@@ -1,9 +1,9 @@
 #include "Level.h"
 
-Level::Level(ResourceManager& resourceManager)
+Level::Level()
     : mGameState(GameState::Menu)  // Начальное состояние — меню
 {
-    mBackgroundSprite.setTexture(resourceManager.getTexture("background"));
+    mBackgroundSprite.setTexture(ResourceManager::getTexture("background"));
 }
 
 Level::~Level() {

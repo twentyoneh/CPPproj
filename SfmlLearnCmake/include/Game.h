@@ -26,19 +26,10 @@ private:
     void handlePlayerMouse(sf::Vector2i pos);
     
     
-    // Заполнение mfileNameList
-    std::map<std::string, std::string> mfileNameList{
-        {"player", "../../../assets/images/player.png" },
-        {"enemy","../../../assets/images/enemy.png"},
-        {"main_font","../../../assets/fonts/ArialRegular.ttf"},
-        {"background","../../../assets/images/background.jpg"},
-        {"backgroundMenu","../../../assets/images/backgroundMenu.jpg"},
-        {"fireball","../../../assets/images/fireball.png"}
-    };
+    
     
 
     sf::RenderWindow mWindow;
-    ResourceManager mResourceManager;
     Player mPlayer;
     std::vector<Enemy> mEnemies;
     Level mLevel;

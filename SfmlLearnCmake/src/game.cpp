@@ -2,10 +2,9 @@
 
 Game::Game()
     : mWindow(sf::VideoMode(mWidth, mHeight), "SFML Game")
-    , mResourceManager(mfileNameList)
-    , mPlayer(mResourceManager)
-    , mLevel(mResourceManager)
-    , mMenuState(mResourceManager, mWindow)
+    , mPlayer()
+    , mLevel()
+    , mMenuState(mWindow)
 {
     mPlayer.setPosition(mWidth / 2.0f, mHeight / 2.0f);
 }

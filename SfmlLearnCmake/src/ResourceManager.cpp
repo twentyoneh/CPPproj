@@ -2,11 +2,19 @@
 
 std::unordered_map<std::string, sf::Texture> ResourceManager::textures;
 std::unordered_map<std::string, sf::Font> ResourceManager::fonts;
+// Заполнение mfileNameList
+std::map<std::string, std::string> ResourceManager::mfileNameList{
+	{"player", "../../../assets/images/player.png" },
+	{"enemy","../../../assets/images/enemy.png"},
+	{"main_font","../../../assets/fonts/ArialRegular.ttf"},
+	{"background","../../../assets/images/background.jpg"},
+	{"backgroundMenu","../../../assets/images/backgroundMenu.jpg"},
+	{"fireball","../../../assets/images/fireball.png"}
+};
 
-
-ResourceManager::ResourceManager(std::map<std::string, std::string> fileNameList)
+ResourceManager::ResourceManager()
 {
-	for (const auto& pair : fileNameList) {
+	for (const auto& pair : ResourceManager::mfileNameList) {
 		if (pair.first == "main_font") 
 		{
 			loadFont(pair.first, pair.second);
@@ -43,4 +51,14 @@ sf::Texture& ResourceManager::getTexture(const std::string& name)
 sf::Font& ResourceManager::getFont(const std::string& name)
 {
 	return fonts[name];
+}
+
+ResourceManager& ResourceManager::getInstance()
+{
+	static ResourceManager instance;
+	return instance;
+}
+
+ResourceManager::~ResourceManager()
+{
 }

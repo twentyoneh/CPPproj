@@ -1,10 +1,7 @@
 #include "Player.h"
 
-Player::Player()
-{
-}
 
-Player::Player(ResourceManager& resourceManager)
+Player::Player()
     : mSpeed{ PLAYER_SPEED } // Устанавливаем скорость игрока
     , mMousePosition{ }
     , mIsMovingUp{ false }
@@ -12,7 +9,7 @@ Player::Player(ResourceManager& resourceManager)
     , mIsMovingLeft{ false }
     , mIsMovingRight{ false }
 {
-    mSprite.setTexture(resourceManager.getTexture("player"));
+    mSprite.setTexture(ResourceManager::getTexture("player"));
     sf::FloatRect bounds = mSprite.getLocalBounds();
     mSprite.setOrigin(bounds.width / 2.0f, bounds.height / 2.0f);
 
