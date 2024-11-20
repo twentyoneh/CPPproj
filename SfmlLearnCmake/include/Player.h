@@ -17,6 +17,8 @@ public:
     void moveLeft(bool isMoving);
     void moveRight(bool isMoving);
     void setMousePos(sf::Vector2i pos);
+    sf::Vector2f getCurrentPos();
+    sf::Vector2f getOrigin();
 
 private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

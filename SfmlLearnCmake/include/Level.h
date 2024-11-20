@@ -17,8 +17,6 @@ public:
     Level(ResourceManager& resourceManager);
     ~Level();
 
-    // Основные функции уровня
-    void loadFromFile(const std::string& filename);  // Загрузка уровня из файла
     void update(sf::Time deltaTime);  // Обновление логики уровня
 
     void addEnemy(const Enemy& enemy);  // Добавление врага на уровень

@@ -141,7 +141,11 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
 
 void Game::handlePlayerMouse(sf::Mouse::Button key, bool isPressed)
 {
-
+    // тут должны рождаться пульки
+    while (isPressed)
+    {
+        //std::shared_ptr<Bullet> bullet = BulletFactory::makeBullet(mPlayer.getPosition(), mPlayer.getOrigin());
+    }
 }
 
 void Game::handlePlayerMouse(sf::Vector2i pos)

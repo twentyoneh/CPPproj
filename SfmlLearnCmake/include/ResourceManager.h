@@ -19,6 +19,6 @@ public:
 
 private:
     // Контейнер для хранения текстур
-    std::unordered_map<std::string, sf::Texture> textures;
-    std::unordered_map<std::string, sf::Font> fonts;
+    static std::unordered_map<std::string, sf::Texture> textures;
+    static std::unordered_map<std::string, sf::Font> fonts;
 };

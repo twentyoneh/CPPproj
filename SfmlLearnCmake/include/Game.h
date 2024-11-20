@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "Level.h"
 #include "MenuState.h"
+#include "BulletFactory.h"
 // Другие необходимые заголовочные файлы
 
 class Game {
@@ -31,7 +32,8 @@ private:
         {"enemy","../../../assets/images/enemy.png"},
         {"main_font","../../../assets/fonts/ArialRegular.ttf"},
         {"background","../../../assets/images/background.jpg"},
-        {"backgroundMenu","../../../assets/images/backgroundMenu.jpg"}
+        {"backgroundMenu","../../../assets/images/backgroundMenu.jpg"},
+        {"fireball","../../../assets/images/fireball.png"}
     };
     
 

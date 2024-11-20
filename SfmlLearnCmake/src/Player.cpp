@@ -52,6 +52,16 @@ void Player::setMousePos(sf::Vector2i pos)
     mMousePosition = pos;
 }
 
+sf::Vector2f Player::getCurrentPos()
+{
+    return mSprite.getPosition();
+}
+
+sf::Vector2f Player::getOrigin()
+{
+    return mSprite.getOrigin();
+}
+
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(mSprite, states);
 }

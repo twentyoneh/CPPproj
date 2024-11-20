@@ -10,10 +10,6 @@ Level::~Level() {
     // Освобождение ресурсов (если нужно)
 }
 
-void Level::loadFromFile(const std::string& filename) {
-    // Логика загрузки уровня из файла
-}
-
 void Level::update(sf::Time deltaTime) {
     if (mGameState == GameState::Playing) {
         // Обновление игрока

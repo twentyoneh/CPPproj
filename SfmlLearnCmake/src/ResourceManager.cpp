@@ -1,5 +1,9 @@
 #include "ResourceManager.h"
 
+std::unordered_map<std::string, sf::Texture> ResourceManager::textures;
+std::unordered_map<std::string, sf::Font> ResourceManager::fonts;
+
+
 ResourceManager::ResourceManager(std::map<std::string, std::string> fileNameList)
 {
 	for (const auto& pair : fileNameList) {

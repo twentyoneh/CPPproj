@@ -1,19 +1,10 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 class Bullet
 {
 public:
-	Bullet();
-	~Bullet();
-
-private:
-
+	virtual sf::Vector2f getPosition(void) = 0;
+	virtual sf::Vector2f getOrigin(void) = 0;
 };
-
-Bullet::Bullet()
-{
-}
-
-Bullet::~Bullet()
-{
-}
