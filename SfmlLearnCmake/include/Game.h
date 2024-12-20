@@ -25,10 +25,6 @@ private:
     void handlePlayerMouse(sf::Mouse::Button key, bool isPressed);
     void handlePlayerMouse(sf::Vector2i pos);
     
-    
-    
-    
-
     sf::RenderWindow mWindow;
     Player mPlayer;
     std::vector<Enemy> mEnemies;

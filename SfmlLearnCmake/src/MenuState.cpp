@@ -13,7 +13,7 @@ MenuState::MenuState(sf::RenderWindow& window)
     startGame.setFillColor(sf::Color::Red);  // Выбранный пункт выделен красным
     sf::FloatRect bounds = startGame.getLocalBounds();
     startGame.setOrigin(bounds.width / 2.0f, bounds.height / 2.0f);
-    startGame.setPosition(window.getSize().x / 2 - 50, window.getSize().y / 2 - 30);
+    startGame.setPosition(static_cast<float>(window.getSize().x) / 2 - 50, static_cast<float>(window.getSize().y) / 2 - 30);
 
     sf::Text exit;
     exit.setFont(mFont);

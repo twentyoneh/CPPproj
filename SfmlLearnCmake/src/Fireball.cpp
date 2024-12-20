@@ -1,9 +1,4 @@
 #include "Fireball.h"
-#include "Fireball.h"
-#include "Fireball.h"
-#include "Fireball.h"
-#include "Fireball.h"
-#include"../include/Fireball.h"
 
 
 Fireball::Fireball(sf::Vector2f pos, sf::Vector2f origin)	:
