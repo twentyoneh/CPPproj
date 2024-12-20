@@ -1,19 +1,27 @@
 #ifndef GAME_H
 #define GAME_H
+
 #include <SFML/Graphics.hpp>
+#include "Player.h"
+#include "Monster.h"
+#include "Map.h"
+
+
 
 class Game {
 public:
-    Game();
-
-    void run();
+    Game(sf::RenderWindow& window);
+    void run(); // Запускает игровой процесс
 
 private:
-    sf::RenderWindow window;
+    sf::RenderWindow& m_window;
+    Player m_player;
+    Monster m_monster;
+    Map m_map;
 
     void handleEvents();
-    void update();
+    void update(float deltaTime);
     void render();
 };
 
-#endif 
+#endif // GAME_H

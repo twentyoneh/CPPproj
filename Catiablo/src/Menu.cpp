@@ -11,6 +11,7 @@ Menu::Menu(sf::RenderWindow& window) : m_window(window), m_selectedIndex(0) {
     }
     m_background.setTexture(m_imagne);
 
+    unsigned int wildth = m_window.getSize().x;
     // Добавляем опции меню
     std::vector<std::string> options = {"Play", "Settings", "Exit"};
     for (size_t i = 0; i < options.size(); ++i) {
@@ -19,7 +20,7 @@ Menu::Menu(sf::RenderWindow& window) : m_window(window), m_selectedIndex(0) {
         text.setString(options[i]);
         text.setCharacterSize(40);
         text.setFillColor(i == 0 ? sf::Color::Yellow : sf::Color::White); // Первый пункт выделен
-        text.setPosition(300, 200 + i * 60); // Расположение пунктов
+        text.setPosition(wildth / 2 - 50, 200 + i * 60); // Расположение пунктов
         m_options.push_back(text);
     }
 }

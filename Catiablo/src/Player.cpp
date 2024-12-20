@@ -6,6 +6,7 @@ Player::Player(const std::string& texturePath) {
     }
     m_sprite.setTexture(m_texture);
     m_sprite.setPosition(400, 300); // Начальная позиция
+    m_sprite.setScale(0.15f, 0.15f);
 }
 
 void Player::handleInput() {

@@ -1,30 +1,42 @@
 #include "../inc/Game.h"
 
-Game::Game() : window(sf::VideoMode(800, 600), "Diablo-like Game") {}
+Game::Game(sf::RenderWindow& window)
+    : m_window(window),
+      m_player("assets/textures/player.png"),
+      m_monster("assets/textures/monster.png", sf::Vector2f(100, 100)),
+      m_map("assets/textures/tileset.png", {{0, 1, 1, 0}, {1, 1, 1, 1}, {0, 1, 1, 0}}) {}
 
 void Game::run() {
-    while (window.isOpen()) {
+    sf::Clock clock;
+
+    while (m_window.isOpen()) {
+        float deltaTime = clock.restart().asSeconds();
+
         handleEvents();
-        update();
+        update(deltaTime);
         render();
     }
 }
 
-void Game::handleEvents(){
+void Game::handleEvents() {
     sf::Event event;
-    while (window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed)
-            window.close();
+    while (m_window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed) {
+            m_window.close();
+        }
     }
 }
 
-void Game::update()
-{
+void Game::update(float deltaTime) {
+    m_player.handleInput();
+    m_player.update(deltaTime);
+    m_monster.update(deltaTime, m_player.getPosition());
 }
 
-void Game::render()
-{
-    window.clear();
-    // Отрисовка объектов
-    window.display();
+void Game::render() {
+    m_window.clear();
+    m_map.draw(m_window);
+    m_player.draw(m_window);
+    m_monster.draw(m_window);
+    m_window.display();
 }

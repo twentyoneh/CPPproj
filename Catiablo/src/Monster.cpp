@@ -7,6 +7,7 @@ Monster::Monster(const std::string& texturePath, sf::Vector2f position) {
     }
     m_sprite.setTexture(m_texture);
     m_sprite.setPosition(position);
+    m_sprite.setScale(0.1f, 0.1f);
 }
 
 void Monster::update(float deltaTime, sf::Vector2f playerPosition) {
