@@ -2,11 +2,11 @@
 
 Menu::Menu(sf::RenderWindow& window) : m_window(window), m_selectedIndex(0) {
     // Загружаем шрифт
-    if (!m_font.loadFromFile("assets/textures/Secession.ttf")) {
+    if (!m_font.loadFromFile("../../assets/textures/Secession.ttf")) {
         throw std::runtime_error("Не удалось загрузить шрифт");
     }
 
-    if (!m_imagne.loadFromFile("assets/textures/menu_bg.png")) {
+    if (!m_imagne.loadFromFile("../../assets/textures/menu_bg.png")) {
         throw std::runtime_error("Не удалось загрузить бэк");
     }
     m_background.setTexture(m_imagne);

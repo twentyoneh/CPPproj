@@ -2,9 +2,9 @@
 
 Game::Game(sf::RenderWindow& window)
     : m_window(window),
-      m_player("assets/textures/player.png"),
-      m_monster("assets/textures/monster.png", sf::Vector2f(100, 100)),
-      m_map("assets/textures/tileset.png", {{0, 1, 1, 0}, {1, 1, 1, 1}, {0, 1, 1, 0}}) {}
+      m_player("../../assets/textures/player.png"),
+      m_monster("../../assets/textures/monster.png", sf::Vector2f(100, 100)),
+      m_map("../../assets/textures/tileset.png", {{0, 1, 1, 0}, {1, 1, 1, 1}, {0, 1, 1, 0}}, window.getSize()) {}
 
 void Game::run() {
     sf::Clock clock;

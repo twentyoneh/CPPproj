@@ -2,11 +2,12 @@
 #define MAP_H
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include <vector>
 
 class Map {
 public:
-    Map(const std::string& tilesetPath, const std::vector<std::vector<int>>& layout);
+    Map(const std::string& tilesetPath, const std::vector<std::vector<int>>& layout, sf::Vector2u windowSize);
     void draw(sf::RenderWindow& window);
 
 private:
