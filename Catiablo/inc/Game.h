@@ -15,6 +15,7 @@ public:
 
 private:
     sf::RenderWindow& m_window;
+    sf::View m_view; // Объект для управления камерой
     Player m_player;
     Monster m_monster;
     Map m_map;

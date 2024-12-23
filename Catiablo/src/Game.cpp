@@ -4,7 +4,10 @@ Game::Game(sf::RenderWindow& window)
     : m_window(window),
       m_player("../../assets/textures/player.png"),
       m_monster("../../assets/textures/monster.png", sf::Vector2f(100, 100)),
-      m_map("../../assets/textures/tileset.png", {{0, 1, 1, 0}, {1, 1, 1, 1}, {0, 1, 1, 0}}, window.getSize()) {}
+      m_map("../../assets/textures/tileset.png", {{0, 1, 1, 0}, {1, 1, 1, 1}, {0, 1, 1, 0}}, window.getSize()) {
+
+        m_view.setCenter(m_player.getPosition());
+      }
 
 void Game::run() {
     sf::Clock clock;
@@ -31,10 +34,15 @@ void Game::update(float deltaTime) {
     m_player.handleInput();
     m_player.update(deltaTime);
     m_monster.update(deltaTime, m_player.getPosition());
+
+    m_view.setCenter(m_player.getPosition());
 }
 
 void Game::render() {
     m_window.clear();
+
+    m_window.setView(m_view);
+
     m_map.draw(m_window);
     m_player.draw(m_window);
     m_monster.draw(m_window);
