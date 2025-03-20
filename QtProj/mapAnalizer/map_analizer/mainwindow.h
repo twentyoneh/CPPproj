@@ -30,7 +30,7 @@ private slots:
 private:
     QString filePath = nullptr;
     void openFileAndParse(const QString fileName);
-    void fillListWidget(MemoryParser _parser);
+    void fillListWidget();
     MemoryParser parser;
     Ui::MainWindow *ui;
 };

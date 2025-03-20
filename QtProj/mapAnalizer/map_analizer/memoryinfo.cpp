@@ -8,9 +8,9 @@ MemoryInfo::MemoryInfo(MemoryParser parser, QWidget *parent)
 
     for (int index = 0; index < parser.memoryObjects.count(); index++)
     {
-        // qDebug() << parser.memoryObjects.at(index).size;
         float result = float(parser.memoryObjects.at(index).size)/float(parser.memoryObjects.at(index).maxSize);
         int progressValue = result*100;
+
         QString startDataString = QString::asprintf("0x%08x",parser.memoryObjects.at(index).execAddr).toUpper();
         QString endDataString = QString::asprintf("0x%08x",parser.memoryObjects.at(index).execAddr+parser.memoryObjects.at(index).size).toUpper();
         QString filledDataString = QString::asprintf("0x%08x",parser.memoryObjects.at(index).execAddr+parser.memoryObjects.at(index).maxSize).toUpper();
@@ -39,7 +39,5 @@ MemoryInfo::MemoryInfo(MemoryParser parser, QWidget *parent)
         mainlayout->addLayout(infoLayout);
 
     }
-
-
     setLayout(mainlayout);
 }

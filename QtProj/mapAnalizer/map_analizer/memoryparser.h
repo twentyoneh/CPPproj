@@ -10,7 +10,10 @@ public:
 
     QList<MemoryObject> memoryObjects;
     QList<GlobalSymbol> globalSymbols;
-    void parseLine(const QString& line);
+    MemoryState memoryState;
+    void ParseLine(const QString& line);
+    void MemoryStateCreate();
+    void ShowMemoryState();
 
 private:
     bool findGlobal = false;

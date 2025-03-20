@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     openFileAndParse("Project_CAM.map");
-    fillListWidget(parser);
+    fillListWidget();
 }
 
 MainWindow::~MainWindow()
@@ -26,19 +26,19 @@ void MainWindow::openFileAndParse(const QString fileName)
 
     while (!in.atEnd()) {
         QString line = in.readLine();
-        parser.parseLine(line);
+        parser.ParseLine(line);
     }
 
     qDebug() << parser.memoryObjects.count();
+    parser.MemoryStateCreate();
 
     file.close();
 }
 
-void MainWindow::fillListWidget(MemoryParser _parser)
+void MainWindow::fillListWidget()
 {
-    MemoryInfo *infoItem = new MemoryInfo(_parser);
+    MemoryInfo *infoItem = new MemoryInfo(parser);
     QListWidgetItem *item = new QListWidgetItem(ui->listWidget);
-    // MemoryInfo *infoItem = new MemoryInfo(_parser, i);
 
     item->setSizeHint(infoItem->sizeHint());
     ui->listWidget->addItem(item);

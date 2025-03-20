@@ -36,18 +36,18 @@ struct GlobalSymbol /// - стурктура для глобальных сим�
 
 struct MemoryState /// - структура для состояния памяти
 {
-    uint32_t codeSize;
-    uint32_t ROSize;
-    uint32_t RWSize;
-    uint32_t ZISize;
+    uint32_t codeSize = 0;
+    uint32_t ROSize = 0;
+    uint32_t RWSize = 0;
+    uint32_t ZISize = 0;
 
-    uint32_t ROMSize;
-    uint32_t ROMFree;
-    uint32_t ROMOccupied;
+    uint32_t ROMSize = 0;
+    uint32_t ROMFree = 0;
+    uint32_t ROMOccupied = 0;
 
-    uint32_t RAMSize;
-    uint32_t RAMFree;
-    uint32_t RAMOccupied;
+    uint32_t RAMSize = 0;
+    uint32_t RAMFree = 0;
+    uint32_t RAMOccupied = 0;
 };
 
 #endif // DEFINES_H

@@ -5,7 +5,7 @@ MemoryParser::MemoryParser()
 
 }
 
-void MemoryParser::parseLine(const QString& line)
+void MemoryParser::ParseLine(const QString& line)
 {
     static MemoryObject* currentObj = nullptr;
 
@@ -95,4 +95,68 @@ void MemoryParser::parseLine(const QString& line)
         findGlobal = true;
     }
 
+}
+
+void MemoryParser::MemoryStateCreate()
+{
+
+    // if(memoryObjects.empty())
+    // {
+    //     return;
+    // }
+
+    for(uint16_t index = 0;index < globalSymbols.size();index++)
+    {
+        if(globalSymbols.at(index).type.contains("Thumb Code"))
+        {
+            memoryState.codeSize += globalSymbols.at(index).size.toUInt();
+        }
+    }
+    for(uint16_t index = 0; index < memoryObjects.count(); index++)
+    {
+        MemoryObject* tmpMemObj = new MemoryObject(memoryObjects.at(index));
+        if(tmpMemObj->name.contains("ROM"))
+        {
+            memoryState.ROMSize += tmpMemObj->maxSize;
+            memoryState.ROMOccupied += tmpMemObj->size;
+        }
+        else if(tmpMemObj->name.contains("RAM"))
+        {
+            memoryState.RAMSize += tmpMemObj->maxSize;
+            memoryState.RAMOccupied += tmpMemObj->size;
+        }
+        memoryState.ROMFree = memoryState.ROMSize - memoryState.ROMOccupied;
+        memoryState.RAMFree = memoryState.RAMSize - memoryState.RAMOccupied;
+
+        for(uint16_t i = 0; i < tmpMemObj->memReg->count(); i++)
+        {
+            if(tmpMemObj->memReg->at(i).accessRights.contains("RO"))
+            {
+                memoryState.ROSize += tmpMemObj->memReg->at(i).size.toUInt(0,16);
+            }
+            else if(tmpMemObj->memReg->at(i).accessRights.contains("RW"))
+            {
+                memoryState.RWSize += tmpMemObj->memReg->at(i).size.toUInt(0,16);
+            }
+        }
+        tmpMemObj = nullptr;
+    }
+    ShowMemoryState();
+}
+
+void MemoryParser::ShowMemoryState()
+{
+    qDebug() << "MemoryState:";
+    qDebug() << "  codeSize:" << memoryState.codeSize;
+    qDebug() << "  ROSize:" << memoryState.ROSize;
+    qDebug() << "  RWSize:" << memoryState.RWSize;
+    qDebug() << "  ZISize:" << memoryState.ZISize;
+
+    qDebug() << "  ROMSize:" << memoryState.ROMSize;
+    qDebug() << "  ROMFree:" << memoryState.ROMFree;
+    qDebug() << "  ROMOccu:" << memoryState.ROMOccupied;
+
+    qDebug() << "  RAMSize:" << memoryState.RAMSize;
+    qDebug() << "  RAMFree:" << memoryState.RAMFree;
+    qDebug() << "  RAMOccu:" << memoryState.RAMOccupied;
 }
