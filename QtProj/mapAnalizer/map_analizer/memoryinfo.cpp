@@ -41,3 +41,26 @@ MemoryInfo::MemoryInfo(MemoryParser parser, QWidget *parent)
     }
     setLayout(mainlayout);
 }
+
+void MemoryInfo::CreateMemoryStateInfo(MemoryParser parser)
+{
+    QVBoxLayout* mainlayout = new QVBoxLayout(this);
+
+    QList<QLabel> lableList;
+
+    lableList.append(QLabel("codeSize:" + QString::number(parser.memoryState.codeSize)));
+    lableList.append(QLabel("ROSize: " + QString::number(parser.memoryState.ROSize)));
+    lableList.append(QLabel(QString::number(parser.memoryState.RWSize)));
+    lableList.append(QLabel(QString::number(parser.memoryState.ROMSize)));
+    lableList.append(QLabel(QString::number(parser.memoryState.ROMFree)));
+    lableList.append(QLabel(QString::number(parser.memoryState.ROMOccupied)));
+    lableList.append(QLabel(QString::number(parser.memoryState.RAMSize)));
+    lableList.append(QLabel(QString::number(parser.memoryState.RAMFree)));
+    lableList.append(QLabel(QString::number(parser.memoryState.RAMOccupied)));
+
+    for(int index = 0; index < lableList.count(); index++)
+    {
+
+        mainlayout->addItem(lableList.at(index));
+    }
+}

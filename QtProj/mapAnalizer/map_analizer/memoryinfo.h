@@ -12,6 +12,7 @@ class MemoryInfo : public QWidget
     Q_OBJECT
 public:
     explicit MemoryInfo(MemoryParser parser,QWidget *parent = nullptr);
+    void CreateMemoryStateInfo(MemoryParser parser);
 
 private:
     QProgressBar *progressBar;
