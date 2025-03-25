@@ -7,6 +7,8 @@
 #include "memoryinfo.h"
 #include <QFile>
 #include <QFileDialog>
+#include <QSettings>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,15 +25,17 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_OpenFIle_clicked();
-
-    void on_findVariable_clicked();
+    void on_OpenFile_clicked();     ///<слот для открытия файла
+    void on_findVariable_clicked(); ///<слот для поиска переменной
 
 private:
-    QString filePath = nullptr;
-    void openFileAndParse(const QString fileName);
-    void fillListWidget();
-    MemoryParser parser;
+    void saveFilePath(const QString& path); ///<функция для сохранения FilePath
+    QString LadFilePath();  ///<функция для загрузки FilePath
+
+    QString filePath = nullptr; ///<сам путь к файлу
+    void openFileAndParse(const QString fileName); ///<функция открытия файла и парсинга
+    void fillListWidget();  ///<функция заполнения ListWidget(состояние памяти и прогрессбары)
+    MemoryParser parser;    ///<объект парсера
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

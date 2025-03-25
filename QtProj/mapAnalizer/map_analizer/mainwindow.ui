@@ -7,17 +7,17 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>625</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="OpenFIle">
+   <widget class="QPushButton" name="OpenFile">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>10</x>
       <y>10</y>
       <width>111</width>
       <height>24</height>
@@ -27,13 +27,13 @@
      <string>Открыть файл</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QListWidget" name="mainListWidget">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>350</x>
       <y>10</y>
-      <width>451</width>
-      <height>541</height>
+      <width>431</width>
+      <height>571</height>
      </rect>
     </property>
     <property name="verticalScrollBarPolicy">
@@ -47,7 +47,7 @@
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>290</y>
+      <y>370</y>
       <width>113</width>
       <height>24</height>
      </rect>
@@ -57,7 +57,7 @@
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>320</y>
+      <y>400</y>
       <width>111</width>
       <height>24</height>
      </rect>
@@ -66,23 +66,23 @@
      <string>Найти элемент</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget_2">
+   <widget class="QListWidget" name="stateInfoList">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>40</y>
-      <width>311</width>
-      <height>181</height>
+      <width>331</width>
+      <height>321</height>
      </rect>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget_3">
+   <widget class="QListWidget" name="variableInfoList">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>350</y>
-      <width>311</width>
-      <height>191</height>
+      <y>430</y>
+      <width>331</width>
+      <height>151</height>
      </rect>
     </property>
    </widget>

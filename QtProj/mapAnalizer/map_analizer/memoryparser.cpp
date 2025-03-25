@@ -5,17 +5,16 @@ MemoryParser::MemoryParser()
 
 }
 
-void MemoryParser::ParseLine(const QString& line)
+void MemoryParser::parseLine(const QString& line)
 {
     static MemoryObject* currentObj = nullptr;
 
-    if(findGlobal)
+    if(findGlobal)  /// - парсинг всех данных которые находятся ниже Global Symbols;
     {
-        if(QRegularExpressionMatch match = patternForGlobSymb->match(line); match.hasMatch())
+        if(QRegularExpressionMatch match = patternForGlobSymb->match(line); match.hasMatch())   /// если внутри строчки есть линия которая соответствует регулярному выражению;
         {
-            GlobalSymbol globObj;
+            GlobalSymbol globObj;   /// - создать объект GlobalSymbol, заполняем объект соотвецтвующими полями ;
             globObj.symbolName = match.captured(1);
-            globObj.value = match.captured(2);
 
             if(match.captured(2)=="-")
             {
@@ -24,6 +23,7 @@ void MemoryParser::ParseLine(const QString& line)
                 return;
             }
 
+            globObj.value = match.captured(2);
             globObj.type = match.captured(3);
 
             if(match.captured(3) == "Thumb")
@@ -36,23 +36,22 @@ void MemoryParser::ParseLine(const QString& line)
                 return;
             }
 
-            globObj.size = match.captured(5);
-            globObj.object = match.captured(6);
+            globObj.size = match.captured(4);
+            globObj.object = match.captured(5);
 
             globalSymbols.append(globObj);
             return;
         }
-
     }
-
-
+    /// - если нашли строку соответствующую:
+    /// - Execution Region RW_IRAM2 (Exec base: 0x24000000, Load base: 0x0803f63c, Size: 0x00077d24, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x0000020c])
     if (QRegularExpressionMatch match = patternForObj->match(line); match.hasMatch())
     {
-        if(findGlobal)
+        if(findGlobal)  /// - чтобы одно регулярное выражение не наслаивалось на другое;
         {
             findGlobal = false;
         }
-        MemoryObject obj;
+        MemoryObject obj;   /// - создаём объект Execution Region, заполняем его;
         obj.name = match.captured(1);
         obj.execAddr = match.captured(2).toUInt(0, 16);
         obj.loadAddr = match.captured(3).toUInt(0, 16);
@@ -65,17 +64,16 @@ void MemoryParser::ParseLine(const QString& line)
         return;
     }
 
-
-    QList<QRegularExpression*> patterns = {pattern, padPattern, ramPattern, universalPattern};
+    QList<QRegularExpression*> patterns = {pattern, padPattern, ramPattern, universalPattern};  /// - набор паттернов для парсинга элементов внутри Execution Region;
     for (auto* regex : patterns)
     {
         if (QRegularExpressionMatch match = regex->match(line); match.hasMatch())
         {
-            if (!currentObj) {
+            if (!currentObj) {  /// - если не найдено Execution Region до входа в парсинг его элементов;
                 qDebug() << "Ошибка: попытка добавить MemoryRegion, но нет MemoryObject!";
                 return;
             }
-            MemoryRegion memoryRegion;
+            MemoryRegion memoryRegion;  /// - создаём объект memoryRegion, заполняем его поля;
             memoryRegion.execAddr = match.captured(1);
             memoryRegion.loadAddr = match.captured(2);
             memoryRegion.size = match.captured(3);
@@ -90,22 +88,16 @@ void MemoryParser::ParseLine(const QString& line)
         }
     }
 
-    if(line.contains("Global Symbols"))
+    if(line.contains("Global Symbols")) /// - для поиска внутри Global Symbols.
     {
         findGlobal = true;
     }
-
 }
 
-void MemoryParser::MemoryStateCreate()
+void MemoryParser::memoryStateCreate()
 {
 
-    // if(memoryObjects.empty())
-    // {
-    //     return;
-    // }
-
-    for(uint16_t index = 0;index < globalSymbols.size();index++)
+    for(uint16_t index = 0;index < globalSymbols.size();index++)    /// - заполнение объекта memoryState;
     {
         if(globalSymbols.at(index).type.contains("Thumb Code"))
         {
@@ -141,10 +133,10 @@ void MemoryParser::MemoryStateCreate()
         }
         tmpMemObj = nullptr;
     }
-    ShowMemoryState();
+    showMemoryState();
 }
 
-void MemoryParser::ShowMemoryState()
+void MemoryParser::showMemoryState()    /// - функция для отладки
 {
     qDebug() << "MemoryState:";
     qDebug() << "  codeSize:" << memoryState.codeSize;
