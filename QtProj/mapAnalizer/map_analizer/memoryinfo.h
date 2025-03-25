@@ -13,7 +13,7 @@ class MemoryInfo : public QWidget
 public:
     explicit MemoryInfo(MemoryParser* parser,QWidget *parent = nullptr);
 
-    void updateVariableLayout(const GlobalSymbol* variable); ///<метод для обновления лейаута
+    void updateVariableLayout(const GlobalSymbol& variable); ///<метод для обновления лейаута
 
     QVBoxLayout* getMainLayout() const { return m_mainLayout; } ///<геттеры для возвращения лейаута
     QVBoxLayout* getStateLayout() const { return m_stateLayout; }

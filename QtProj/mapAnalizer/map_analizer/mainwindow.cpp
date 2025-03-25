@@ -82,7 +82,7 @@ void MainWindow::on_findVariable_clicked()
         if (out.symbolName == name) {   /// - если мы нашли нужную нам переменную - распарсим нашу переменную и выведем информацию о ней;
             ui->variableInfoList->clear();
             MemoryInfo *infoItem = new MemoryInfo(&parser);
-            infoItem->updateVariableLayout(&out);   /// - у отрисовщика вызываем метод который обновляет данные о переменной в gui;
+            infoItem->updateVariableLayout(out);   /// - у отрисовщика вызываем метод который обновляет данные о переменной в gui;
 
             QWidget* variableWidget = new QWidget();  /// - логика аналогичная fillListWidget().
             variableWidget->setLayout(infoItem->getVariableLayout());

@@ -12,15 +12,15 @@ MemoryInfo::MemoryInfo(MemoryParser* parser, QWidget *parent)
     createStateLayout();
 }
 
-void MemoryInfo::updateVariableLayout(const GlobalSymbol* variable)
+void MemoryInfo::updateVariableLayout(const GlobalSymbol& variable)
 {
     QList<QLabel*> labelList;   /// - создаём QList, внутри которого будут лежать данные о перменной
 
-    labelList.append(new QLabel("Название: " + variable->symbolName));
-    labelList.append(new QLabel("Тип: " + variable->type));
-    labelList.append(new QLabel("Размер: " + variable->size));
-    labelList.append(new QLabel("Начало: " + variable->value));
-    labelList.append(new QLabel("Объектный файл: " + variable->object));
+    labelList.append(new QLabel("Название: " + variable.symbolName));
+    labelList.append(new QLabel("Тип: " + variable.type));
+    labelList.append(new QLabel("Размер: " + variable.size));
+    labelList.append(new QLabel("Начало: " + variable.value));
+    labelList.append(new QLabel("Объектный файл: " + variable.object));
 
     for(QLabel* label : labelList)
     {

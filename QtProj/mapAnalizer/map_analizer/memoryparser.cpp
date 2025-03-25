@@ -64,7 +64,6 @@ void MemoryParser::parseLine(const QString& line)
         return;
     }
 
-    QList<QRegularExpression*> patterns = {pattern, padPattern, ramPattern, universalPattern};  /// - набор паттернов для парсинга элементов внутри Execution Region;
     for (auto* regex : patterns)
     {
         if (QRegularExpressionMatch match = regex->match(line); match.hasMatch())

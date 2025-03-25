@@ -18,6 +18,7 @@ public:
 private:
     bool findGlobal = false; ///<флаг о нахождении
 
+
     /// - сайт для проверки паттернов https://regex101.com/
     /// - регулятрное выражение для паттерна для парсинга Memory Map of the image
     QRegularExpression* pattern = new QRegularExpression(
@@ -49,6 +50,8 @@ private:
         R"(\s*(0x[0-9A-Fa-f]+)\s+(-|COMPRESSED|0x[0-9A-Fa-f]+)\s+(0x[0-9A-Fa-f]+)\s+(\w+)\s+(\w+)\s+(\d+)\s+([\w\.\$\-]+(?:__AT_0x[0-9A-Fa-f]+)?)\s+([\w\.\(\)]+))"
         );
 
+
+    QList<QRegularExpression*> patterns = {pattern, padPattern, ramPattern, universalPattern};  /// - набор паттернов для парсинга элементов внутри Execution Region;
 
 };
 
