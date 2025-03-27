@@ -2,7 +2,7 @@
 
 MemoryParser::MemoryParser()
 {
-
+    listRegions = createRegions();
 }
 
 void MemoryParser::parseLine(const QString& line)
@@ -33,6 +33,13 @@ void MemoryParser::parseLine(const QString& line)
                 globObj.size = tmpStr[0];
                 globObj.object = tmpStr[1];
                 globalSymbols.append(globObj);
+                for (Region& region : listRegions) {
+                    if (globObj.value.toUInt(nullptr,16) >= region.left && globObj.value.toUInt(nullptr,16) <= region.right) {
+                        region.globalSymbols.append(globalSymbols.last());
+                        region.freeSpace -= globObj.size.toUInt();
+                        return;
+                    }
+                }
                 return;
             }
 
@@ -40,6 +47,14 @@ void MemoryParser::parseLine(const QString& line)
             globObj.object = match.captured(5);
 
             globalSymbols.append(globObj);
+
+            for (Region& region : listRegions) {
+                if (globObj.value.toUInt(nullptr,16) >= region.left && globObj.value.toUInt(nullptr,16) <= region.right) {
+                    region.globalSymbols.append(globalSymbols.last());
+                    region.freeSpace -= globObj.size.toUInt();
+                    return;
+                }
+            }
             return;
         }
     }
@@ -150,4 +165,17 @@ void MemoryParser::showMemoryState()    /// - функция для отладк
     qDebug() << "  RAMSize:" << memoryState.RAMSize;
     qDebug() << "  RAMFree:" << memoryState.RAMFree;
     qDebug() << "  RAMOccu:" << memoryState.RAMOccupied;
+}
+
+QList<Region> MemoryParser::createRegions()
+{
+    return {
+        {"Flash memory bank 1", 0x08000000, 0x080FFFFF},
+        {"Flash memory bank 2", 0x08100000, 0x081FFFFF},
+        {"DTCM", 0x20000000, 0x2001FFFF},
+        {"AXI SRAM", 0x24000000, 0x2407FFFF},
+        {"SRAM1", 0x30000000, 0x3001FFFF},
+        {"SRAM2", 0x30020000, 0x3003FFFF},
+        {"SRAM3", 0x30040000, 0x30047FFF}
+    };
 }

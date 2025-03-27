@@ -10,12 +10,14 @@ public:
 
     QList<MemoryObject> memoryObjects; ///<список для объектов Memory Map of the image
     QList<GlobalSymbol> globalSymbols; ///<список для спаршенных глобальных переменнных
+    QList<Region> listRegions;  ///<Список регионов (как они обозначены в МК)
     MemoryState memoryState; ///<переменная для информиции о состоянии памяти STM32
     void parseLine(const QString& line);
     void memoryStateCreate();
     void showMemoryState();
 
 private:
+    QList<Region> createRegions();
     bool findGlobal = false; ///<флаг о нахождении
 
 

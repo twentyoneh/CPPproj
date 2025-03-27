@@ -9,17 +9,31 @@ MemoryInfo::MemoryInfo(MemoryParser* parser, QWidget *parent)
     m_variableLayout = new QVBoxLayout();
 
     createMainLayout(); /// - заполнение лейаутов.
-    createStateLayout();
+    updateStateLayout("Байт");
 }
 
-void MemoryInfo::updateVariableLayout(const GlobalSymbol& variable)
+void MemoryInfo::updateVariableLayout(const GlobalSymbol& variable,const QString& dimension)
 {
+    clearLayout(m_variableLayout);
     QList<QLabel*> labelList;   /// - создаём QList, внутри которого будут лежать данные о перменной
 
     labelList.append(new QLabel("Название: " + variable.symbolName));
+    for (Region& region : m_parser->listRegions)
+    {
+        for(GlobalSymbol& symbol : region.globalSymbols)
+        {
+            if(symbol.symbolName == variable.symbolName)
+            {
+                labelList.append(new QLabel("Название региона: " + region.name));
+            }
+        }
+    }
     labelList.append(new QLabel("Тип: " + variable.type));
-    labelList.append(new QLabel("Размер: " + variable.size));
+    labelList.append(new QLabel("Размер: " + formatSize(variable.size.toUInt(),dimension)));
     labelList.append(new QLabel("Начало: " + variable.value));
+    labelList.append(new QLabel("Конец: 0x" +
+                                        QString::number(variable.value.toUInt(nullptr, 16) + variable.size.toUInt(nullptr, 16), 16)
+                                            .rightJustified(8, '0')));  // Добавляем нули слева до 8 символов
     labelList.append(new QLabel("Объектный файл: " + variable.object));
 
     for(QLabel* label : labelList)
@@ -30,57 +44,86 @@ void MemoryInfo::updateVariableLayout(const GlobalSymbol& variable)
 
 void MemoryInfo::createMainLayout()
 {
-    for (int index = 0; index < m_parser->memoryObjects.count(); index++)   /// - парсинг всех областей памяти, установка progressBar, установка данных о регионе
+    for(Region& obj : m_parser->listRegions)  /// - парсинг всех областей памяти, установка progressBar, установка данных о регионе
     {
-        float result = float(m_parser->memoryObjects.at(index).size)/float(m_parser->memoryObjects.at(index).maxSize);
-        int progressValue = result*100;
+        QLabel* startDataLable = new QLabel("0x" + QString::number(obj.left,16));
+        QLabel* endDataLable = new QLabel("0x" + QString::number(obj.right,16));
+        QLabel* filledDataLable = new QLabel("0x" + QString::number(obj.right - obj.freeSpace,16));
 
-        QString startDataString = QString::asprintf("0x%08x",m_parser->memoryObjects.at(index).execAddr).toUpper();
-        QString endDataString = QString::asprintf("0x%08x",m_parser->memoryObjects.at(index).execAddr+m_parser->memoryObjects.at(index).size).toUpper();
-        QString filledDataString = QString::asprintf("0x%08x",m_parser->memoryObjects.at(index).execAddr+m_parser->memoryObjects.at(index).maxSize).toUpper();
+        float progressValue = float(obj.availableSpace - obj.freeSpace) / float(obj.availableSpace);
+        int result = progressValue * 100;
 
-        QHBoxLayout *progressLayout = new QHBoxLayout();
+        QVBoxLayout *containerLayout = new QVBoxLayout();  /// - основной контейнер
 
-        QLabel *label = new QLabel(m_parser->memoryObjects.at(index).name, this);
+        QLabel *label = new QLabel(obj.name, this);
+        label->setAlignment(Qt::AlignHCenter);  /// - выравниваем по центру
+
         m_progressBar = new QProgressBar(this);
-
         m_progressBar->setRange(0, 100);
-        m_progressBar->setValue(progressValue);
+        m_progressBar->setValue(result);
+        containerLayout->addWidget(label);
+        containerLayout->addWidget(m_progressBar);
 
-        progressLayout->addWidget(label);
-        progressLayout->addWidget(m_progressBar);
-        m_mainLayout->addLayout(progressLayout);
+        m_mainLayout->addLayout(containerLayout);
 
-        QLabel *startDataLabel = new QLabel("Начало региона: " + startDataString, this);
-        QLabel *endDataLabel = new QLabel("Последний адрес записанных данных: " + endDataString, this);
-        QLabel *filledDataLabel = new QLabel ("Конец региона: " + filledDataString, this);
+        QHBoxLayout *memoryLayout = new QHBoxLayout();
+        memoryLayout->addWidget(startDataLable);
+        memoryLayout->addWidget(filledDataLable);
+        memoryLayout->addWidget(endDataLable);
 
-        m_mainLayout->addWidget(startDataLabel);
-        m_mainLayout->addWidget(endDataLabel);
-        m_mainLayout->addWidget(filledDataLabel);
+        m_mainLayout->addLayout(memoryLayout);
     }
 }
 
-void MemoryInfo::createStateLayout()
+void MemoryInfo::updateStateLayout(const QString& dimension)
 {
+    clearLayout(m_stateLayout);
     QList<QLabel*> labelList;   /// - создаём QList, внутри которого будут лежать данные о состоянии памяти
 
     labelList.append(new QLabel("Общая статистика:"));
-    labelList.append(new QLabel("Размер кода (Code): " + QString::number(m_parser->memoryState.codeSize)));
-    labelList.append(new QLabel("Данные только для чтения (RO-data): " + QString::number(m_parser->memoryState.ROSize)));
-    labelList.append(new QLabel("Иниц. знач-ями изменяемые данные (RW-data): " + QString::number(m_parser->memoryState.RWSize)));
+    labelList.append(new QLabel("Размер кода (Code): " + formatSize(m_parser->memoryState.codeSize, dimension)));
+    labelList.append(new QLabel("Данные только для чтения (RO-data): " + formatSize(m_parser->memoryState.ROSize, dimension)));
+    labelList.append(new QLabel("Изменяемые данные (RW-data): " + formatSize(m_parser->memoryState.RWSize, dimension)));
+
     labelList.append(new QLabel("\nFlash-память:"));
-    labelList.append(new QLabel("Размер: " + QString::number(m_parser->memoryState.ROMSize)));
-    labelList.append(new QLabel("Свободно: " + QString::number(m_parser->memoryState.ROMFree)));
-    labelList.append(new QLabel("Занято: " + QString::number(m_parser->memoryState.ROMOccupied)));
+    labelList.append(new QLabel("Размер: " + formatSize(m_parser->memoryState.ROMSize, dimension)));
+    labelList.append(new QLabel("Свободно: " + formatSize(m_parser->memoryState.ROMFree, dimension)));
+    labelList.append(new QLabel("Занято: " + formatSize(m_parser->memoryState.ROMOccupied, dimension)));
+
     labelList.append(new QLabel("\nRAM-память:"));
-    labelList.append(new QLabel("Размер: " + QString::number(m_parser->memoryState.RAMSize)));
-    labelList.append(new QLabel("Свободно: " + QString::number(m_parser->memoryState.RAMFree)));
-    labelList.append(new QLabel("Занято: " + QString::number(m_parser->memoryState.RAMOccupied)));
+    labelList.append(new QLabel("Размер: " + formatSize(m_parser->memoryState.RAMSize, dimension)));
+    labelList.append(new QLabel("Свободно: " + formatSize(m_parser->memoryState.RAMFree, dimension)));
+    labelList.append(new QLabel("Занято: " + formatSize(m_parser->memoryState.RAMOccupied, dimension)));
 
     for(QLabel* label : labelList)
     {
         m_stateLayout->addWidget(label);    /// - внутрь лейаута помещаем отдельные лейблы
     }
+}
 
+
+QString MemoryInfo::formatSize(uint sizeInBytes, const QString &dimension)
+{
+    if (dimension == "Бит") {
+        return QString::number(sizeInBytes * 8) + " Бит";
+    } else if (dimension == "Килобайт") {
+        return QString::number(sizeInBytes / 1024.0, 'f', 2) + " Килобайт";
+    }
+    return QString::number(sizeInBytes) + " Байт";  // По умолчанию, если переданы "Байт" или некорректное значение
+}
+
+void MemoryInfo::clearLayout(QLayout *layout) {
+    if (layout == NULL)
+        return;
+    QLayoutItem *item;
+    while((item = layout->takeAt(0))) {
+        if (item->layout()) {
+            clearLayout(item->layout());
+            delete item->layout();
+        }
+        if (item->widget()) {
+            delete item->widget();
+        }
+        delete item;
+    }
 }

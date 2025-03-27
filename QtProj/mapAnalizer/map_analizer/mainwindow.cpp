@@ -6,7 +6,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    createButtonGroup();
+    connect(buttonGroup, &QButtonGroup::buttonClicked,
+            this,&MainWindow::updateDimension);
 
 }
 
@@ -32,11 +34,11 @@ void MainWindow::openFileAndParse(const QString fileName)
     parser.memoryStateCreate(); /// - создаём состояние памяти
 
     file.close();
+    infoItem = new MemoryInfo(&parser);
 }
 
 void MainWindow::fillListWidget()
 {
-    MemoryInfo *infoItem = new MemoryInfo(&parser); /// - infoItem объект внутри котого у нас будут хранится все визуальные представления структур описанные внутри defines.h;
     /// - создаю обертку QWidget над моим QLayout, чтобы потом засунуть QWidget в QListWidgetItem, который в свою очередь отобразится внутри QListWidget;
     QWidget* mainWidget = new QWidget();    /// - основной виджет, внутри него состояния областей памяти(progressbar);
     mainWidget->setLayout(infoItem->getMainLayout());
@@ -57,8 +59,8 @@ void MainWindow::fillListWidget()
 
 void MainWindow::on_OpenFile_clicked()
 {
-    QString lastPath = LadFilePath(); /// - открываем файл, сохраняем его в QSettings;
-    filePath = QFileDialog::getOpenFileName(this, "Выберите файл", lastPath, "Все файлы (*.*)");
+    QString lastPath = LoadFilePath(); /// - открываем файл, сохраняем его в QSettings;
+    filePath = QFileDialog::getOpenFileName(this, "Выберите файл", lastPath, "Файлы .map (*.map)");
     if(!filePath.isEmpty()) /// - если файл не Empty;
     {
         saveFilePath(filePath);     /// - сохраняем последний открытый файл;
@@ -81,8 +83,7 @@ void MainWindow::on_findVariable_clicked()
     {
         if (out.symbolName == name) {   /// - если мы нашли нужную нам переменную - распарсим нашу переменную и выведем информацию о ней;
             ui->variableInfoList->clear();
-            MemoryInfo *infoItem = new MemoryInfo(&parser);
-            infoItem->updateVariableLayout(out);   /// - у отрисовщика вызываем метод который обновляет данные о переменной в gui;
+            infoItem->updateVariableLayout(out,buttonGroup->checkedButton()->text());   /// - у отрисовщика вызываем метод который обновляет данные о переменной в gui;
 
             QWidget* variableWidget = new QWidget();  /// - логика аналогичная fillListWidget().
             variableWidget->setLayout(infoItem->getVariableLayout());
@@ -96,13 +97,49 @@ void MainWindow::on_findVariable_clicked()
     }
 }
 
+void MainWindow::updateDimension()
+{
+    // qDebug() << "поменяли кнопку на: " + buttonGroup->checkedButton()->text();
+    ui->stateInfoList->clear();
+    infoItem->updateStateLayout(buttonGroup->checkedButton()->text());
+    QWidget* stateWidget = new QWidget();   /// - аналогичные действия, только для состояния памяти.
+    stateWidget->setLayout(infoItem->getStateLayout());
+
+    QListWidgetItem* stateListWidgetItem = new QListWidgetItem(ui->stateInfoList);
+    stateListWidgetItem->setSizeHint(infoItem->getStateLayout()->sizeHint());
+    ui->stateInfoList->addItem(stateListWidgetItem);
+    ui->stateInfoList->setItemWidget(stateListWidgetItem, stateWidget);
+
+    on_findVariable_clicked();
+    // infoItem->updateVariableLayout(ui->variableName->text(),buttonGroup->checkedButton()->text());
+}
+
+void MainWindow::createButtonGroup()
+{
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    buttonGroup = new QButtonGroup(this);
+    buttonGroup->setExclusive(true);  // Обеспечивает выбор только одного элемента
+
+    QStringList options = {"Бит", "Байт", "Килобайт"};
+    QRadioButton *selectedButton = nullptr;
+    for (const QString &option : options) {
+        QRadioButton *radioButton = new QRadioButton(option, this);
+        layout->addWidget(radioButton);
+        buttonGroup->addButton(radioButton);
+        if (option == "Байт") selectedButton = radioButton;
+    }
+    selectedButton->setChecked(true);
+    ui->buttonWidget->setLayout(layout);
+
+}
+
 void MainWindow::saveFilePath(const QString &path)
 {
     QSettings settings("MyCompany", "MyApp");
     settings.setValue("lastFilePath", path);
 }
 
-QString MainWindow::LadFilePath()
+QString MainWindow::LoadFilePath()
 {
     QSettings settings("MyCompany", "MyApp");
     return settings.value("lastFilePath", "").toString();

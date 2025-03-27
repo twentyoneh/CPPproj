@@ -9,6 +9,8 @@
 #include <QFileDialog>
 #include <QSettings>
 #include <QMessageBox>
+#include <QButtonGroup>
+#include <QRadioButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -27,15 +29,18 @@ public:
 private slots:
     void on_OpenFile_clicked();     ///<слот для открытия файла
     void on_findVariable_clicked(); ///<слот для поиска переменной
-
+    void updateDimension();
 private:
+    void createButtonGroup();
     void saveFilePath(const QString& path); ///<функция для сохранения FilePath
-    QString LadFilePath();  ///<функция для загрузки FilePath
+    QString LoadFilePath();  ///<функция для загрузки FilePath
 
+    QButtonGroup* buttonGroup;
     QString filePath = nullptr; ///<сам путь к файлу
     void openFileAndParse(const QString fileName); ///<функция открытия файла и парсинга
     void fillListWidget();  ///<функция заполнения ListWidget(состояние памяти и прогрессбары)
     MemoryParser parser;    ///<объект парсера
+    MemoryInfo* infoItem;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

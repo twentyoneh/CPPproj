@@ -3,6 +3,7 @@
 #include <QString>
 #include <QList>
 
+
 struct MemoryRegion /// - структура для региона
 {
     QString execAddr;
@@ -32,6 +33,15 @@ struct GlobalSymbol /// - стурктура для глобальных сим�
     QString type = "none";
     QString size = "none";
     QString object = "none";
+};
+
+struct Region
+{
+    QString name;
+    uint32_t left, right;
+    uint32_t availableSpace = right - left + 1;
+    uint32_t freeSpace = availableSpace;
+    QList<GlobalSymbol> globalSymbols;
 };
 
 struct MemoryState /// - структура для состояния памяти
