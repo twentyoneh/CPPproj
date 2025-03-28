@@ -2,7 +2,7 @@
 
 MemoryParser::MemoryParser()
 {
-    listRegions = createRegions();
+    STMSettings STM{"STM32H743",new QList<Region>{}};
 }
 
 void MemoryParser::parseLine(const QString& line)
@@ -13,7 +13,7 @@ void MemoryParser::parseLine(const QString& line)
     {
         if(QRegularExpressionMatch match = patternForGlobSymb->match(line); match.hasMatch())   /// если внутри строчки есть линия которая соответствует регулярному выражению;
         {
-            GlobalSymbol globObj;   /// - создать объект GlobalSymbol, заполняем объект соотвецтвующими полями ;
+            GlobalSymbol globObj;   /// - создать объект GlobalSymbol, заполняем объект соотвецтвующими полями;
             globObj.symbolName = match.captured(1);
 
             if(match.captured(2)=="-")
@@ -167,7 +167,7 @@ void MemoryParser::showMemoryState()    /// - функция для отладк
     qDebug() << "  RAMOccu:" << memoryState.RAMOccupied;
 }
 
-QList<Region> MemoryParser::createRegions()
+QPair<QString, > MemoryParser::createRegions()
 {
     return {
         {"Flash memory bank 1", 0x08000000, 0x080FFFFF},

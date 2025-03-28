@@ -5,6 +5,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QProgressBar>
+#include <QGroupBox>
 #include <memoryparser.h>
 
 class MemoryInfo : public QWidget

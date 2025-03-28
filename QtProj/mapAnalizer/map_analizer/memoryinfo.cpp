@@ -15,7 +15,7 @@ MemoryInfo::MemoryInfo(MemoryParser* parser, QWidget *parent)
 void MemoryInfo::updateVariableLayout(const GlobalSymbol& variable,const QString& dimension)
 {
     clearLayout(m_variableLayout);
-    QList<QLabel*> labelList;   /// - создаём QList, внутри которого будут лежать данные о перменной
+    QList<QLabel*> labelList;   /// - создаём QList, внутри которого будут лежать данные о перменной;
 
     labelList.append(new QLabel("Название: " + variable.symbolName));
     for (Region& region : m_parser->listRegions)
@@ -38,13 +38,13 @@ void MemoryInfo::updateVariableLayout(const GlobalSymbol& variable,const QString
 
     for(QLabel* label : labelList)
     {
-        m_variableLayout->addWidget(label); /// - внутрь лейаута помещаем отдельные лейблы
+        m_variableLayout->addWidget(label); /// - внутрь лейаута помещаем отдельные лейблы.
     }
 }
 
 void MemoryInfo::createMainLayout()
 {
-    for(Region& obj : m_parser->listRegions)  /// - парсинг всех областей памяти, установка progressBar, установка данных о регионе
+    for(Region& obj : m_parser->listRegions)  /// - парсинг всех областей памяти, установка progressBar, установка данных о регионе;
     {
         QLabel* startDataLable = new QLabel("0x" + QString::number(obj.left,16));
         QLabel* endDataLable = new QLabel("0x" + QString::number(obj.right,16));
@@ -53,10 +53,10 @@ void MemoryInfo::createMainLayout()
         float progressValue = float(obj.availableSpace - obj.freeSpace) / float(obj.availableSpace);
         int result = progressValue * 100;
 
-        QVBoxLayout *containerLayout = new QVBoxLayout();  /// - основной контейнер
+        QVBoxLayout *containerLayout = new QVBoxLayout();  /// - основной контейнер;
 
         QLabel *label = new QLabel(obj.name, this);
-        label->setAlignment(Qt::AlignHCenter);  /// - выравниваем по центру
+        label->setAlignment(Qt::AlignHCenter);  /// - выравниваем по центру.
 
         m_progressBar = new QProgressBar(this);
         m_progressBar->setRange(0, 100);
@@ -78,7 +78,7 @@ void MemoryInfo::createMainLayout()
 void MemoryInfo::updateStateLayout(const QString& dimension)
 {
     clearLayout(m_stateLayout);
-    QList<QLabel*> labelList;   /// - создаём QList, внутри которого будут лежать данные о состоянии памяти
+    QList<QLabel*> labelList;   /// - создаём QList, внутри которого будут лежать данные о состоянии памяти;
 
     labelList.append(new QLabel("Общая статистика:"));
     labelList.append(new QLabel("Размер кода (Code): " + formatSize(m_parser->memoryState.codeSize, dimension)));
@@ -97,7 +97,7 @@ void MemoryInfo::updateStateLayout(const QString& dimension)
 
     for(QLabel* label : labelList)
     {
-        m_stateLayout->addWidget(label);    /// - внутрь лейаута помещаем отдельные лейблы
+        m_stateLayout->addWidget(label);    /// - внутрь лейаута помещаем отдельные лейблы.
     }
 }
 
