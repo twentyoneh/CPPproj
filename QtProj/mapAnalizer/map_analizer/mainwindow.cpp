@@ -100,6 +100,10 @@ void MainWindow::on_findVariable_clicked()
 void MainWindow::updateDimension()
 {
     // qDebug() << "поменяли кнопку на: " + buttonGroup->checkedButton()->text();
+    if(ui->mainListWidget->count() == 0)
+    {
+        return;
+    }
     ui->stateInfoList->clear();
     infoItem->updateStateLayout(buttonGroup->checkedButton()->text());
     QWidget* stateWidget = new QWidget();   /// - аналогичные действия, только для состояния памяти.
@@ -109,6 +113,16 @@ void MainWindow::updateDimension()
     stateListWidgetItem->setSizeHint(infoItem->getStateLayout()->sizeHint());
     ui->stateInfoList->addItem(stateListWidgetItem);
     ui->stateInfoList->setItemWidget(stateListWidgetItem, stateWidget);
+
+    ui->mainListWidget->clear();
+    infoItem->updateMainLayout(buttonGroup->checkedButton()->text());
+    QWidget* mainWidget = new QWidget();   /// - аналогичные действия, только для состояния памяти.
+    mainWidget->setLayout(infoItem->getMainLayout());
+
+    QListWidgetItem* mainWidgetItem = new QListWidgetItem(ui->mainListWidget);
+    mainWidgetItem->setSizeHint(infoItem->getMainLayout()->sizeHint());
+    ui->mainListWidget->addItem(mainWidgetItem);
+    ui->mainListWidget->setItemWidget(mainWidgetItem, mainWidget);
 
     on_findVariable_clicked();
     // infoItem->updateVariableLayout(ui->variableName->text(),buttonGroup->checkedButton()->text());
@@ -143,5 +157,10 @@ QString MainWindow::LoadFilePath()
 {
     QSettings settings("MyCompany", "MyApp");
     return settings.value("lastFilePath", "").toString();
+}
+
+void MainWindow::on_comboBox_currentTextChanged(const QString &name)
+{
+    parser.changeListRegions(name);
 }
 

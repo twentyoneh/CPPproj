@@ -16,6 +16,7 @@ public:
 
     void updateVariableLayout(const GlobalSymbol& variable,const QString& dimension); ///<метод для обновления лейаута
     void updateStateLayout(const QString& dimension);
+    void updateMainLayout(const QString& dimension);
 
     QVBoxLayout* getMainLayout() const { return m_mainLayout; } ///<геттеры для возвращения лейаута
     QVBoxLayout* getStateLayout() const { return m_stateLayout; }
@@ -26,7 +27,6 @@ public:
 
 private:
     QString formatSize(uint sizeInBytes, const QString& dimension);
-    void createMainLayout();
     void clearLayout(QLayout* layout);
     QVBoxLayout* m_mainLayout;  ///<главный лейаут(внтури расположены прогресс бары)
     QVBoxLayout* m_stateLayout; ///<лейаут сосояния памяти

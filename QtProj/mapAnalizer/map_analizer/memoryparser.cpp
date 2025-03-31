@@ -2,7 +2,32 @@
 
 MemoryParser::MemoryParser()
 {
-    STMSettings STM{"STM32H743",new QList<Region>{}};
+    STMSettings.append({
+        "STM32H743IIK6",
+        {
+            {"Flash memory bank 1", 0x08000000, 0x080FFFFF},
+            {"Flash memory bank 2", 0x08100000, 0x081FFFFF},
+            {"DTCM", 0x20000000, 0x2001FFFF},
+            {"AXI SRAM", 0x24000000, 0x2407FFFF},
+            {"SRAM1", 0x30000000, 0x3001FFFF},
+            {"SRAM2", 0x30020000, 0x3003FFFF},
+            {"SRAM3", 0x30040000, 0x30047FFF}
+        }
+    });
+
+    STMSettings.append({
+        "STM32F103C8T6",
+        {
+            {"Flash memory bank 1", 0x08000000, 0x080FFFFF},
+            {"Flash memory bank 2", 0x08100000, 0x081FFFFF},
+            {"DTCM", 0x20000000, 0x2001FFFF},
+            {"AXI SRAM", 0x24000000, 0x2407FFFF},
+            {"SRAM1", 0x30000000, 0x3001FFFF}
+        }
+    });
+
+    changeListRegions("STM32H743IIK6");
+
 }
 
 void MemoryParser::parseLine(const QString& line)
@@ -167,15 +192,13 @@ void MemoryParser::showMemoryState()    /// - функция для отладк
     qDebug() << "  RAMOccu:" << memoryState.RAMOccupied;
 }
 
-QPair<QString, > MemoryParser::createRegions()
+void MemoryParser::changeListRegions(const QString &name)
 {
-    return {
-        {"Flash memory bank 1", 0x08000000, 0x080FFFFF},
-        {"Flash memory bank 2", 0x08100000, 0x081FFFFF},
-        {"DTCM", 0x20000000, 0x2001FFFF},
-        {"AXI SRAM", 0x24000000, 0x2407FFFF},
-        {"SRAM1", 0x30000000, 0x3001FFFF},
-        {"SRAM2", 0x30020000, 0x3003FFFF},
-        {"SRAM3", 0x30040000, 0x30047FFF}
-    };
+    for (const auto& pair : STMSettings) {  /// - поиск нужного элемента
+        if (pair.first.contains(name)) {
+            listRegions = pair.second;
+            break;
+        }
+    }
 }
+

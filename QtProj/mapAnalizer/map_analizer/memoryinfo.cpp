@@ -8,7 +8,7 @@ MemoryInfo::MemoryInfo(MemoryParser* parser, QWidget *parent)
     m_stateLayout = new QVBoxLayout();
     m_variableLayout = new QVBoxLayout();
 
-    createMainLayout(); /// - заполнение лейаутов.
+    updateMainLayout("Байт"); /// - заполнение лейаутов.
     updateStateLayout("Байт");
 }
 
@@ -42,37 +42,57 @@ void MemoryInfo::updateVariableLayout(const GlobalSymbol& variable,const QString
     }
 }
 
-void MemoryInfo::createMainLayout()
+void MemoryInfo::updateMainLayout(const QString& dimension)
 {
-    for(Region& obj : m_parser->listRegions)  /// - парсинг всех областей памяти, установка progressBar, установка данных о регионе;
-    {
-        QLabel* startDataLable = new QLabel("0x" + QString::number(obj.left,16));
-        QLabel* endDataLable = new QLabel("0x" + QString::number(obj.right,16));
-        QLabel* filledDataLable = new QLabel("0x" + QString::number(obj.right - obj.freeSpace,16));
+    clearLayout(m_mainLayout);
+    for (Region& obj : m_parser->listRegions) {
+        /// Создаём GroupBox для каждого региона
+        QGroupBox *regionBox = new QGroupBox(obj.name, this);
+        QVBoxLayout *regionLayout = new QVBoxLayout(regionBox);
 
+        /// Лейблы с информацией о размере памяти
+        QLabel* size = new QLabel("Размер региона: " + formatSize(obj.availableSpace, dimension));
+        QLabel* busySpace = new QLabel("Занято: " + formatSize(obj.availableSpace - obj.freeSpace, dimension));
+        QLabel* freeSpace = new QLabel("Свободно: " + formatSize(obj.freeSpace, dimension));
+
+        QLabel* startDataLable = new QLabel("0x" + QString::number(obj.left, 16));
+        QLabel* endDataLable = new QLabel("0x" + QString::number(obj.right, 16));
+        QLabel* filledDataLable = new QLabel("0x" + QString::number(obj.right - obj.freeSpace, 16));
+
+        /// Прогресс-бар
         float progressValue = float(obj.availableSpace - obj.freeSpace) / float(obj.availableSpace);
         int result = progressValue * 100;
-
-        QVBoxLayout *containerLayout = new QVBoxLayout();  /// - основной контейнер;
-
-        QLabel *label = new QLabel(obj.name, this);
-        label->setAlignment(Qt::AlignHCenter);  /// - выравниваем по центру.
 
         m_progressBar = new QProgressBar(this);
         m_progressBar->setRange(0, 100);
         m_progressBar->setValue(result);
-        containerLayout->addWidget(label);
+
+        /// Лейаут для названия и прогресс-бара
+        QVBoxLayout *containerLayout = new QVBoxLayout();
         containerLayout->addWidget(m_progressBar);
 
-        m_mainLayout->addLayout(containerLayout);
-
+        /// Лейаут для диапазонов памяти
         QHBoxLayout *memoryLayout = new QHBoxLayout();
         memoryLayout->addWidget(startDataLable);
         memoryLayout->addWidget(filledDataLable);
         memoryLayout->addWidget(endDataLable);
 
-        m_mainLayout->addLayout(memoryLayout);
+        /// Лейаут для информации о памяти
+        QVBoxLayout *sizeMemoryLayout = new QVBoxLayout();
+        sizeMemoryLayout->addWidget(size);
+        sizeMemoryLayout->addWidget(busySpace);
+        sizeMemoryLayout->addWidget(freeSpace);
+
+        /// Добавляем все лейауты внутрь GroupBox
+        regionLayout->addLayout(containerLayout);
+        regionLayout->addLayout(memoryLayout);
+        regionLayout->addLayout(sizeMemoryLayout);
+        regionBox->setLayout(regionLayout);
+
+        /// Добавляем GroupBox в основной лейаут
+        m_mainLayout->addWidget(regionBox);
     }
+
 }
 
 void MemoryInfo::updateStateLayout(const QString& dimension)
@@ -113,17 +133,19 @@ QString MemoryInfo::formatSize(uint sizeInBytes, const QString &dimension)
 }
 
 void MemoryInfo::clearLayout(QLayout *layout) {
-    if (layout == NULL)
+    if (!layout)
         return;
-    QLayoutItem *item;
-    while((item = layout->takeAt(0))) {
-        if (item->layout()) {
-            clearLayout(item->layout());
-            delete item->layout();
+
+    while (QLayoutItem *item = layout->takeAt(0)) {
+        if (QWidget *widget = item->widget()) {
+            widget->hide();  // Скрываем перед удалением (на всякий случай)
+            widget->deleteLater();  // Безопасное асинхронное удаление
         }
-        if (item->widget()) {
-            delete item->widget();
+        else if (QLayout *childLayout = item->layout()) {
+            clearLayout(childLayout);
+            delete childLayout;  // Удаляем только дочерний layout
         }
-        delete item;
+
+        delete item;  // Безопасное удаление item
     }
 }

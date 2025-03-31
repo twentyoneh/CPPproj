@@ -30,6 +30,8 @@ private slots:
     void on_OpenFile_clicked();     ///<слот для открытия файла
     void on_findVariable_clicked(); ///<слот для поиска переменной
     void updateDimension();
+    void on_comboBox_currentTextChanged(const QString &arg1);
+
 private:
     void createButtonGroup();
     void saveFilePath(const QString& path); ///<функция для сохранения FilePath

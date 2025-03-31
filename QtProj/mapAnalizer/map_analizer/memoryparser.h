@@ -11,17 +11,17 @@ public:
     QList<MemoryObject> memoryObjects; ///<список для объектов Memory Map of the image
     QList<GlobalSymbol> globalSymbols; ///<список для спаршенных глобальных переменнных
     QList<Region> listRegions;  ///<Список регионов (как они обозначены в МК)
-    QPair<QString, QList<Region>> STMSettings;  ///<У каждой stm будет своё название и регион который ей соотвецтвует
     MemoryState memoryState; ///<переменная для информиции о состоянии памяти STM32
+
     void parseLine(const QString& line);
     void memoryStateCreate();
     void showMemoryState();
+    void changeListRegions(const QString& name);
 
 private:
-    QList<Region> createRegions();
+
+    QList<QPair<QString,QList<Region>>> STMSettings;  ///<У каждой stm будет своё название и регион который ей соотвецтвует
     bool findGlobal = false; ///<флаг о нахождении
-
-
     /// - сайт для проверки паттернов https://regex101.com/
     /// - регулятрное выражение для паттерна для парсинга Memory Map of the image
     QRegularExpression* pattern = new QRegularExpression(
