@@ -46,11 +46,11 @@ void MemoryInfo::updateMainLayout(const QString& dimension)
 {
     clearLayout(m_mainLayout);
     for (Region& obj : m_parser->listRegions) {
-        /// Создаём GroupBox для каждого региона
+        /// - cоздаём GroupBox для каждого региона;
         QGroupBox *regionBox = new QGroupBox(obj.name, this);
         QVBoxLayout *regionLayout = new QVBoxLayout(regionBox);
 
-        /// Лейблы с информацией о размере памяти
+        /// - лейблы с информацией о размере памяти;
         QLabel* size = new QLabel("Размер региона: " + formatSize(obj.availableSpace, dimension));
         QLabel* busySpace = new QLabel("Занято: " + formatSize(obj.availableSpace - obj.freeSpace, dimension));
         QLabel* freeSpace = new QLabel("Свободно: " + formatSize(obj.freeSpace, dimension));
@@ -59,7 +59,7 @@ void MemoryInfo::updateMainLayout(const QString& dimension)
         QLabel* endDataLable = new QLabel("0x" + QString::number(obj.right, 16));
         QLabel* filledDataLable = new QLabel("0x" + QString::number(obj.right - obj.freeSpace, 16));
 
-        /// Прогресс-бар
+        /// - прогресс-бар;
         float progressValue = float(obj.availableSpace - obj.freeSpace) / float(obj.availableSpace);
         int result = progressValue * 100;
 
@@ -67,29 +67,29 @@ void MemoryInfo::updateMainLayout(const QString& dimension)
         m_progressBar->setRange(0, 100);
         m_progressBar->setValue(result);
 
-        /// Лейаут для названия и прогресс-бара
+        /// - лейаут для названия и прогресс-бара;
         QVBoxLayout *containerLayout = new QVBoxLayout();
         containerLayout->addWidget(m_progressBar);
 
-        /// Лейаут для диапазонов памяти
+        /// - лейаут для диапазонов памяти;
         QHBoxLayout *memoryLayout = new QHBoxLayout();
         memoryLayout->addWidget(startDataLable);
         memoryLayout->addWidget(filledDataLable);
         memoryLayout->addWidget(endDataLable);
 
-        /// Лейаут для информации о памяти
+        /// - лейаут для информации о памяти;
         QVBoxLayout *sizeMemoryLayout = new QVBoxLayout();
         sizeMemoryLayout->addWidget(size);
         sizeMemoryLayout->addWidget(busySpace);
         sizeMemoryLayout->addWidget(freeSpace);
 
-        /// Добавляем все лейауты внутрь GroupBox
+        /// - добавляем все лейауты внутрь GroupBox;
         regionLayout->addLayout(containerLayout);
         regionLayout->addLayout(memoryLayout);
         regionLayout->addLayout(sizeMemoryLayout);
         regionBox->setLayout(regionLayout);
 
-        /// Добавляем GroupBox в основной лейаут
+        /// - добавляем GroupBox в основной лейаут;
         m_mainLayout->addWidget(regionBox);
     }
 
@@ -129,7 +129,7 @@ QString MemoryInfo::formatSize(uint sizeInBytes, const QString &dimension)
     } else if (dimension == "Килобайт") {
         return QString::number(sizeInBytes / 1024.0, 'f', 2) + " Килобайт";
     }
-    return QString::number(sizeInBytes) + " Байт";  // По умолчанию, если переданы "Байт" или некорректное значение
+    return QString::number(sizeInBytes) + " Байт";  /// - по умолчанию, если переданы "Байт" или некорректное значение.
 }
 
 void MemoryInfo::clearLayout(QLayout *layout) {
@@ -138,14 +138,14 @@ void MemoryInfo::clearLayout(QLayout *layout) {
 
     while (QLayoutItem *item = layout->takeAt(0)) {
         if (QWidget *widget = item->widget()) {
-            widget->hide();  // Скрываем перед удалением (на всякий случай)
-            widget->deleteLater();  // Безопасное асинхронное удаление
+            widget->hide();  /// - скрываем перед удалением (на всякий случай);
+            widget->deleteLater();  /// - безопасное асинхронное удаление;
         }
         else if (QLayout *childLayout = item->layout()) {
             clearLayout(childLayout);
-            delete childLayout;  // Удаляем только дочерний layout
+            delete childLayout;  /// - удаляем только дочерний layout;
         }
 
-        delete item;  // Безопасное удаление item
+        delete item;  /// - безопасное удаление item.
     }
 }
