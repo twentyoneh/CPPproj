@@ -55,9 +55,9 @@ void MemoryInfo::updateMainLayout(const QString& dimension)
         QLabel* busySpace = new QLabel("Занято: " + formatSize(obj.availableSpace - obj.freeSpace, dimension));
         QLabel* freeSpace = new QLabel("Свободно: " + formatSize(obj.freeSpace, dimension));
 
-        QLabel* startDataLable = new QLabel("0x" + QString::number(obj.left, 16));
-        QLabel* endDataLable = new QLabel("0x" + QString::number(obj.right, 16));
-        QLabel* filledDataLable = new QLabel("0x" + QString::number(obj.right - obj.freeSpace, 16));
+        QLabel* startDataLable = new QLabel("0x" + QString::number(obj.left, 16).toUpper().rightJustified(8, '0'));
+        QLabel* endDataLable = new QLabel("0x" + QString::number(obj.right, 16).toUpper().rightJustified(8, '0'));
+        QLabel* filledDataLable = new QLabel("0x" + QString::number(obj.right - obj.freeSpace, 16).toUpper().rightJustified(8, '0'));
 
         /// - прогресс-бар;
         float progressValue = float(obj.availableSpace - obj.freeSpace) / float(obj.availableSpace);

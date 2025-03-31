@@ -99,7 +99,6 @@ void MainWindow::on_findVariable_clicked()
 
 void MainWindow::updateDimension()
 {
-    // qDebug() << "поменяли кнопку на: " + buttonGroup->checkedButton()->text();
     if(ui->mainListWidget->count() == 0)
     {
         return;
@@ -125,7 +124,6 @@ void MainWindow::updateDimension()
     ui->mainListWidget->setItemWidget(mainWidgetItem, mainWidget);
 
     on_findVariable_clicked();
-    // infoItem->updateVariableLayout(ui->variableName->text(),buttonGroup->checkedButton()->text());
 }
 
 void MainWindow::createButtonGroup()

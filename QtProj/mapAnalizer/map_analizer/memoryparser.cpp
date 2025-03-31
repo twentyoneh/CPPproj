@@ -11,18 +11,15 @@ MemoryParser::MemoryParser()
             {"AXI SRAM", 0x24000000, 0x2407FFFF},
             {"SRAM1", 0x30000000, 0x3001FFFF},
             {"SRAM2", 0x30020000, 0x3003FFFF},
-            {"SRAM3", 0x30040000, 0x30047FFF}
+            {"SRAM3", 0x30040000, 0x30047FFF},
+            {"SRAM4", 0x38000000, 0x3800FFFF}
         }
     });
-
     STMSettings.append({
         "STM32F103C8T6",
         {
-            {"Flash memory bank 1", 0x08000000, 0x080FFFFF},
-            {"Flash memory bank 2", 0x08100000, 0x081FFFFF},
-            {"DTCM", 0x20000000, 0x2001FFFF},
-            {"AXI SRAM", 0x24000000, 0x2407FFFF},
-            {"SRAM1", 0x30000000, 0x3001FFFF}
+            {"Flash memory", 0x08000000, 0x081FFFFF},
+            {"SRAM", 0x20000000, 0x2004FFFF}
         }
     });
 
