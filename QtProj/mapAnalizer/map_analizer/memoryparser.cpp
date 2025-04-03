@@ -67,13 +67,13 @@ void MemoryParser::parseLine(const QString& line)
 
             globObj.size = match.captured(4);
             globObj.object = match.captured(5);
-
             globalSymbols.append(globObj);
 
             for (Region& region : listRegions) {
                 if (globObj.value.toUInt(nullptr,16) >= region.left && globObj.value.toUInt(nullptr,16) <= region.right) {
                     region.globalSymbols.append(globalSymbols.last());
                     region.freeSpace -= globObj.size.toUInt();
+                    region.lastSymbol = globObj.value.toUInt(nullptr,16) + globObj.size.toUInt();
                     return;
                 }
             }

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>708</height>
+    <height>1080</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,13 +33,19 @@
       <x>350</x>
       <y>10</y>
       <width>431</width>
-      <height>651</height>
+      <height>1021</height>
      </rect>
     </property>
     <property name="verticalScrollBarPolicy">
      <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
     </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustIgnored</enum>
+    </property>
     <property name="verticalScrollMode">
+     <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
+    </property>
+    <property name="horizontalScrollMode">
      <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
     </property>
    </widget>
@@ -121,6 +127,73 @@
       <string>STM32F103C8T6</string>
      </property>
     </item>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>670</y>
+      <width>331</width>
+      <height>121</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>670</y>
+      <width>311</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>.bss - Содержит глобальные и статические переменные, которым не присвоено начальное значение</string>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>710</y>
+      <width>311</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>.data - хранит глобальные и статические переменные, имеющие начальное значение, которое не равно нулю</string>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>740</y>
+      <width>311</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>.conststring и .constdata - хранят неизменяемые (константные) данные </string>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

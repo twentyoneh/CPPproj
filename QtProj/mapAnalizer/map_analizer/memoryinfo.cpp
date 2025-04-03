@@ -49,6 +49,7 @@ void MemoryInfo::updateMainLayout(const QString& dimension)
         /// - cоздаём GroupBox для каждого региона;
         QGroupBox *regionBox = new QGroupBox(obj.name, this);
         QVBoxLayout *regionLayout = new QVBoxLayout(regionBox);
+        QLabel* filledDataLable;
 
         /// - лейблы с информацией о размере памяти;
         QLabel* size = new QLabel("Размер региона: " + formatSize(obj.availableSpace, dimension));
@@ -57,7 +58,13 @@ void MemoryInfo::updateMainLayout(const QString& dimension)
 
         QLabel* startDataLable = new QLabel("0x" + QString::number(obj.left, 16).toUpper().rightJustified(8, '0'));
         QLabel* endDataLable = new QLabel("0x" + QString::number(obj.right, 16).toUpper().rightJustified(8, '0'));
-        QLabel* filledDataLable = new QLabel("0x" + QString::number(obj.right - obj.freeSpace, 16).toUpper().rightJustified(8, '0'));
+        if(obj.lastSymbol == 0)
+        {
+            filledDataLable = new QLabel("-");
+        } else
+        {
+            filledDataLable = new QLabel("0x" + QString::number(obj.lastSymbol, 16).toUpper().rightJustified(8, '0'));
+        }
 
         /// - прогресс-бар;
         float progressValue = float(obj.availableSpace - obj.freeSpace) / float(obj.availableSpace);
