@@ -30,10 +30,10 @@ void MemoryInfo::updateVariableLayout(const GlobalSymbol& variable,const QString
     }
     labelList.append(new QLabel("Тип: " + variable.type));
     labelList.append(new QLabel("Размер: " + formatSize(variable.size.toUInt(),dimension)));
-    labelList.append(new QLabel("Начало: " + variable.value));
+    labelList.append(new QLabel("Начало: 0x" + variable.value.mid(2).toUpper()));
     labelList.append(new QLabel("Конец: 0x" +
                                         QString::number(variable.value.toUInt(nullptr, 16) + variable.size.toUInt(nullptr, 16), 16)
-                                            .rightJustified(8, '0')));  // Добавляем нули слева до 8 символов
+                                            .rightJustified(8, '0').toUpper()));  /// - добавляем нули слева до 8 символов
     labelList.append(new QLabel("Объектный файл: " + variable.object));
 
     for(QLabel* label : labelList)

@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include <QButtonGroup>
 #include <QRadioButton>
+#include <QScrollBar>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     createButtonGroup();
+
+    ui->mainListWidget->verticalScrollBar()->setSingleStep(10);
+
     connect(buttonGroup, &QButtonGroup::buttonClicked,
             this,&MainWindow::updateDimension);
 
@@ -161,4 +164,5 @@ void MainWindow::on_comboBox_currentTextChanged(const QString &name)
 {
     parser.changeListRegions(name);
 }
+
 
