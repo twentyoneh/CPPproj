@@ -53,6 +53,8 @@ private:
         R"(\s*(0x[0-9A-Fa-f]+)\s+(-|COMPRESSED|0x[0-9A-Fa-f]+)\s+(0x[0-9A-Fa-f]+)\s+(\w+)\s+(\w+)\s+(\d+)\s+([\w\.\$\-]+(?:__AT_0x[0-9A-Fa-f]+)?)\s+([\w\.\(\)]+))"
         );
 
+    QRegularExpression* memoryStatePattern = new QRegularExpression(
+        R"((\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+Grand Totals)");
 
     QList<QRegularExpression*> patterns = {pattern, padPattern, ramPattern, universalPattern};  /// - набор паттернов для парсинга элементов внутри Execution Region;
 

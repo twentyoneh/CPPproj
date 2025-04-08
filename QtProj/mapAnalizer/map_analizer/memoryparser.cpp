@@ -80,6 +80,7 @@ void MemoryParser::parseLine(const QString& line)
             return;
         }
     }
+
     /// - если нашли строку соответствующую:
     /// - Execution Region RW_IRAM2 (Exec base: 0x24000000, Load base: 0x0803f63c, Size: 0x00077d24, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x0000020c])
     if (QRegularExpressionMatch match = patternForObj->match(line); match.hasMatch())
@@ -124,6 +125,17 @@ void MemoryParser::parseLine(const QString& line)
         }
     }
 
+    if (QRegularExpressionMatch match = memoryStatePattern->match(line); match.hasMatch())
+    {
+        memoryState.codeSize = match.captured(1).toUInt();
+        memoryState.ROSize = match.captured(3).toUInt();
+        memoryState.RWSize = match.captured(4).toUInt();
+        memoryState.ZISize = match.captured(5).toUInt();
+
+        memoryState.RAMOccupied = memoryState.RWSize + memoryState.ZISize;
+        memoryState.ROMOccupied = memoryState.codeSize + memoryState.ZISize;
+    }
+
     if(line.contains("Global Symbols")) /// - для поиска внутри Global Symbols.
     {
         findGlobal = true;
@@ -133,43 +145,43 @@ void MemoryParser::parseLine(const QString& line)
 void MemoryParser::memoryStateCreate()
 {
 
-    for(uint16_t index = 0;index < globalSymbols.size();index++)    /// - заполнение объекта memoryState;
-    {
-        if(globalSymbols.at(index).type.contains("Thumb Code"))
-        {
-            memoryState.codeSize += globalSymbols.at(index).size.toUInt();
-        }
-    }
-    for(uint16_t index = 0; index < memoryObjects.count(); index++)
-    {
-        MemoryObject* tmpMemObj = new MemoryObject(memoryObjects.at(index));
-        if(tmpMemObj->name.contains("ROM"))
-        {
-            memoryState.ROMSize += tmpMemObj->maxSize;
-            memoryState.ROMOccupied += tmpMemObj->size;
-        }
-        else if(tmpMemObj->name.contains("RAM"))
-        {
-            memoryState.RAMSize += tmpMemObj->maxSize;
-            memoryState.RAMOccupied += tmpMemObj->size;
-        }
-        memoryState.ROMFree = memoryState.ROMSize - memoryState.ROMOccupied;
-        memoryState.RAMFree = memoryState.RAMSize - memoryState.RAMOccupied;
+    // for(uint16_t index = 0;index < globalSymbols.size();index++)    /// - заполнение объекта memoryState;
+    // {
+    //     if(globalSymbols.at(index).type.contains("Thumb Code"))
+    //     {
+    //         memoryState.codeSize += globalSymbols.at(index).size.toUInt();
+    //     }
+    // }
+    // for(uint16_t index = 0; index < memoryObjects.count(); index++)
+    // {
+    //     MemoryObject* tmpMemObj = new MemoryObject(memoryObjects.at(index));
+    //     if(tmpMemObj->name.contains("ROM"))
+    //     {
+    //         memoryState.ROMSize += tmpMemObj->maxSize;
+    //         memoryState.ROMOccupied += tmpMemObj->size;
+    //     }
+    //     else if(tmpMemObj->name.contains("RAM"))
+    //     {
+    //         memoryState.RAMSize += tmpMemObj->maxSize;
+    //         memoryState.RAMOccupied += tmpMemObj->size;
+    //     }
+    //     memoryState.ROMFree = memoryState.ROMSize - memoryState.ROMOccupied;
+    //     memoryState.RAMFree = memoryState.RAMSize - memoryState.RAMOccupied;
 
-        for(uint16_t i = 0; i < tmpMemObj->memReg->count(); i++)
-        {
-            if(tmpMemObj->memReg->at(i).accessRights.contains("RO"))
-            {
-                memoryState.ROSize += tmpMemObj->memReg->at(i).size.toUInt(0,16);
-            }
-            else if(tmpMemObj->memReg->at(i).accessRights.contains("RW"))
-            {
-                memoryState.RWSize += tmpMemObj->memReg->at(i).size.toUInt(0,16);
-            }
-        }
-        tmpMemObj = nullptr;
-    }
-    showMemoryState();
+    //     for(uint16_t i = 0; i < tmpMemObj->memReg->count(); i++)
+    //     {
+    //         if(tmpMemObj->memReg->at(i).accessRights.contains("RO"))
+    //         {
+    //             memoryState.ROSize += tmpMemObj->memReg->at(i).size.toUInt(0,16);
+    //         }
+    //         else if(tmpMemObj->memReg->at(i).accessRights.contains("RW"))
+    //         {
+    //             memoryState.RWSize += tmpMemObj->memReg->at(i).size.toUInt(0,16);
+    //         }
+    //     }
+    //     tmpMemObj = nullptr;
+    // }
+    // showMemoryState();
 }
 
 void MemoryParser::showMemoryState()    /// - функция для отладки

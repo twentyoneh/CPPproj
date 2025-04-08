@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(buttonGroup, &QButtonGroup::buttonClicked,
             this,&MainWindow::updateDimension);
 
+    infoItem = new MemoryInfo(&parser);
+    fillListWidget();
 }
 
 MainWindow::~MainWindow()
@@ -34,30 +36,21 @@ void MainWindow::openFileAndParse(const QString fileName)
     }
 
     // qDebug() << parser.memoryObjects.count();
-    parser.memoryStateCreate(); /// - создаём состояние памяти
+    // parser.memoryStateCreate(); /// - создаём состояние памяти
 
     file.close();
-    infoItem = new MemoryInfo(&parser);
 }
 
 void MainWindow::fillListWidget()
 {
-    /// - создаю обертку QWidget над моим QLayout, чтобы потом засунуть QWidget в QListWidgetItem, который в свою очередь отобразится внутри QListWidget;
-    QWidget* mainWidget = new QWidget();    /// - основной виджет, внутри него состояния областей памяти(progressbar);
-    mainWidget->setLayout(infoItem->getMainLayout());
+    ui->stateInfoList->clear();
+    infoItem->updateStateLayout(buttonGroup->checkedButton()->text());
+    createStateInfoLayout();
 
-    QListWidgetItem* mainListWidgetItem = new QListWidgetItem(ui->mainListWidget);
-    mainListWidgetItem->setSizeHint(infoItem->getMainLayout()->sizeHint());
-    ui->mainListWidget->addItem(mainListWidgetItem);
-    ui->mainListWidget->setItemWidget(mainListWidgetItem, mainWidget);
+    ui->mainListWidget->clear();
+    infoItem->updateMainLayout(buttonGroup->checkedButton()->text());
+    createMainLayout();
 
-    QWidget* stateWidget = new QWidget();   /// - аналогичные действия, только для состояния памяти.
-    stateWidget->setLayout(infoItem->getStateLayout());
-
-    QListWidgetItem* stateListWidgetItem = new QListWidgetItem(ui->stateInfoList);
-    stateListWidgetItem->setSizeHint(infoItem->getStateLayout()->sizeHint());
-    ui->stateInfoList->addItem(stateListWidgetItem);
-    ui->stateInfoList->setItemWidget(stateListWidgetItem, stateWidget);
 }
 
 void MainWindow::on_OpenFile_clicked()
@@ -108,23 +101,11 @@ void MainWindow::updateDimension()
     }
     ui->stateInfoList->clear();
     infoItem->updateStateLayout(buttonGroup->checkedButton()->text());
-    QWidget* stateWidget = new QWidget();   /// - аналогичные действия, только для состояния памяти.
-    stateWidget->setLayout(infoItem->getStateLayout());
-
-    QListWidgetItem* stateListWidgetItem = new QListWidgetItem(ui->stateInfoList);
-    stateListWidgetItem->setSizeHint(infoItem->getStateLayout()->sizeHint());
-    ui->stateInfoList->addItem(stateListWidgetItem);
-    ui->stateInfoList->setItemWidget(stateListWidgetItem, stateWidget);
+    createStateInfoLayout();
 
     ui->mainListWidget->clear();
     infoItem->updateMainLayout(buttonGroup->checkedButton()->text());
-    QWidget* mainWidget = new QWidget();   /// - аналогичные действия, только для состояния памяти.
-    mainWidget->setLayout(infoItem->getMainLayout());
-
-    QListWidgetItem* mainWidgetItem = new QListWidgetItem(ui->mainListWidget);
-    mainWidgetItem->setSizeHint(infoItem->getMainLayout()->sizeHint());
-    ui->mainListWidget->addItem(mainWidgetItem);
-    ui->mainListWidget->setItemWidget(mainWidgetItem, mainWidget);
+    createMainLayout();
 
     on_findVariable_clicked();
 }
@@ -163,6 +144,28 @@ QString MainWindow::LoadFilePath()
 void MainWindow::on_comboBox_currentTextChanged(const QString &name)
 {
     parser.changeListRegions(name);
+    fillListWidget();
 }
 
+void MainWindow::createStateInfoLayout()
+{
+    QWidget* stateWidget = new QWidget();   /// - аналогичные действия, только для состояния памяти.
+    stateWidget->setLayout(infoItem->getStateLayout());
+
+    QListWidgetItem* stateListWidgetItem = new QListWidgetItem(ui->stateInfoList);
+    stateListWidgetItem->setSizeHint(infoItem->getStateLayout()->sizeHint());
+    ui->stateInfoList->addItem(stateListWidgetItem);
+    ui->stateInfoList->setItemWidget(stateListWidgetItem, stateWidget);
+}
+
+void MainWindow::createMainLayout()
+{
+    QWidget* mainWidget = new QWidget();    /// - основной виджет, внутри него состояния областей памяти(progressbar);
+    mainWidget->setLayout(infoItem->getMainLayout());
+
+    QListWidgetItem* mainListWidgetItem = new QListWidgetItem(ui->mainListWidget);
+    mainListWidgetItem->setSizeHint(infoItem->getMainLayout()->sizeHint());
+    ui->mainListWidget->addItem(mainListWidgetItem);
+    ui->mainListWidget->setItemWidget(mainListWidgetItem, mainWidget);
+}
 

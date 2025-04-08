@@ -111,15 +111,12 @@ void MemoryInfo::updateStateLayout(const QString& dimension)
     labelList.append(new QLabel("Размер кода (Code): " + formatSize(m_parser->memoryState.codeSize, dimension)));
     labelList.append(new QLabel("Данные только для чтения (RO-data): " + formatSize(m_parser->memoryState.ROSize, dimension)));
     labelList.append(new QLabel("Изменяемые данные (RW-data): " + formatSize(m_parser->memoryState.RWSize, dimension)));
+    labelList.append(new QLabel("Нульинициализированные данные (ZI-data): " + formatSize(m_parser->memoryState.ZISize, dimension)));
 
     labelList.append(new QLabel("\nFlash-память:"));
-    labelList.append(new QLabel("Размер: " + formatSize(m_parser->memoryState.ROMSize, dimension)));
-    labelList.append(new QLabel("Свободно: " + formatSize(m_parser->memoryState.ROMFree, dimension)));
     labelList.append(new QLabel("Занято: " + formatSize(m_parser->memoryState.ROMOccupied, dimension)));
 
     labelList.append(new QLabel("\nRAM-память:"));
-    labelList.append(new QLabel("Размер: " + formatSize(m_parser->memoryState.RAMSize, dimension)));
-    labelList.append(new QLabel("Свободно: " + formatSize(m_parser->memoryState.RAMFree, dimension)));
     labelList.append(new QLabel("Занято: " + formatSize(m_parser->memoryState.RAMOccupied, dimension)));
 
     for(QLabel* label : labelList)

@@ -34,6 +34,8 @@ private slots:
     void on_comboBox_currentTextChanged(const QString &arg1);
 
 private:
+    void createStateInfoLayout();
+    void createMainLayout();
     void createButtonGroup();
     void saveFilePath(const QString& path); ///<функция для сохранения FilePath
     QString LoadFilePath();  ///<функция для загрузки FilePath
