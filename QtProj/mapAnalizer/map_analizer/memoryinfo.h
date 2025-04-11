@@ -17,6 +17,7 @@ public:
     void updateVariableLayout(const GlobalSymbol& variable,const QString& dimension); ///<метод для обновления лейаута
     void updateStateLayout(const QString& dimension);
     void updateMainLayout(const QString& dimension);
+    void updateVariableLayout();
     // void createMainLayout();
 
     QVBoxLayout* getMainLayout() const { return m_mainLayout; } ///<геттеры для возвращения лейаута

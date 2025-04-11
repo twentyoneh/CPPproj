@@ -34,6 +34,7 @@ private slots:
     void on_comboBox_currentTextChanged(const QString &arg1);
 
 private:
+    void createVariableLayout();
     void createStateInfoLayout();
     void createMainLayout();
     void createButtonGroup();

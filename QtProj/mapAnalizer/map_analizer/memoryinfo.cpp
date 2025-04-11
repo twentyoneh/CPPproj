@@ -32,7 +32,7 @@ void MemoryInfo::updateVariableLayout(const GlobalSymbol& variable,const QString
     labelList.append(new QLabel("Размер: " + formatSize(variable.size.toUInt(),dimension)));
     labelList.append(new QLabel("Начало: 0x" + variable.value.mid(2).toUpper()));
     labelList.append(new QLabel("Конец: 0x" +
-                                        QString::number(variable.value.toUInt(nullptr, 16) + variable.size.toUInt(nullptr, 16), 16)
+                                        QString::number(variable.value.toUInt(nullptr, 16) + variable.size.toUInt(nullptr, 10), 16)
                                             .rightJustified(8, '0').toUpper()));  /// - добавляем нули слева до 8 символов
     labelList.append(new QLabel("Объектный файл: " + variable.object));
 
@@ -100,6 +100,25 @@ void MemoryInfo::updateMainLayout(const QString& dimension)
         m_mainLayout->addWidget(regionBox);
     }
 
+}
+
+void MemoryInfo::updateVariableLayout()
+{
+    clearLayout(m_variableLayout);
+    QList<QLabel*> labelList;   /// - создаём QList, внутри которого будут лежать данные о перменной;
+
+    labelList.append(new QLabel("Название: -"));
+    labelList.append(new QLabel("Название региона: -"));
+    labelList.append(new QLabel("Тип: -"));
+    labelList.append(new QLabel("Размер: -"));
+    labelList.append(new QLabel("Начало: -"));
+    labelList.append(new QLabel("Конец: -"));  /// - добавляем нули слева до 8 символов
+    labelList.append(new QLabel("Объектный файл: -"));
+
+    for(QLabel* label : labelList)
+    {
+        m_variableLayout->addWidget(label); /// - внутрь лейаута помещаем отдельные лейблы.
+    }
 }
 
 void MemoryInfo::updateStateLayout(const QString& dimension)

@@ -74,22 +74,24 @@ void MainWindow::on_OpenFile_clicked()
 
 void MainWindow::on_findVariable_clicked()
 {
+    bool foundFlag = false;
     QString name = ui->variableName->text();    /// - забираем из текстового поля название переменной;
     for (const GlobalSymbol &out : parser.globalSymbols)    /// - проходим по всему листу globalSymbols, каждый элемент становится out;
     {
         if (out.symbolName == name) {   /// - если мы нашли нужную нам переменную - распарсим нашу переменную и выведем информацию о ней;
+            foundFlag = true;
             ui->variableInfoList->clear();
             infoItem->updateVariableLayout(out,buttonGroup->checkedButton()->text());   /// - у отрисовщика вызываем метод который обновляет данные о переменной в gui;
 
-            QWidget* variableWidget = new QWidget();  /// - логика аналогичная fillListWidget().
-            variableWidget->setLayout(infoItem->getVariableLayout());
-
-            QListWidgetItem* variableListWidgetItem = new QListWidgetItem(ui->variableInfoList);
-            variableListWidgetItem->setSizeHint(infoItem->getVariableLayout()->sizeHint());
-            ui->variableInfoList->addItem(variableListWidgetItem);
-            ui->variableInfoList->setItemWidget(variableListWidgetItem, variableWidget);
+            createVariableLayout();
             break;
         }
+    }
+    if(!foundFlag)
+    {
+        ui->variableInfoList->clear();
+        infoItem->updateVariableLayout();
+        createVariableLayout();
     }
 }
 
@@ -145,6 +147,17 @@ void MainWindow::on_comboBox_currentTextChanged(const QString &name)
 {
     parser.changeListRegions(name);
     fillListWidget();
+}
+
+void MainWindow::createVariableLayout()
+{
+    QWidget* variableWidget = new QWidget();  /// - логика аналогичная fillListWidget().
+    variableWidget->setLayout(infoItem->getVariableLayout());
+
+    QListWidgetItem* variableListWidgetItem = new QListWidgetItem(ui->variableInfoList);
+    variableListWidgetItem->setSizeHint(infoItem->getVariableLayout()->sizeHint());
+    ui->variableInfoList->addItem(variableListWidgetItem);
+    ui->variableInfoList->setItemWidget(variableListWidgetItem, variableWidget);
 }
 
 void MainWindow::createStateInfoLayout()
