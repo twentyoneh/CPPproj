@@ -82,7 +82,6 @@ void MainWindow::on_findVariable_clicked()
             foundFlag = true;
             ui->variableInfoList->clear();
             infoItem->updateVariableLayout(out,buttonGroup->checkedButton()->text());   /// - у отрисовщика вызываем метод который обновляет данные о переменной в gui;
-
             createVariableLayout();
             break;
         }
