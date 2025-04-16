@@ -50,11 +50,22 @@ void MemoryInfo::updateMainLayout(const QString& dimension)
         QGroupBox *regionBox = new QGroupBox(obj.name, this);
         QVBoxLayout *regionLayout = new QVBoxLayout(regionBox);
         QLabel* filledDataLable;
+        QLabel* size;
+        QLabel* busySpace;
+        QLabel* freeSpace;
 
-        /// - лейблы с информацией о размере памяти;
-        QLabel* size = new QLabel("Размер региона: " + formatSize(obj.availableSpace, dimension));
-        QLabel* busySpace = new QLabel("Занято: " + formatSize(obj.availableSpace - obj.freeSpace, dimension));
-        QLabel* freeSpace = new QLabel("Свободно: " + formatSize(obj.freeSpace, dimension));
+        if(obj.lastSymbol != 0)
+        {
+            size = new QLabel("Размер региона: " + formatSize(obj.availableSpace, dimension));
+            busySpace = new QLabel("Занято: " + formatSize(obj.lastSymbol - obj.left, dimension));
+            freeSpace = new QLabel("Свободно: " + formatSize(obj.right - obj.lastSymbol + 1, dimension));
+        } else
+        {
+            /// - лейблы с информацией о размере памяти;
+            size = new QLabel("Размер региона: " + formatSize(obj.availableSpace, dimension));
+            busySpace = new QLabel("Занято: " + formatSize(0, dimension));
+            freeSpace = new QLabel("Свободно: " + formatSize(obj.availableSpace, dimension));
+        }
 
         QLabel* startDataLable = new QLabel("0x" + QString::number(obj.left, 16).toUpper().rightJustified(8, '0'));
         QLabel* endDataLable = new QLabel("0x" + QString::number(obj.right, 16).toUpper().rightJustified(8, '0'));
@@ -67,7 +78,7 @@ void MemoryInfo::updateMainLayout(const QString& dimension)
         }
 
         /// - прогресс-бар;
-        float progressValue = float(obj.availableSpace - obj.freeSpace) / float(obj.availableSpace);
+        float progressValue = float(obj.lastSymbol - obj.left) / float(obj.availableSpace);
         int result = progressValue * 100;
 
         m_progressBar = new QProgressBar(this);

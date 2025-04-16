@@ -40,8 +40,7 @@ struct Region
     QString name;
     uint32_t left, right;
     uint32_t availableSpace = right - left + 1;
-    uint32_t freeSpace = availableSpace;
-    uint32_t lastSymbol;
+    uint32_t lastSymbol = 0;
     QList<GlobalSymbol> globalSymbols;
 };
 
