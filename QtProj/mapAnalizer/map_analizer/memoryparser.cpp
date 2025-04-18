@@ -68,6 +68,10 @@ void MemoryParser::parseLine(const QString& line)
             globObj.object = match.captured(5);
             globalSymbols.append(globObj);
 
+            if(globObj.value == "0x080131cc")
+            {
+                qDebug() << " ";
+            }
             for (Region& region : listRegions) {
                 if (globObj.value.toUInt(nullptr,16) >= region.left && globObj.value.toUInt(nullptr,16) <= region.right) {
                     region.globalSymbols.append(globalSymbols.last());
@@ -130,8 +134,8 @@ void MemoryParser::parseLine(const QString& line)
         memoryState.RWSize = match.captured(4).toUInt();
         memoryState.ZISize = match.captured(5).toUInt();
 
+        memoryState.ROMOccupied = memoryState.codeSize + memoryState.ROSize;
         memoryState.RAMOccupied = memoryState.RWSize + memoryState.ZISize;
-        memoryState.ROMOccupied = memoryState.codeSize + memoryState.ZISize;
     }
 
     if(line.contains("Global Symbols")) /// - для поиска внутри Global Symbols.

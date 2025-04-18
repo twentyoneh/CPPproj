@@ -30,6 +30,8 @@ void MainWindow::openFileAndParse(const QString fileName)
     }
     QTextStream in(&file);  /// - создали текстовый поток который будем загружать в наш парсер;
 
+    parser = *new MemoryParser;
+
     while (!in.atEnd()) {   /// - пока внутри текстового потока что-то есть
         QString line = in.readLine();    /// - берём строку из потока
         parser.parseLine(line); /// - отдаём его парсеру
