@@ -24,7 +24,6 @@ MemoryParser::MemoryParser()
     });
 
     changeListRegions("STM32H743IIK6");
-
 }
 
 void MemoryParser::parseLine(const QString& line)
@@ -68,10 +67,6 @@ void MemoryParser::parseLine(const QString& line)
             globObj.object = match.captured(5);
             globalSymbols.append(globObj);
 
-            if(globObj.value == "0x080131cc")
-            {
-                qDebug() << " ";
-            }
             for (Region& region : listRegions) {
                 if (globObj.value.toUInt(nullptr,16) >= region.left && globObj.value.toUInt(nullptr,16) <= region.right) {
                     region.globalSymbols.append(globalSymbols.last());
